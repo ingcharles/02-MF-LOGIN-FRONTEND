@@ -12,7 +12,7 @@ module.exports = {
   output: {
     uniqueName: "02MFLOGINFRONTEND",
     publicPath: "auto",
-    scriptType : 'text/javascript'
+   //scriptType : 'text/javascript'
   },
   optimization: {
     runtimeChunk: false
@@ -27,7 +27,8 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name : "_02MFLOGINFRONTEND",
+      library: { type: "module" },
+      name : "MFLOGINFRONTEND",
       filename : "remoteEntry.js",
       exposes : {
         './LoginComponent' : '/src/presentation/login/login/login.component.ts'
