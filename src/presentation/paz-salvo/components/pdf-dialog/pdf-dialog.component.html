@@ -1,0 +1,25 @@
+<!-- <div mat-dialog-content> -->
+  <h5 mat-dialog-title>Visualizar PDF</h5>
+  <mat-dialog-content>
+
+  <!-- <ngx-extended-pdf-viewer [src]="pdfSrc" useBrowserLocale="true"></ngx-extended-pdf-viewer> -->
+  <ngx-extended-pdf-viewer [base64Src]="pdfSrc" (useBrowserLocale)="true" [textLayer]="false" [zoom]="'auto'"
+  [showHandToolButton]="false" [showPresentationModeButton]="true" [showDownloadButton]="true"
+  [showOpenFileButton]="false" [showRotateButton]="false" [showDrawEditor]="false" [showTextEditor]="false"
+  [theme]="theme" [filenameForDownload]="'solicitud'"
+  [showUnverifiedSignatures]="true"></ngx-extended-pdf-viewer>
+
+
+</mat-dialog-content>
+<mat-dialog-actions class="d-flex justify-content-end align-items-center">
+  <!-- <div class="row mt-4">
+    <div class="button-group mb-3">
+      <button mat-dialog-close cdkFocusInitial class="btn btn-secondary cancel ms-4" (click)="closeModal()">
+        <i class="bi bi-x-circle"></i> Cancelar
+      </button>
+      <button class="btn btn-primary ms-2 me-4" (click)="signed()">
+        <i class="bi bi-clipboard2-pulse"></i> Firmar y enviar
+      </button>
+    </div>
+  </div> -->
+</mat-dialog-actions>

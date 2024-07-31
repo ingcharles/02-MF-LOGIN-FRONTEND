@@ -9,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = '02-MF-LOGIN-FRONTEND';
+  title = '04-MF-PAZ-SALVO-FRONTEND';
 }

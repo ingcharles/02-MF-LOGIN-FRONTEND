@@ -1,1 +1,356 @@
+
+
+// // Custom Theming for Angular Material
+// // For more information: https://material.angular.io/guide/theming
+@use "sass:math";
+@import './styles/variables.scss';
+// @use '@angular/material' as mat;
+// @include mat.core();
+
+// @include mat.strong-focus-indicators((
+//   border-style: dotted,
+//   border-width: 4px,
+//   border-radius: 2px,
+// ));
+// //$kyc-web-primary: mat.mat-palette(mat.$azure-palette);
+// // $app-primary: mat.define-palette(mat.$indigo-palette);
+// // $pp: mat.define-palette(mat.$indigo-palette);
+// // Plus imports for other components in your app.
+
+// // Include the common styles for Angular Material. We include this here so that you only
+// // have to load a single css file for Angular Material in your app.
+// // Be sure that you only ever include this mixin once!
+// //@include mat.core();
+
+// // $roboto-typography: mat.define-typography-config(
+// //   $font-family: "'Nerko One', cursive",
+// // );
+// //Roboto, "Helvetica Neue", sans-serif
+// // Define the theme object.
+// // $imarkMicrofrontendTheme1: mat.mat-light-theme((
+// //   color: (
+// //     theme-type: light,
+// //     primary: mat.$azure-palette,
+// //     tertiary: mat.$blue-palette,
+// //   ),
+// //   //typography: $roboto-typography,
+// //   typography: (
+// //     brand-family: 'Comic Sans',
+// //     //bold-weight: 900,
+// //   ),
+// //   density: (
+// //     scale: 0,
+// //   )
+// // ));
+
+// $palette: (
+//   0: #000000,
+//   /*  */
+//   100: #FFFFFF,
+//   secondary: (
+//     /* 0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100 */
+//   ),
+//   neutral: (
+//     /* 0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100, 4, 6, 12, 17, 22, 24, 87, 92, 94, 96 */
+//   ),
+//   neutral-variant: (
+//     /* 0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100 */
+//   ),
+//   error: (
+//     /* 0, 10, 20, 25, 30, 35, 40, 50, 60, 70, 80, 90, 95, 98, 99, 100 */
+//   )
+// );
+
+
+// $light-theme: mat.define-theme((
+//   color: (
+//     theme-type: light,
+//     primary: mat.$azure-palette,
+//     tertiary: mat.$blue-palette,
+//   ),
+//   //typography: $roboto-typography,
+//   typography: (
+//     brand-family: 'Comic Sans',
+//     //bold-weight: 900,
+//   ),
+//   density: (
+//     scale: 0,
+//   )
+// ));
+
+// $dark-theme: mat.define-theme((
+//   color: (
+//     theme-type: dark,
+//     primary: mat.$azure-palette,
+//     tertiary: mat.$blue-palette,
+//   ),
+//   //typography: $roboto-typography,
+//   typography: (
+//     brand-family: 'Comic Sans',
+//     //bold-weight: 900,
+//   ),
+//   density: (
+//     scale: 0,
+//   )
+// ));
+
+
+
+
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// :root {
+
+//   @include mat.all-component-themes($light-theme);
+
+//   .dark {
+
+//     @include mat.all-component-colors($dark-theme);
+//     }
+// }
+
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($01-IMARK-MICROFRONTEND-theme);
+
+// Comment out the line below if you want to use the deprecated `color` inputs.
+// @include mat.color-variants-backwards-compatibility($01-IMARK-MICROFRONTEND-theme);
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  /* Generated from Material Theme Builder Figma plugin
+     or `material-color-utilities`. */
+  // --md-sys-color-primary: #006A6A;
+  // --md-sys-color-on-primary: #FFFFFF;
+  // --md-sys-color-primary-container: #6FF7F6;
+  // --md-sys-color-on-primary-container: #002020;
+  // --bs-card-color:red;
+  --bs-body-font-size: 13px;
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .form-select {
+    font-size: 14px;
+  }
+
+  h6,
+  .h6,
+  h5,
+  .h5,
+  h4,
+  .h4,
+  h3,
+  .h3,
+  h2,
+  .h2,
+  h1,
+  .h1 {
+    margin-top: 0;
+    margin-bottom: 0
+  }
+
+  @mixin switch($res: 'sm') {
+    $index: 1rem;
+    $mainVal: 1rem;
+
+    @if $res =='md' {
+      $index: 2rem;
+      $mainVal: 1.5rem;
+    }
+
+    @else if $res =='lg' {
+      $index: 3rem;
+      $mainVal: 2rem;
+    }
+
+    @else if $res =='xl' {
+      $index: 4rem;
+      $mainVal: 2.5rem;
+    }
+
+    margin-bottom: math.div($index, 2);
+    /* JUST FOR STYLING PURPOSE */
+
+    .form-check-input {
+      height: $mainVal;
+      width: math.div($index, 1) + 1.2rem; //calc(#{$index} + 1.2rem);
+      border-radius: $mainVal * 2;
+    }
+  }
+
+  .form-check-input {
+    clear: left;
+  }
+
+  .form-control:focus,.form-control:focus {
+
+   box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25);
+}
+  .form-control:not(:invalid):not(.is-invalid):focus,
+  .form-select:not(:invalid):not(.is-invalid):focus {
+    border-color: #005cbb;
+  }
+
+  .was-validated .form-control:invalid:focus,
+  .form-control.is-invalid:focus,
+  .was-validated .form-select:invalid:focus,
+  .form-select.is-invalid:focus {
+    //border-color: var(--bs-form-invalid-border-color);
+    box-shadow: 0 0 0 0.18rem rgba(220, 53, 69, 0.25);
+    // border-color:1px solid #dc3545
+    //box-shadow: none;
+  }
+
+  // YOU CAN PUT ALL RESOLUTION HERE
+  // sm - DEFAULT, md, lg, xl
+
+  .form-switch.form-switch-sm {
+    @include switch();
+  }
+
+  .form-switch.form-switch-md {
+    @include switch('md');
+  }
+
+  .form-switch.form-switch-lg {
+    @include switch('lg');
+  }
+
+  .form-switch.form-switch-xl {
+    @include switch('xl');
+  }
+
+  thead.table-primary th {
+    --bs-table-bg: var(--bs-blue);
+    --bs-table-color: var(--bs-white);
+    font-weight: 500;
+  }
+
+
+  .card-custom {
+    border-top: 5px solid #005cbb;
+  }
+
+  ::ng-deep .card-header.card-header-custom {
+    background-color: #0e4c7f; //$primary-color-light;
+    color: white;
+    position: relative;
+    padding: 15px 25px;
+    margin-left: -5px;
+    margin-right: -15px;
+    margin-top: 10px;
+    border-radius: 0px;
+  }
+
+  .card-header.card-header-custom::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    bottom: 0;
+    width: 15px;
+    background-color: #0e467d;
+  }
+
+  .card-header.card-header-custom::before {
+    content: "";
+    position: absolute;
+    top: 59px;
+    bottom: -25px;
+    width: 5px;
+    background-color: #bcc5ce;
+  }
+
+  .card-header.card-header-custom::before {
+    left: 0px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 40%);
+  }
+
+  .card-header.card-header-custom::after {
+    right: 0px;
+    clip-path: polygon(0 30%, -100% 0, 100% 30%, 0% 30%);
+  }
+
+.swal2-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+.swal2-confirm {
+    order: 2;
+    background-color: $primary-color-light;
+    border-color: #0b5ed7 !important;
+  }
+
+.swal2-cancel {
+    order: 1;
+  }
+
+
+
+
+
+
+
+
+
+  .dark-theme {
+    background-color: #333; /* Ejemplo de fondo oscuro */
+    color: #fff; /* Ejemplo de color de texto blanco */
+  }
+  :host-context(body.dark-theme) {
+    background-color: #333; /* Ejemplo de fondo oscuro */
+    color: #fff; /* Ejemplo de color de texto blanco */
+  }
+
+
+  .dark {
+
+    .card-header.card-header-custom {
+      background-color: $primary-color-dark;
+      color: white;
+      position: relative;
+      padding: 15px 25px;
+      margin-left: -5px;
+      margin-right: -15px;
+      margin-top: 10px;
+      border-radius: 0px;
+    }
+    .form-control {
+      font-size: 16px;
+    }
+  }
+
+}
+
+
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif
+}
+
+
+// .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+//   border-radius: 9999px;
+// }
+
+// ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+// ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//     transform: translateY(-1.1em) scale(.75);
+//     width: 133.33333%;
+// }
+// ::ng-deep .mat-form-field {
+//   font-size: 8px; // example
+// }
+/* You can add global styles to this file, and also import other style files */
+

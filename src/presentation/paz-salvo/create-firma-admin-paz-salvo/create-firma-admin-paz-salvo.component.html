@@ -1,0 +1,58 @@
+<!--
+* Vista create-localizacion-prueba-uno.component.html
+*
+* @author  Carlos Anchundia
+* @date    08-05-2024
+* @name    create-localizacion-prueba-uno.component.html
+* @package presentation
+* @subpackage localizacion-prueba-uno
+-->
+
+<div class="container mt-5">
+	<form autocomplete="off" [formGroup]="formAdminPazSalvo" (ngSubmit)="saveAdminPazSalvo()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario AdminPazSalvo</h4>
+			</div>
+
+			<div class="card-body card-body-custom">
+				<small>Información general del AdminPazSalvo. Los campos señalados con <strong>(*)</strong> son obligatorios.</small><br/><br/>
+
+				<div class="row mt-3">
+
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-2">
+					<label for="campoFechaUnicio"> campoFechaUnicio (*)</label>
+					<input type="date" class="form-control" id="campoFechaUnicio" name="campoFechaUnicio"
+					[ngClass]="{'is-invalid': _utilsService.isFieldInvalid('campoFechaUnicio',formAdminPazSalvo)}"
+					formControlName="campoFechaUnicio" placeholder="" required="required" maxlength="10"
+					[appTooltip]="_utilsService.getFieldErrorRequired('campoFechaUnicio', formAdminPazSalvo)"
+					[isTooltipEnabled]="_utilsService.isFieldInvalid('campoFechaUnicio',formAdminPazSalvo)" />
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-2">
+					<label for="campoFechaFin"> campoFechaFin (*)</label>
+					<input type="date" class="form-control" id="campoFechaFin" name="campoFechaFin"
+					[ngClass]="{'is-invalid': _utilsService.isFieldInvalid('campoFechaFin',formAdminPazSalvo)}"
+					formControlName="campoFechaFin" placeholder="" required="required" maxlength="10"
+					[appTooltip]="_utilsService.getFieldErrorRequired('campoFechaFin', formAdminPazSalvo)"
+					[isTooltipEnabled]="_utilsService.isFieldInvalid('campoFechaFin',formAdminPazSalvo)" />
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mt-2">
+					<label for="campoDescripcion"> campoDescripcion (*)</label>
+					<textarea type="text" rows="3" class="form-control" id="campoDescripcion" name="campoDescripcion"
+					[ngClass]="{'is-invalid': _utilsService.isFieldInvalid('campoDescripcion',formAdminPazSalvo)}"
+					formControlName="campoDescripcion" placeholder="" required="required" maxlength="250"
+					[appTooltip]="_utilsService.getFieldErrorRequired('campoDescripcion', formAdminPazSalvo)"
+					[isTooltipEnabled]="_utilsService.isFieldInvalid('campoDescripcion',formAdminPazSalvo)"
+					(keypress)="this._validatorsService.validarAlfanumericos($event)"> </textarea>
+				</div>
+			</div>
+			<div class="gap-2 d-md-flex justify-content-md-end mt-2">
+				<button type="button" class="btn btn-danger" (click)="cancelAdminPazSalvo()"><i class="fa fa-close me-2"></i>Cancelar</button>
+				<button type="submit" class="btn btn-primary" ><i class="fa fa-save me-2"></i>Guardar</button>
+			</div>
+			</div>
+		</div>
+	</form>
+</div>

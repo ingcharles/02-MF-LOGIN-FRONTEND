@@ -3,7 +3,7 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"02-MF-LOGIN-FRONTEND": {
+		"04-MF-PAZ-SALVO-FRONTEND": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -17,7 +17,7 @@
 				"build": {
 					"builder": "ngx-build-plus:browser",
 					"options": {
-						"outputPath": "dist/02-mf-login-frontend",
+						"outputPath": "dist/04-mf-paz-salvo-frontend",
 						"index": "src/index.html",
 						"polyfills": [
 							"zone.js"
@@ -29,12 +29,22 @@
 								"glob": "**/*",
 								"input": "public",
 								"output": "."
-							}
+							},
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              }
 						],
-						"styles": [
-							"src/styles.scss"
-						],
-						"scripts": [],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            ],
+            "scripts": [
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+            "node_modules/@popperjs/core/dist/umd/popper.min.js"],
 						"main": "src/main.ts",
 						"extraWebpackConfig": "webpack.config.js",
 						"commonChunk": false
@@ -68,17 +78,17 @@
 					"builder": "ngx-build-plus:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "02-MF-LOGIN-FRONTEND:build:production",
+							"buildTarget": "04-MF-PAZ-SALVO-FRONTEND:build:production",
 							"extraWebpackConfig": "webpack.prod.config.js"
 						},
 						"development": {
-							"buildTarget": "02-MF-LOGIN-FRONTEND:build:development"
+							"buildTarget": "04-MF-PAZ-SALVO-FRONTEND:build:development"
 						}
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 4201,
-						"publicHost": "http://localhost:4201",
+						"port": 4204,
+						"publicHost": "http://localhost:4204",
 						"extraWebpackConfig": "webpack.config.js"
 					}
 				},

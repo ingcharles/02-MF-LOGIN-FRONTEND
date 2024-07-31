@@ -10,7 +10,7 @@ sharedMappings.register(
 
 module.exports = {
   output: {
-    uniqueName: "02MFLOGINFRONTEND",
+    uniqueName: "02MFADMINPAZSALVO",
     publicPath: "auto",
    //scriptType : 'text/javascript'
   },
@@ -28,15 +28,15 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
       library: { type: "module" },
-      name : "MFLOGINFRONTEND",
+      name : "MFADMINPAZSALVO",
       filename : "remoteEntry.js",
       exposes : {
-        './LoginComponent' : '/src/presentation/login/login/login.component.ts'
+        './PazSalvoModule' : '/src/presentation/paz-salvo/paz-salvo.module.ts'
       },
       //library: { type: "global" },
 
         // For remotes (please adjust)
-        // name: "02MFLOGINFRONTEND",
+        // name: "02MFADMINPAZSALVO",
         // filename: "remoteEntry.js",
         // exposes: {
         //     './Component': './/src/app/app.component.ts',
