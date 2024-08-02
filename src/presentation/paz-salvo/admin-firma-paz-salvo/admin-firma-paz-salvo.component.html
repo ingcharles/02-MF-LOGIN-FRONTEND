@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="pazSalvoForm" (ngSubmit)="agregarRegistro()">
+    <mat-form-field>
+      <mat-label>Área</mat-label>
+      <mat-select formControlName="area" required>
+        <mat-option *ngFor="let area of areas" [value]="area">{{ area }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Persona</mat-label>
+      <mat-select formControlName="persona" required>
+        <mat-option *ngFor="let persona of personas" [value]="persona">{{ persona }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Agregar</button>
+  </form>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="area">
+      <th mat-header-cell *matHeaderCellDef> Área </th>
+      <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="persona">
+      <th mat-header-cell *matHeaderCellDef> Persona </th>
+      <td mat-cell *matCellDef="let element"> {{element.persona}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <button mat-raised-button color="accent" (click)="generarPDF()">Generar PDF</button>
+</div>
+
+{{this.registros| json}}

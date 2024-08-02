@@ -19,8 +19,8 @@ import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
-import { IGetAdminPazSalvoByIdViewModel, ISaveAdminPazSalvoViewModel, IUpdateAdminPazSalvoViewModel } from '../../../domain/localizacion-prueba-uno/viewModels/i-admin-paz-salvo.viewModel';
 import { AdminPazSalvoUseCase } from '../../../domain/localizacion-prueba-uno/usesCases/admin-paz-salvo.usecase';
+import { IGetAdminPazSalvoByIdViewModel, ISaveAdminPazSalvoViewModel, IUpdateAdminPazSalvoViewModel } from '../../../domain/localizacion-prueba-uno/viewModels/i-admin-paz-salvo.viewModel';
 
 @Component({
 	selector: 'create-firma-admin-paz-salvo-page',
@@ -33,7 +33,7 @@ import { AdminPazSalvoUseCase } from '../../../domain/localizacion-prueba-uno/us
 		TooltipDirective,
 	],
 	providers: [],
-	host: {ngSkipHydration: 'true' }
+	//host: {ngSkipHydration: 'true' }
 })
 
 export class CreateFirmaAdminPazSalvoComponent implements OnInit {
