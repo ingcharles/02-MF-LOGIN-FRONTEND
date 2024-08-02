@@ -18,7 +18,7 @@
   </form>
 
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="area">
       <th mat-header-cell *matHeaderCellDef> Área </th>
       <td mat-cell *matCellDef="let element"> {{element.area}} </td>
@@ -28,6 +28,97 @@
       <th mat-header-cell *matHeaderCellDef> Persona </th>
       <td mat-cell *matCellDef="let element"> {{element.persona}} </td>
     </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table> -->
+<!-- Generar una tabla para cada área -->
+<!-- <div *ngFor="let group of groupedData.data">
+  <ng-container *ngIf="group.isGroup">
+    <h3>{{ group.area }}</h3>
+    <table mat-table [dataSource]="groupedData.data" class="mat-elevation-z8">
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef> Área </th>
+        <td mat-cell *matCellDef="let element"> {{ element.area }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="persona">
+        <th mat-header-cell *matHeaderCellDef> Persona </th>
+        <td mat-cell *matCellDef="let element"> {{ element.persona }} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </ng-container>
+</div> -->
+
+  <!-- Generar una tabla para cada área -->
+  <div *ngFor="let group of groupedData1">
+    <ng-container *ngIf="group.isGroup">
+      <h3>{{ group.area }}</h3>
+      <table mat-table [dataSource]="groupedData|| []" class="mat-elevation-z8">
+        <!-- Definición de columna de área -->
+        <!-- <ng-container matColumnDef="area">
+          <th mat-header-cell *matHeaderCellDef> Área </th>
+          <td mat-cell *matCellDef="let element"> {{ element.area }} </td>
+        </ng-container> -->
+
+        <ng-container matColumnDef="area">
+          <th mat-header-cell *matHeaderCellDef> Área </th>
+          <td mat-cell *matCellDef="let element" [attr.colspan]="group.isGroup ? displayedColumns.length : 1">
+            <ng-container *ngIf="group.isGroup; else normalRow">
+              <strong>{{ element.area }}</strong>
+            </ng-container>
+            <ng-template #normalRow>
+              <ng-container *ngFor="let item of element">
+                <div>{{ item.area }}</div>
+              </ng-container>
+            </ng-template>
+          </td>
+        </ng-container>
+        <!-- Definición de columna de nombre -->
+        <ng-container matColumnDef="persona">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let element"> {{ element.persona }} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ng-container>
+  </div>
+  <table mat-table [dataSource]="groupedData" class="mat-elevation-z8">
+
+     <!-- Definición de columna de área -->
+  <ng-container matColumnDef="area">
+    <th mat-header-cell *matHeaderCellDef> Área </th>
+    <td mat-cell *matCellDef="let element" [attr.colspan]="element.isGroup ? displayedColumns.length : 1">
+      <ng-container *ngIf="element.isGroup; else normalRow">
+        <strong>{{ element.area }}</strong>
+      </ng-container>
+      <ng-template #normalRow>
+        <ng-container *ngFor="let item of element">
+          <div>{{ item.area }}</div>
+        </ng-container>
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <!-- Definición de columna de nombre -->
+  <ng-container matColumnDef="persona">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.isGroup; else normalRow">
+        {{ element | json }}
+      </ng-container>
+      <ng-template #normalRow>
+        <ng-container *ngFor="let item of element">
+          <div>{{ item.persona }}</div> <!-- Usar div para asegurar líneas separadas -->
+        </ng-container>
+      </ng-template>
+    </td>
+  </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
