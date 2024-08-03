@@ -38,6 +38,7 @@ export class AdminFirmaPazSalvoComponent implements OnInit {
   dataSource: any;
   groupedData!: MatTableDataSource<any>;
   groupedData1: any[]=[];
+  groupedData2: { area: string, registros: MatTableDataSource<any> }[] = [];
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -83,6 +84,20 @@ export class AdminFirmaPazSalvoComponent implements OnInit {
      this.groupedData1 = dataWithHeaders;
 
     this.groupedData = new MatTableDataSource(dataWithHeaders);
+
+
+
+    const grouped = this.registros.reduce((acc, registro) => {
+      const areaGroup = acc.find((group:any) => group.area === registro.area);
+      if (areaGroup) {
+        areaGroup.registros.push(registro);
+      } else {
+        acc.push({ area: registro.area, registros: [registro] });
+      }
+      return acc;
+    }, [] as { area: string, registros: Registro[] }[]);
+
+    this.groupedData2 = grouped;
   }
 
   generarPDF() {

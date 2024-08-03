@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdminFirmaPazSalvoComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo/admin-firma-paz-salvo.component';
 import { CreateAdminPazSalvoComponent } from '../presentation/paz-salvo/create-admin-paz-salvo/create-admin-paz-salvo.component';
+import { AdminFirmaPazSalvoNewComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo-new/admin-firma-paz-salvo-new.component';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,10 @@ export const routes: Routes = [
 {
   path: 'admin-paz-salvo',
   component: AdminFirmaPazSalvoComponent
+},
+{
+  path: 'admin-paz-salvo-new',
+  component: AdminFirmaPazSalvoNewComponent
 },
 // {
 //   path: "login",

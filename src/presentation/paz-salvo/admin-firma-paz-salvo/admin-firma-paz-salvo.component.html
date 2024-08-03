@@ -17,6 +17,21 @@
     <button mat-raised-button color="primary" type="submit">Agregar</button>
   </form>
 
+  <div *ngFor="let group of groupedData2">
+    <h4>{{ group.area }}</h4>
+    <table mat-table [dataSource]="group.registros" class="mat-elevation-z8">
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef> Área </th>
+        <td mat-cell *matCellDef="let element"> {{ element.area }} </td>
+      </ng-container>
+      <ng-container matColumnDef="persona">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{ element.persona }} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 
   <!-- <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="area">
@@ -54,17 +69,17 @@
 </div> -->
 
   <!-- Generar una tabla para cada área -->
-  <div *ngFor="let group of groupedData1">
+  <!-- <div *ngFor="let group of groupedData1">
     <ng-container *ngIf="group.isGroup">
       <h3>{{ group.area }}</h3>
-      <table mat-table [dataSource]="groupedData|| []" class="mat-elevation-z8">
+      <table mat-table [dataSource]="groupedData|| []" class="mat-elevation-z8"> -->
         <!-- Definición de columna de área -->
         <!-- <ng-container matColumnDef="area">
           <th mat-header-cell *matHeaderCellDef> Área </th>
           <td mat-cell *matCellDef="let element"> {{ element.area }} </td>
         </ng-container> -->
 
-        <ng-container matColumnDef="area">
+        <!-- <ng-container matColumnDef="area">
           <th mat-header-cell *matHeaderCellDef> Área </th>
           <td mat-cell *matCellDef="let element" [attr.colspan]="group.isGroup ? displayedColumns.length : 1">
             <ng-container *ngIf="group.isGroup; else normalRow">
@@ -76,9 +91,9 @@
               </ng-container>
             </ng-template>
           </td>
-        </ng-container>
+        </ng-container> -->
         <!-- Definición de columna de nombre -->
-        <ng-container matColumnDef="persona">
+        <!-- <ng-container matColumnDef="persona">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let element"> {{ element.persona }} </td>
         </ng-container>
@@ -86,11 +101,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-    </ng-container>
-  </div>
-  <table mat-table [dataSource]="groupedData" class="mat-elevation-z8">
+    </ng-container> -->
+  <!-- </div> -->
+  <!-- <table mat-table [dataSource]="groupedData" class="mat-elevation-z8">
 
-     <!-- Definición de columna de área -->
   <ng-container matColumnDef="area">
     <th mat-header-cell *matHeaderCellDef> Área </th>
     <td mat-cell *matCellDef="let element" [attr.colspan]="element.isGroup ? displayedColumns.length : 1">
@@ -105,7 +119,6 @@
     </td>
   </ng-container>
 
-  <!-- Definición de columna de nombre -->
   <ng-container matColumnDef="persona">
     <th mat-header-cell *matHeaderCellDef> Nombre </th>
     <td mat-cell *matCellDef="let element">
@@ -114,7 +127,7 @@
       </ng-container>
       <ng-template #normalRow>
         <ng-container *ngFor="let item of element">
-          <div>{{ item.persona }}</div> <!-- Usar div para asegurar líneas separadas -->
+          <div>{{ item.persona }}</div>
         </ng-container>
       </ng-template>
     </td>
@@ -122,7 +135,7 @@
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  </table> -->
 
   <button mat-raised-button color="accent" (click)="generarPDF()">Generar PDF</button>
 </div>

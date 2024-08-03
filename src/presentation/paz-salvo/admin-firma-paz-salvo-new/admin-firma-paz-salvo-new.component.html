@@ -1,0 +1,265 @@
+<div>
+  <!-- <div class="row">
+    <div class="col">
+      <form>
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-6 ui-md-6">
+            <span class="ui-float-label">
+              <textarea rows="5" cols="45" class="form-control" pInputTextarea id="add-summary" name="summary"
+                required></textarea>
+              <label for="add-summary">Issue Summary*</label>
+            </span>
+          </div>
+          <div class="ui-g-6 ui-md-6">
+            <span class="ui-float-label">
+              <textarea rows="5" cols="45" class="form-control" pInputTextarea id="add-details" name="details"
+                required></textarea>
+              <label for="add-details">Issue Details*</label>
+            </span>
+          </div>
+        </div>
+        <div class="ui-g ui-fluid top-buffer">
+          <div class="ui-xl-2 ui-lg-2 ui-md-3">
+            <span class="ui-float-label">
+              <p-dropdown placeholder="Service Line*" [style]="{'width':'100%'}" [required]="true"
+                name="serviceLineOptions"></p-dropdown>
+            </span>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-3">
+            <span class="ui-float-label">
+              <input type="text" pInputText id="add-application" name="application" [required]="true">
+              <label for="add-application">App*</label>
+            </span>
+          </div>
+          <div class="ui-xl-2 ui-lg-2 ui-md-3">
+            <span class="ui-float-label">
+              <input type="text" pInputText id="add-owner" name="owner" [required]="true">
+              <label for="add-owner">Owner*</label>
+            </span>
+          </div>
+          <div class="ui-xl-2 ui-lg-2 ui-md-3">
+            <label for="add-owner">Owner*</label>
+            <p-dropdown name="statusOptions" placeholder="Status*" [required]="true"
+              [style]="{'width':'100%'}"></p-dropdown>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-3">
+            <span class="ui-float-label">
+
+              <label for="add-eta">ETA</label>
+            </span>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-3">
+            <span class="ui-float-label">
+
+            </span>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-2">
+            <span class="ui-float-label">
+              <input type="text" pInputTextarea id="add-tdpNumber" name="tdpNumber">
+              <label for="add-tdpNumber">TDP#</label>
+            </span>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-2">
+            <span class="ui-float-label">
+              <input type="text" pInputText id="add-wrNumber" name="wrNumber">
+              <label for="add-wrNumber">WR#</label>
+            </span>
+          </div>
+          <div class="ui-xl-1 ui-lg-1 ui-md-2">
+            <button pButton type="button" label="Add" icon="fa-plus"></button>
+          </div>
+        </div>
+
+
+      </form>
+
+    </div>
+  </div> -->
+  <form [formGroup]="pazSalvoForm" (ngSubmit)="agregarRegistro()">
+    <!-- <p-floatLabel>
+      <input pInputText id="username" />
+      <label for="username">Username</label>
+    </p-floatLabel>
+
+    <div class="flex flex-column gap-6">
+      <label for="username">Username</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <small id="username-help">
+        Enter your username to reset your password.
+      </small>
+    </div>
+    <div class="flex flex-column gap-4">
+      <label for="username">Username</label>
+      <input pInputText id="username" aria-describedby="username-help" />
+      <small id="username-help">
+        Enter your username to reset your password.
+      </small>
+    </div>
+    <span class="p-float-label">
+      <input id="float-input-sm" type="text" pInputText>
+      <label for="float-input-sm">Username</label>
+    </span>
+    <div class="flex flex-row flex-wrap">
+      <div class="flex-2 flex">Área</div>
+      <div class="flex-10 flex">
+
+        <p-dropdown [options]="areas"></p-dropdown>
+      </div>
+      <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2">2
+      </div>
+      <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2">3
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex-1 flex">Área</div>
+      <div class="flex-1 flex"><p-dropdown [options]="areas"></p-dropdown></div>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <div class="flex">Área</div>
+      <div class="flex"><p-dropdown [options]="areas"></p-dropdown></div>
+
+    </div>
+    <div class="flex flex-wrap gap-1 md:gap-4 xl:gap-8">
+      <div class="flex align-items-center justify-content-center">Área</div>
+      <div class="flex align-items-center justify-content-center"><p-dropdown [options]="areas"></p-dropdown></div>
+    </div>
+
+    <div class="card">
+      <h5>Advanced</h5>
+      <div class="p-fluid p-formgrid grid">
+        <div class="field col-12 md:col-6">
+          <label htmlfor="firstname2">Firstname</label>
+          <input pinputtext="" id="firstname2" type="text" class="p-inputtext p-component p-element">
+        </div>
+        <div class="field col-12 md:col-6">
+          <label htmlfor="lastname2">Lastname</label>
+          <input pinputtext="" id="lastname2" type="text" class="p-inputtext p-component p-element">
+        </div>
+        <div class="field col-12">
+          <label htmlfor="address">Address</label><input pinputtextarea="" id="address" rows="4"
+            class="p-inputtextarea p-inputtext p-component p-element">
+        </div>
+        <div class="field col-12 md:col-6"><label htmlfor="city">City</label><input pinputtext="" id="city" type="text"
+            class="p-inputtext p-component p-element"></div>
+        <div class="field col-12 md:col-3"><label htmlfor="state">State</label>
+          <p-dropdown optionlabel="name" class="p-element p-inputwrapper ng-valid ng-dirty ng-touched">
+
+          </p-dropdown>
+        </div>
+      </div>
+    </div>
+    <p-button label="Toggle p-disabled" pStyleClass="@next" toggleClass="p-disabled" />
+    <input type="text" pInputText class="block mt-3" /> -->
+    <!-- <form (ngSubmit)="agregarRegistro()">
+
+  </form> -->
+  <!-- <p-button
+  label="Toggle p-disabled"
+  pStyleClass="@next"
+  toggleClass="p-disabled" />
+<input type="text" pInputText class="block mt-3" />
+
+<p-button styleClass="p-button-sm p-button-raised mr-2" label="Something" icon="pi pi-upload">
+</p-button>
+
+
+
+  <div>
+    <p-button
+        label="Show"
+        class="mr-2"
+        pStyleClass=".box"
+        enterFromClass="hidden"
+        enterActiveClass="fadein" />
+    <p-button
+        label="Hide"
+        pStyleClass=".box"
+        leaveActiveClass="fadeout"
+        leaveToClass="hidden" />
+</div>
+
+<div class="hidden animation-duration-500 box">
+    <div class="flex bg-green-500 text-white align-items-center justify-content-center py-3 border-round-md mt-3 font-bold shadow-2 w-8rem h-8rem">
+        Content
+    </div>
+</div> -->
+<p-card >
+    <div class="p-fluid p-formgrid grid">
+      <div class="field col-12 md:col-6">
+        <label for="area">Área</label>
+        <p-dropdown [options]="areas" formControlName="area"></p-dropdown>
+      </div>
+
+      <div class="field col-12 md:col-6">
+        <label for="persona">Persona</label>
+
+        <p-dropdown [options]="personas" formControlName="persona"></p-dropdown>
+
+      </div>
+    </div>
+
+    <button pButton type="submit" label="Agregar Registro"></button>
+  </p-card>
+  </form>
+
+  <div *ngFor="let group of groupedData2">
+    <p-panel header="{{group.area}}" [toggleable]="true">
+      <ng-template pTemplate="header">
+
+      </ng-template>
+      <!-- <p>
+          Lorem ipsum dolor sit amet...
+      </p>
+      <ng-template pTemplate="footer">
+          <div class="flex gap-3 mt-1">
+              <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
+              <p-button label="Save" class="w-full" styleClass="w-full" />
+          </div>
+      </ng-template> -->
+
+
+      <p-table [value]="group.registros">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Area</th>
+            <th>Persona</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{ rowData.area }}</td>
+            <td>{{ rowData.persona }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-panel>
+  </div>
+
+
+  <!-- <div *ngFor="let group of groupedData2">
+    <p-card header="{{group.area}}" [style]="{ width: '100%' }">
+      <ng-template pTemplate="header">
+
+      </ng-template>
+
+
+
+      <p-table [value]="group.registros">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Area</th>
+            <th>Persona</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{ rowData.area }}</td>
+            <td>{{ rowData.persona }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-card>
+  </div> -->
+
+  <button pButton (click)="generarPDF()" label="Generar PDF"></button>
+</div>
