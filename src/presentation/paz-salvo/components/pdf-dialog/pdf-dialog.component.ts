@@ -34,6 +34,18 @@ export class PdfDialogComponent implements AfterViewInit {
     console.log("areas", areas);
     console.log("firmasGuardadasPorAre", firmasGuardadasPorArea);
 
+
+    // for (const area in firmasGuardadasPorArea) {
+    //   const areaIndex = areas.findIndex(a => a.nombre === area);
+    //   const areaData = areas[areaIndex];
+    //   console.log("area", area);
+    //    pdf.text(`Área: ${areaData.nombre}`, areaData.posicionX, area.posicionY);
+    //   firmasGuardadasPorArea[area].forEach((registro:any , index:any )=> {
+    //     pdf.text(`Nombre: ${registro.nombre}`, registro.posicionX, registro.posicionY);
+    //    // console.log(`Persona: ${registro.nombre}`, 20, y);
+    //   });
+    // }
+
     areas.forEach((area, index) => {
       // if (index!=1){
       //   posicionYAux=10;
@@ -54,11 +66,12 @@ export class PdfDialogComponent implements AfterViewInit {
       //   posicionYAux = area.posicionY;
       //   console.log("posicion1", posicionYAux)
       // }
+
       pdf.text(`Área: ${area.nombre}`, area.posicionX, area.posicionY);
       firmas.forEach(firma => {
         const { nombre, posicionX, posicionY } = firma;
         pdf.text(`Nombre: ${nombre}`, posicionX, posicionY);
-        pdf.rect(posicionX, posicionY, 20, 10);  // Dibuja un rectángulo en la posición indicada
+       // pdf.rect(posicionX, posicionY, 20, 10);  // Dibuja un rectángulo en la posición indicada
       });
     }
     });

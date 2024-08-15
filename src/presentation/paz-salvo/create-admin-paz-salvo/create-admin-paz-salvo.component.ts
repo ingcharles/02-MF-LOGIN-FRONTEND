@@ -112,61 +112,100 @@ export class CreateAdminPazSalvoComponent implements OnInit {
     this.firmas.removeAt(index);
   }
 
-   onSubmit() {
+  onSubmit() {
     if (this.formAdminPazSalvo.valid) {
       const area = this.formAdminPazSalvo.get('area')?.value;
-      const areaIndex = this.areas.findIndex(a => a.nombre === area);
-      const areaData = this.areas[areaIndex];
+      const areaData = this.areas.find(a => a.nombre === area);
 
       if (areaData) {
-        let posicionX = areaData.posicionX;
-        let posicionY = areaData.posicionY;  // Posición inicial para el área actual
-        let ultimaPosicionY:any = null; // Para mantener la última posición Y usada
-
-        // Agrupar firmas por área y actualizar posiciones
+        // Agrupar firmas por área
         const firmasAgrupadas: { [key: string]: IFirmaAreaItemAdminPazSalvoViewModel[] } = this.firmas.reduce(
-          (acc: { [key: string]: IFirmaItemAdminPazSalvoViewModel[] }, firma: IFirmaItemAdminPazSalvoViewModel) => {
-            // Si es una nueva área
-            if (!acc[firma.area]) {
-              if (ultimaPosicionY === null) {
-                // Es la primera área, usa la posición inicial
-                firma.posicionX = posicionX;
-                firma.posicionY = posicionY;
-              } else {
-                // Áreas subsiguientes, usa la última posición Y del área anterior
-                firma.posicionX = posicionX;
-                firma.posicionY = ultimaPosicionY + 20;
-              }
+                  (acc: { [key: string]: IFirmaItemAdminPazSalvoViewModel[] }, firma: IFirmaItemAdminPazSalvoViewModel) => {
 
-              // Actualizar última posición Y
-              ultimaPosicionY = firma.posicionY;
-
-              // Agregar la firma al acumulador para su área correspondiente
-              (acc[firma.area] = acc[firma.area] || []).push(firma);
-            } else {
-              // Área existente, continuar desde la última posición Y
-              firma.posicionX = posicionX;
-              firma.posicionY = acc[firma.area][acc[firma.area].length - 1].posicionY + 20;
-
-              // Actualizar última posición Y
-              ultimaPosicionY = firma.posicionY;
-
-              // Agregar la firma al acumulador para su área correspondiente
-              (acc[firma.area] = acc[firma.area] || []).push(firma);
-            }
-
-            return acc;
-          },
-          {}
-        );
+          if (!acc[firma.area]) {
+            acc[firma.area] = [];
+          }
+          acc[firma.area].push(firma);
+          firma.posicionX = areaData.posicionX;
+          return acc;
+        }, {} as { [key: string]: IFirmaItemAdminPazSalvoViewModel[] });
 
         // Actualizar área actual para la última posición Y utilizada
-        areaData.posicionY = ultimaPosicionY !== null ? ultimaPosicionY : posicionY;
+        let y = 10; // Posición Y inicial
+        for (const [areaName, registros] of Object.entries(firmasAgrupadas)) {
+
+          const areaIndex = this.areas.findIndex(a => a.nombre === areaName);
+
+          if (areaIndex !== -1) {
+            this.areas[areaIndex].posicionY = y;
+            y += 10; // Incrementar Y para el próximo grupo de firmas
+          }
+
+          // Asegurar el tipo explícito para el parámetro de la función
+          registros.forEach((registro) => {
+            registro.posicionY = y;
+            y += 10;
+          });
+
+        }
 
         // Guardar las firmas agrupadas por área
         this.firmasGuardadasPorArea = firmasAgrupadas;
       }
     }
+  }
+  //  onSubmit() {
+  //   if (this.formAdminPazSalvo.valid) {
+  //     const area = this.formAdminPazSalvo.get('area')?.value;
+  //     const areaIndex = this.areas.findIndex(a => a.nombre === area);
+  //     console.log("areaIndex",areaIndex);
+  //     const areaData = this.areas[areaIndex];
+
+  //     if (areaData) {
+
+  //       // Agrupar firmas por área y actualizar posiciones
+  //       const firmasAgrupadas: { [key: string]: IFirmaAreaItemAdminPazSalvoViewModel[] } = this.firmas.reduce(
+  //         (acc: { [key: string]: IFirmaItemAdminPazSalvoViewModel[] }, firma: IFirmaItemAdminPazSalvoViewModel) => {
+  //           // Si es una nueva área
+  //           if (!acc[firma.area]) {
+
+  //             // Agregar la firma al acumulador para su área correspondiente
+  //             (acc[firma.area] = acc[firma.area] || []).push(firma);
+  //           } else {
+
+  //             // Agregar la firma al acumulador para su área correspondiente
+  //             (acc[firma.area] = acc[firma.area] || []).push(firma);
+  //           }
+  //           firma.posicionX = areaData.posicionX;;
+  //           return acc;
+  //         },
+  //         {}
+  //       );
+
+  //       // Actualizar área actual para la última posición Y utilizada
+  //       console.log("firmasAgrupadas",firmasAgrupadas)
+  //       let y = 10; // Posición Y inicial
+  //       for (const area in firmasAgrupadas) {
+  //         console.log(area, 10, y);
+
+  //         const areaIndex1 = this.areas.findIndex(a => a.nombre === area);
+  //     console.log("areaIndex",areaIndex1);
+  //     this.areas[areaIndex1].posicionY = y;
+  //         y += 10;
+  //         firmasAgrupadas[area].forEach((registro:any , index:any )=> {
+  //           console.log(`Persona: ${registro.nombre}`, 20, y);
+  //           registro.posicionY = y;
+  //           y += 10;
+  //         });
+  //       }
+  //       console.log("this.areas[areaIndex]",this.areas[areaIndex])
+  //       console.log("this.areas",this.areas)
+  //       console.log("firmasAgrupadas1",firmasAgrupadas)
+  //       // Guardar las firmas agrupadas por área
+  //       this.firmasGuardadasPorArea = firmasAgrupadas;
+  //     }
+  //   }
+  // }
   //   if (this.formAdminPazSalvo.valid) {
   //     const area = this.formAdminPazSalvo.get('area')?.value;
   //     const areaIndex = this.areas.findIndex(a => a.nombre === area);
@@ -353,7 +392,7 @@ export class CreateAdminPazSalvoComponent implements OnInit {
     // }
 
 
-  }
+  //}
 
   generatePDF() {
 
