@@ -48,6 +48,7 @@ export class AdminFirmaPazSalvoNewComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+    console.log("a","AdminFirmaPazSalvoNewComponent")
     this.pazSalvoForm = this.fb.group({
       area: ['', Validators.required],
       persona: ['', Validators.required]
@@ -55,6 +56,7 @@ export class AdminFirmaPazSalvoNewComponent implements OnInit {
   }
 
   agregarRegistro() {
+    console.log("a","agregarRegistro")
     if (this.pazSalvoForm.valid) {
       this.registros.push(this.pazSalvoForm.value);
       this.dataSource = new MatTableDataSource(this.registros);

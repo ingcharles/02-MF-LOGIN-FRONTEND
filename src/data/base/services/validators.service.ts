@@ -233,7 +233,7 @@ export class ValidatorsService {
   *  @param {any} event recibe el evento del componente
   */
   public validarAlfanumericos(event: any) {
-    console.log(event);
+    //console.log(event);
     let key = event.keyCode;
     if (key === 60 || key === 62) {
       event.returnValue = false;

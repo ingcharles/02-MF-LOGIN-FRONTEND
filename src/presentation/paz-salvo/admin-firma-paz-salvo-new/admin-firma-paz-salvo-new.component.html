@@ -153,7 +153,7 @@
     <!-- <form (ngSubmit)="agregarRegistro()">
 
   </form> -->
-  <!-- <p-button
+    <!-- <p-button
   label="Toggle p-disabled"
   pStyleClass="@next"
   toggleClass="p-disabled" />
@@ -161,8 +161,6 @@
 
 <p-button styleClass="p-button-sm p-button-raised mr-2" label="Something" icon="pi pi-upload">
 </p-button>
-
-
 
   <div>
     <p-button
@@ -183,23 +181,28 @@
         Content
     </div>
 </div> -->
-<p-card >
-    <div class="p-fluid p-formgrid grid">
-      <div class="field col-12 md:col-6">
-        <label for="area">Área</label>
-        <p-dropdown [options]="areas" formControlName="area"></p-dropdown>
-      </div>
+    <p-panel header="Nuevo Registro">
 
-      <div class="field col-12 md:col-6">
-        <label for="persona">Persona</label>
-        <p-dropdown [options]="personas" formControlName="persona"></p-dropdown>
 
-      </div>
-    </div>
+        <div class="p-fluid p-formgrid grid">
+          <div class="field lg:col-5 md:col-4">
+            <label for="area">Área</label>
+            <p-dropdown [options]="areas" formControlName="area"></p-dropdown>
+          </div>
 
-    <button pButton type="submit" label="Agregar Registro"></button>
-  </p-card>
+          <div class="field lg:col-5 md:col-4">
+            <label for="persona">Persona</label>
+            <p-dropdown [options]="personas" formControlName="persona"></p-dropdown>
+          </div>
+          <div class="field lg:col-2 md:col-4 mt-5">
+            <button pButton type="submit" label="Añadir"></button>
+          </div>
+        </div>
+
+
+    </p-panel>
   </form>
+  <p-panel header="Detalle">
 
   <div *ngFor="let group of groupedData2">
     <p-panel header="{{group.area}}" [toggleable]="true">
@@ -232,6 +235,8 @@
       </p-table>
     </p-panel>
   </div>
+  <button pButton (click)="generarPDF()" label="Generar PDF"></button>
+  </p-panel>
 
 
   <!-- <div *ngFor="let group of groupedData2">
@@ -259,5 +264,5 @@
     </p-card>
   </div> -->
 
-  <button pButton (click)="generarPDF()" label="Generar PDF"></button>
+
 </div>

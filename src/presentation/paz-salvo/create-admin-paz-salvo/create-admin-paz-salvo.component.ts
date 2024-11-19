@@ -76,6 +76,7 @@ export class CreateAdminPazSalvoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("c","CreateAdminPazSalvoComponent");
     this.areas.forEach(area => {
       this.firmasGuardadasPorArea[area.nombre] = [];
     });
