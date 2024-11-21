@@ -34,7 +34,6 @@ import { PdfDialogComponent } from '../components/pdf-dialog/pdf-dialog.componen
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    TooltipDirective
   ],
   providers: [],
   //host: {ngSkipHydration: 'true' }

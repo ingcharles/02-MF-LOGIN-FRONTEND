@@ -16,6 +16,7 @@ import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-resp
 import { IGetAdminPazSalvoByIdRsViewModel, IGetAdminPazSalvoByIdViewModel, IGetAdminPazSalvoPaginadoRsViewModel, IGetAdminPazSalvoPaginadoViewModel, IGetAdminPazSalvoRsViewModel, IGetAdminPazSalvoViewModel, ISaveAdminPazSalvoRsViewModel, ISaveAdminPazSalvoViewModel, IUpdateAdminPazSalvoRsViewModel, IUpdateAdminPazSalvoViewModel } from '../../../domain/localizacion-prueba-uno/viewModels/i-admin-paz-salvo.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
+import { IResultApi } from '../../base/interfaces/i-result-api';
 
 const apiUrl: string = environment.apiUrl;
 
@@ -42,7 +43,7 @@ export class AdminPazSalvoService  {
 	public async saveAdminPazSalvo(AdminPazSalvo: ISaveAdminPazSalvoViewModel): Promise<Observable<IResponseStatusViewModel<ISaveAdminPazSalvoRsViewModel>>>{
 	AdminPazSalvo.auditoria = 'transaccionAuditoria';
 	const url = `${apiUrl}command/localizacion-prueba-uno/saveAdminPazSalvo`;
-	return this._http.post<ISaveAdminPazSalvoRsViewModel>(url, AdminPazSalvo).pipe(
+	return this._http.post<IResultApi>(url, AdminPazSalvo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<ISaveAdminPazSalvoRsViewModel>(result);
 		}),
@@ -59,7 +60,7 @@ export class AdminPazSalvoService  {
 	*/
 	public async getAdminPazSalvo(busqueda: IGetAdminPazSalvoViewModel): Promise<Observable<IResponseStatusViewModel<IGetAdminPazSalvoRsViewModel>>>{
 	const url = `${apiUrl}query/localizacion-prueba-uno/getAdminPazSalvo`;
-	return this._http.post<IGetAdminPazSalvoRsViewModel>(url, busqueda).pipe(
+	return this._http.post<IResultApi>(url, busqueda).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetAdminPazSalvoRsViewModel>(result);
 		}),
@@ -76,7 +77,7 @@ export class AdminPazSalvoService  {
 	*/
 	public async getAdminPazSalvoPaginado(dataViewModel: IGetAdminPazSalvoPaginadoViewModel): Promise<Observable<IResponseStatusViewModel<IGetAdminPazSalvoPaginadoRsViewModel>>>{
 	const url = `${apiUrl}query/localizacion-prueba-uno/findAllPaginateAdminPazSalvo`;
-	return this._http.post<IGetAdminPazSalvoPaginadoRsViewModel>(url, dataViewModel).pipe(
+	return this._http.post<IResultApi>(url, dataViewModel).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetAdminPazSalvoPaginadoRsViewModel>(result);
 		}),
@@ -93,7 +94,7 @@ export class AdminPazSalvoService  {
 	*/
 	public async getAdminPazSalvoById(campo_serial: IGetAdminPazSalvoByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetAdminPazSalvoByIdRsViewModel>>>{
 	const url = `${apiUrl}query/localizacion-prueba-uno/findByIdAdminPazSalvo`;
-	return this._http.post<IGetAdminPazSalvoByIdRsViewModel>(url, campo_serial).pipe(
+	return this._http.post<IResultApi>(url, campo_serial).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetAdminPazSalvoByIdRsViewModel>(result);
 		}),
@@ -111,7 +112,7 @@ export class AdminPazSalvoService  {
 	public async updateAdminPazSalvo(AdminPazSalvo: IUpdateAdminPazSalvoViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateAdminPazSalvoRsViewModel>>>{
 	AdminPazSalvo.auditoria = 'transaccionAuditoria';
 	const url = `${apiUrl}command/localizacion-prueba-uno/updateAdminPazSalvo`;
-	return this._http.post<IUpdateAdminPazSalvoRsViewModel>(url, AdminPazSalvo).pipe(
+	return this._http.post<IResultApi>(url, AdminPazSalvo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IUpdateAdminPazSalvoRsViewModel>(result);
 		}),

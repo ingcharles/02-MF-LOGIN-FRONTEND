@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { messages } from '../constants/messages';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
+import { IResultApi } from '../interfaces/i-result-api';
 
 @Injectable({ providedIn: 'root' })
 export class StatusResponseService {
@@ -28,11 +29,11 @@ export class StatusResponseService {
     return responseStatus;
   }
 
-  succes<T>(result: T): IResponseStatusViewModel<T> {
+  succes<T>(result: IResultApi): IResponseStatusViewModel<T> {
     let responseStatus: IResponseStatusViewModel<T> = <IResponseStatusViewModel<T>>{}
-    responseStatus = { data: result, message: messages.isSuccess, statusCode: 200, ok: true }
-    console.log("responseStatus", responseStatus)
+    responseStatus = { data: result.data, message: result.message, statusCode: result.statusCode, ok: result.status }
     return responseStatus;
   }
+
 
 }

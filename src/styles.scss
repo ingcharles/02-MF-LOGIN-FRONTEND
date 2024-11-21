@@ -229,50 +229,7 @@
     font-weight: 500;
   }
 
-
-  .card-custom {
-    border-top: 5px solid #005cbb;
-  }
-
-  ::ng-deep .card-header.card-header-custom {
-    background-color: #0e4c7f; //$primary-color-light;
-    color: white;
-    position: relative;
-    padding: 15px 25px;
-    margin-left: -5px;
-    margin-right: -15px;
-    margin-top: 10px;
-    border-radius: 0px;
-  }
-
-  .card-header.card-header-custom::after {
-    content: '';
-    position: absolute;
-    top: -25px;
-    bottom: 0;
-    width: 15px;
-    background-color: #0e467d;
-  }
-
-  .card-header.card-header-custom::before {
-    content: "";
-    position: absolute;
-    top: 59px;
-    bottom: -25px;
-    width: 5px;
-    background-color: #bcc5ce;
-  }
-
-  .card-header.card-header-custom::before {
-    left: 0px;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 40%);
-  }
-
-  .card-header.card-header-custom::after {
-    right: 0px;
-    clip-path: polygon(0 30%, -100% 0, 100% 30%, 0% 30%);
-  }
-
+  
 .swal2-actions {
     display: flex;
     justify-content: space-between;
@@ -306,22 +263,22 @@
   }
 
 
-  .dark {
+  // .dark {
 
-    .card-header.card-header-custom {
-      background-color: $primary-color-dark;
-      color: white;
-      position: relative;
-      padding: 15px 25px;
-      margin-left: -5px;
-      margin-right: -15px;
-      margin-top: 10px;
-      border-radius: 0px;
-    }
-    .form-control {
-      font-size: 16px;
-    }
-  }
+  //   .card-header.card-header-custom {
+  //     background-color: $primary-color-dark;
+  //     color: white;
+  //     position: relative;
+  //     padding: 15px 25px;
+  //     margin-left: -5px;
+  //     margin-right: -15px;
+  //     margin-top: 10px;
+  //     border-radius: 0px;
+  //   }
+  //   .form-control {
+  //     font-size: 16px;
+  //   }
+  // }
 
 }
 
@@ -354,3 +311,90 @@ body {
 // }
 /* You can add global styles to this file, and also import other style files */
 
+/*
+.card-custom {
+  border-top: 5px solid #005cbb !important;
+}
+
+.card-header.card-header-custom {
+  background-color: #005cbb; //$primary-color-light;
+  color: white;
+  position: relative;
+  padding: 15px 25px;
+  margin-left: -5px;
+  margin-right: -15px;
+  margin-top: 10px;
+  border-radius: 0px;
+}
+
+.card-header.card-header-custom::after {
+  content: "";
+  position: absolute;
+  top: -23px;
+  bottom: 379px;
+  width: 15px;
+  background-color: #005cbb;
+}
+
+.card-header.card-header-custom::before {
+  content: "";
+  position: absolute;
+  top: 59px;
+  bottom: -25px;
+  width: 5px;
+  background-color: #bcc5ce;
+}
+
+.card-header.card-header-custom::before {
+  left: 0px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 40%);
+}
+
+.card-header.card-header-custom::after {
+  right: -15px;
+  clip-path: polygon(0 30%, -100% 0, 100% 30%, 0% 30%);
+}
+
+*/
+
+.card-custom {
+  border-top: 5px solid #005cbb !important;
+}
+  .card-header.card-header-custom {
+  background-color: #005cbb; //$primary-color-light;
+  color: white;
+  position: relative;
+  padding: 15px 25px;
+  margin-left: -5px;
+  margin-right: -15px;
+  margin-top: 10px;
+  border-radius: 0px !important;
+}
+
+.card-header.card-header-custom::after {
+  content: '';
+  position: absolute;
+  top: -25px;
+  bottom: 0;
+  width: 15px;
+  background-color: #005cbb;
+}
+
+.card-header.card-header-custom::before {
+  content: "";
+  position: absolute;
+  top: 59px;
+  bottom: -25px;
+  width: 5px;
+  background-color: #bcc5ce;
+}
+
+.card-header.card-header-custom::before {
+  left: 0px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 40%);
+}
+
+.card-header.card-header-custom::after {
+  right: 0px;
+  clip-path: polygon(0 30%, -100% 0, 100% 30%, 0% 30%);
+}

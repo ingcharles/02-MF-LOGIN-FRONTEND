@@ -34,4 +34,5 @@ export const MF_ADMIN_PAZ_SALVO_ROUTES: Routes = [
   imports: [RouterModule.forChild(MF_ADMIN_PAZ_SALVO_ROUTES)],
   exports: [RouterModule]
 })
+
 export class AdminPazSalvoRouting { }

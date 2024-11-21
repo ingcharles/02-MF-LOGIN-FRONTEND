@@ -27,11 +27,12 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      library: { type: "module" },
+      //library: { type: "module" },
       name : "MFADMINPAZSALVO",
       filename : "remoteEntry.js",
       exposes : {
-        './PazSalvoModule' : '/src/presentation/paz-salvo/paz-salvo.module.ts'
+        './PazSalvoModule' : './src/presentation/paz-salvo/paz-salvo.module.ts',
+        './TblUsuariosModulosModule' : './src/presentation/tbl-usuarios-modulos/tbl-usuarios-modulos.module.ts',
       },
       //library: { type: "global" },
 
@@ -49,9 +50,11 @@ module.exports = {
         // },
 
         shared: share({
+          // "primeng/button": { singleton: true, strictVersion: true },
+          // "primeng": { singleton: true, strictVersion: true },
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          //"@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()

@@ -1,0 +1,59 @@
+<!--
+* Vista create-tbl-usuarios-modulos.component.html
+*
+* @author  Carlos Anchundia
+* @date    22-10-2024
+* @name    create-tbl-usuarios-modulos.component.html
+* @package presentation
+* @subpackage tbl-usuarios-modulos
+-->
+
+<div class="p-4 surface-200">
+	<form autocomplete="off" [formGroup]="formTblUsuariosModulos" (ngSubmit)="saveTblUsuariosModulos()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario TblUsuariosModulos</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general del TblUsuariosModulos. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="p-fluid formgrid grid">
+
+						<div class="field col-12 md:col-6">
+							<label for="idModulo"> idModulo (*)</label>
+							<p-inputNumber id="idModulo" name="idModulo" formControlName="idModulo" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idModulo',formTblUsuariosModulos)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idModulo', formTblUsuariosModulos)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="idUsuario"> idUsuario (*)</label>
+							<p-inputNumber id="idUsuario" name="idUsuario" formControlName="idUsuario" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuario',formTblUsuariosModulos)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idUsuario', formTblUsuariosModulos)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="estado"> estado (*)</label>
+							<p-dropdown id="estado" name="estado" class="small-dropdown" 
+							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionLabel="name"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblUsuariosModulos)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblUsuariosModulos)" tooltipPosition="top" />
+						</div>
+
+					</div>
+				</p-fieldset>
+				<div class="p-fluid formgrid grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblUsuariosModulos()" />
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>
