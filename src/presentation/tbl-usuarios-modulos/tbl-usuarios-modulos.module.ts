@@ -26,8 +26,6 @@ import { CardModule } from 'primeng/card';
 @NgModule({
 	declarations: [],
 	imports: [
-		CardModule,
-	ButtonModule,
 	TblUsuariosModulosRouting
 	],
 	// providers: [
