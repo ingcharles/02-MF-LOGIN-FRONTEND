@@ -117,6 +117,26 @@
 // Comment out the line below if you want to use the deprecated `color` inputs.
 // @include mat.color-variants-backwards-compatibility($01-IMARK-MICROFRONTEND-theme);
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --rojo100: #ed5565;
+  --rojoError100: #bd362f;
+  --turquesa100: #18a78a;
+  --azul100: #1c84c6;
+  --azulInformativo100: #17a2b8;
+  --verde100: #20983b;
+  --verde75: #4e924d;
+  --verdeExito100: #28a745;
+  --gris100: #a9a9a9;
+  --gris25: #d2d2d2;
+  --gris50: #c5c4c4;
+  --blanco100: white;
+  --negro100: black;
+  --negro75: #343a40;
+  --anaranjado100: #f0ad4e;
+  --amarillo100: #facd01;
+  --celeste75: #17a2b8;
+  --celeste100: #0598af;
+}
 
 :root {
   /* Generated from Material Theme Builder Figma plugin
@@ -229,7 +249,7 @@
     font-weight: 500;
   }
 
-  
+
 .swal2-actions {
     display: flex;
     justify-content: space-between;

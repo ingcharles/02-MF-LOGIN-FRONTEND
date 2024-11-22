@@ -1,22 +1,22 @@
 <!--
-* Vista index-tbl-usuarios-modulos.component.html
+* Vista index-tbl-usuario-modulo.component.html
 *
 * @author  Carlos Anchundia
 * @date    22-10-2024
-* @name    index-tbl-usuarios-modulos.component.html
+* @name    index-tbl-usuario-modulo.component.html
 * @package presentation
-* @subpackage tbl-usuarios-modulos
+* @subpackage tbl-usuario-modulo
 -->
 
 <div class="p-3 surface-100">
 	<p-toolbar styleClass="mb-4 gap-2">
 		<ng-template pTemplate="left">
 			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
-			[routerLink]="['/create-tbl-usuarios-modulos']" />
+			[routerLink]="['/create-tbl-usuario-modulo']" />
 		</ng-template>
 	</p-toolbar>
 
-	<p-table #dt [value]="tblUsuariosModulosRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
+	<p-table #dt [value]="tblUsuarioModuloRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
 		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
 		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
 		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_usuario_modulo','id_modulo','id_usuario','estado',]">
@@ -54,15 +54,15 @@
 				<td>{{ item.idUsuario }}</td>
 				<td>{{ item.estado }}</td>
 				<td>
-					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="['/create-tbl-usuarios-modulos']"/>
-					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="['/edit-tbl-usuarios-modulos',item.idUsuarioModulo]" />
+					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="['/create-tbl-usuario-modulo']"/>
+					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="['/edit-tbl-usuario-modulo',item.idUsuarioModulo]" />
 					<p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" />
 				</td>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="summary">
 			<div class="flex align-items-center justify-content-between">
-				En total hay {{ tblUsuariosModulosRecords ? tblUsuariosModulosRecords.length : 0 }} tblUsuariosModulos
+				En total hay {{ tblUsuarioModuloRecords ? tblUsuarioModuloRecords.length : 0 }} tblUsuarioModulo
 			</div>
 		</ng-template>
 	</p-table>

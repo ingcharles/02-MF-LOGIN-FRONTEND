@@ -1,0 +1,275 @@
+
+
+
+/** ESTILOS PARA DAR COLOR AL FONDO DE LOS CUADROS DE LOS MODULOS **/
+.rojo100 {
+  background-color: var(--rojo100) !important;
+  color: var(--blanco100) !important;
+}
+
+.turquesa100 {
+  background-color: var(--turquesa100);
+  color: var(--blanco100) !important;
+}
+
+.azul100 {
+  background-color: var(--azul100);
+  color: var(--blanco100) !important;
+}
+
+.azulInformativo100 {
+  background-color: var(--azulInformativo100);
+  color: var(--blanco100) !important;
+}
+
+.verde100 {
+  background-color: var(--verde100) !important;
+  ;
+  color: var(--blanco100) !important;
+}
+
+.verdeExito100 {
+  background-color: var(--verdeExito100);
+}
+
+.anaranjado100 {
+  background-color: var(--anaranjado100) !important;
+  color: var(--blanco100) !important;
+}
+
+.amarillo100 {
+  background-color: var(--amarillo100) !important;
+  color: var(--negro100) !important;
+}
+
+.gris100 {
+  background-color: var(--gris100);
+  color: var(--negro100);
+}
+
+.blanco100 {
+  background-color: var(--blanco100);
+}
+
+.negro75 {
+  background-color: var(--negro75);
+  color: var(--blanco100) !important;
+}
+
+
+/** ESTILOS DE COLORES  **/
+
+.rojo100-color {
+  color: var(--rojo100);
+}
+
+.turquesa100-color {
+  color: var(--turquesa100);
+}
+
+.azul100-color {
+  color: var(--azul100);
+}
+
+.azulInformativo100-color {
+  color: var(--azulInformativo100);
+}
+
+.verde100-color {
+  color: var(--verde100);
+}
+
+.verde75-color {
+  color: var(--verde75);
+}
+
+.verdeExito100-color {
+  color: var(--verdeExito100);
+}
+
+.gris100-color {
+  color: var(--gris100);
+}
+
+.anaranjado100-color {
+  color: var(--anaranjado100);
+}
+
+.amarillo100-color {
+  color: var(--amarillo100);
+}
+
+.negro75-color {
+  color: var(--negro75);
+}
+
+/** BORDE DE NOTIFICACION DE LOS MODULOS **/
+.rojo100-borde {
+  border: 1px solid var(--rojo100);
+}
+
+.turquesa100-borde {
+  border: 1px solid var(--turquesa100);
+}
+
+.azul100-borde {
+  border: 1px solid var(--azul100);
+}
+
+.azulInformativo100-borde {
+  border: 1px solid var(--azulInformativo100);
+}
+
+.verde100-borde {
+  border: 1px solid var(--verde100);
+}
+
+.verdeExito100-borde {
+  border: 1px solid var(--verdeExito100);
+}
+
+.anaranjado100-borde {
+  border: 1px solid var(--anaranjado100);
+}
+
+.amarillo100-borde {
+  border: 1px solid var(--amarillo100);
+}
+
+.gris100-borde {
+  border: 1px solid var(--gris100);
+}
+
+.verde75-borde {
+  border: 1px solid var(--verde75);
+}
+
+.celeste100-borde {
+  border: 1px solid var(--celeste100);
+}
+
+.celeste75-borde {
+  border: 1px solid var(--celeste75);
+}
+
+.negro75-borde {
+  border: 1px solid var(--negro75);
+}
+
+
+
+/**BORDES AREA TRABAJO**/
+
+
+.widget-head-color-box .icon>i.fa,
+.widget-head-color-box .icon>i.fab,
+.widget-head-color-box .icon>i.far,
+.widget-head-color-box .icon>i.fas {
+  font-size: 48px;
+}
+
+.widget-head-color-box .icon>i.glyphicon,
+.widget-head-color-box .icon>i.ion {
+  font-size: 60px;
+}
+
+.widget-head-color-box .icon>i.fa,
+.widget-head-color-box .icon>i.fab,
+.widget-head-color-box .icon>i.far,
+.widget-head-color-box .icon>i.fas,
+.widget-head-color-box .icon>i.glyphicon,
+.widget-head-color-box .icon>i.ion {
+  top: 20px;
+  position: absolute;
+  right: 20px;
+  transition: all .3s linear;
+}
+
+.widget-head-color-box .icon {
+  color: rgba(0, 0, 0, .15);
+  z-index: 0;
+}
+
+.widget-head-color-box:hover .icon>i.fa,
+.widget-head-color-box:hover .icon>i.fab,
+.widget-head-color-box:hover .icon>i.far,
+.widget-head-color-box:hover .icon>i.fas {
+  font-size: 58px
+}
+
+.widget-head-color-box:hover .icon>i.glyphicon,
+.widget-head-color-box:hover .icon>i.ion {
+  font-size: 70px
+}
+
+.widget-head-color-box p,
+.widget-head-color-box h6 {
+  text-align: left;
+  width: 95%;
+  display: -webkit-box;
+  line-clamp: 5;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/** ESTILOS PARA DAR FORMA A LOS CUADRO DE LOS MODULOS **/
+.widget-text-box {
+  margin-bottom: 10px;
+  font-size: 11px;
+  height: 56px;
+  padding: 5px;
+  background: #ffffff;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.widget-head-color-box {
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  margin-top: 2px;
+  /*max-height: 140px;*/
+  /*padding: 10px;*/
+  color: #ffffff;
+}
+
+.widget-head-color-box .titulo-aplicacion {
+  margin-bottom: 5px;
+  height: 90px;
+  padding: 8px;
+}
+
+.widget-text-box p {
+  color: #000;
+}
+
+
+
+.widget-head-color-box,
+.widget-text-box {
+
+  opacity: 0.8
+}
+
+.titulo-aplicacion,
+.widget-head-color-box .icon i,
+.notification-bubble {
+  cursor: pointer;
+}
+
+.widget-head-color-box:hover,
+.widget-text-box:hover {
+  opacity: 1
+}
+
+.img-size-50 {
+  width: 3rem;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
