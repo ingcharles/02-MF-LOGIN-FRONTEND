@@ -1,9 +1,9 @@
 /**
-* Interface i-tbl-usuarios-modulos.viewModel.
+* Interface i-tbl-usuario-modulo.viewModel.
 *
 * @author  Carlos Anchundia
 * @date    22-10-2024
-* @name    TblUsuariosModulosviewModel
+* @name    TblUsuarioModuloviewModel
 * @package viewModel
 * @subpackage Domain
 */
@@ -13,18 +13,18 @@ import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name ISaveTblUsuariosModulosRsViewModel
+* @name ISaveTblUsuarioModuloRsViewModel
 */
-export interface ISaveTblUsuariosModulosRsViewModel {
+export interface ISaveTblUsuarioModuloRsViewModel {
 	idUsuarioModulo: number | null;
 }
 
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaViewModel
-* @name ISaveTblUsuariosModulosViewModel
+* @name ISaveTblUsuarioModuloViewModel
 */
-export interface ISaveTblUsuariosModulosViewModel extends IAuditoriaViewModel {
+export interface ISaveTblUsuarioModuloViewModel extends IAuditoriaViewModel {
 	idModulo?: number | null;
 	idUsuario?: number | null;
 	estado?: string | null;
@@ -32,9 +32,9 @@ export interface ISaveTblUsuariosModulosViewModel extends IAuditoriaViewModel {
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblUsuariosModulosRsViewModel
+* @name IGetTblUsuarioModuloRsViewModel
 */
-export interface IGetTblUsuariosModulosRsViewModel {
+export interface IGetTblUsuarioModuloRsViewModel {
 	idUsuarioModulo?: number | null;
 	idModulo?: number | null;
 	idUsuario?: number | null;
@@ -44,17 +44,17 @@ export interface IGetTblUsuariosModulosRsViewModel {
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaModel
-* @name IGetTblUsuariosModulosViewModel
+* @name IGetTblUsuarioModuloViewModel
 */
-export interface IGetTblUsuariosModulosViewModel {
+export interface IGetTblUsuarioModuloViewModel {
 	busqueda?: string | null;
 }
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblUsuariosModulosPaginadoRsViewModel
+* @name IGetTblUsuarioModuloPaginadoRsViewModel
 */
-export interface IGetTblUsuariosModulosPaginadoRsViewModel {
+export interface IGetTblUsuarioModuloPaginadoRsViewModel {
 	idUsuarioModulo?: number | null;
 	idModulo?: number | null;
 	idUsuario?: number | null;
@@ -63,9 +63,9 @@ export interface IGetTblUsuariosModulosPaginadoRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* @name IGetTblUsuariosModulosPaginadoViewModel
+* @name IGetTblUsuarioModuloPaginadoViewModel
 */
-export interface IGetTblUsuariosModulosPaginadoViewModel {
+export interface IGetTblUsuarioModuloPaginadoViewModel {
 	page: number;
 	size: number;
 	search: string;
@@ -75,9 +75,9 @@ export interface IGetTblUsuariosModulosPaginadoViewModel {
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblUsuariosModulosByIdRsViewModel
+* @name IGetTblUsuarioModuloByIdRsViewModel
 */
-export interface IGetTblUsuariosModulosByIdRsViewModel {
+export interface IGetTblUsuarioModuloByIdRsViewModel {
 	idUsuarioModulo?: number | null;
 	idModulo?: number | null;
 	idUsuario?: number | null;
@@ -87,26 +87,26 @@ export interface IGetTblUsuariosModulosByIdRsViewModel {
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaModel
-* @name IGetTblUsuariosModulosByIdViewModel
+* @name IGetTblUsuarioModuloByIdViewModel
 */
-export interface IGetTblUsuariosModulosByIdViewModel {
+export interface IGetTblUsuarioModuloByIdViewModel {
 	idUsuarioModulo: number | null;
 }
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IUpdateTblUsuariosModulosRsViewModel
+* @name IUpdateTblUsuarioModuloRsViewModel
 */
-export interface IUpdateTblUsuariosModulosRsViewModel {
+export interface IUpdateTblUsuarioModuloRsViewModel {
 	idUsuarioModulo: number | null;
 }
 
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaViewModel
-* @name IUpdateTblUsuariosModulosViewModel
+* @name IUpdateTblUsuarioModuloViewModel
 */
-export interface IUpdateTblUsuariosModulosViewModel extends IAuditoriaViewModel {
+export interface IUpdateTblUsuarioModuloViewModel extends IAuditoriaViewModel {
 	idUsuarioModulo?: number | null;
 	idModulo?: number | null;
 	idUsuario?: number | null;

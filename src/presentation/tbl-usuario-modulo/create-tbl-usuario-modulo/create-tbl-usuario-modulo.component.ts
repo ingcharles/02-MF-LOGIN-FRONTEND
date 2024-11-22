@@ -1,11 +1,11 @@
 /**
-* Vista create-tbl-usuarios-modulos.component.ts
+* Vista create-tbl-usuario-modulo.component.ts
 *
 * @author  Carlos Anchundia
 * @date    22-10-2024
-* @name    CreateTblUsuariosModulosComponent
+* @name    CreateTblUsuarioModuloComponent
 * @package presentation
-* @subpackage tbl-usuarios-modulos
+* @subpackage tbl-usuario-modulo
 */
 
 import { CommonModule, DatePipe, Location } from '@angular/common';
@@ -18,8 +18,8 @@ import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
-import { TblUsuariosModulosUseCase } from '../../../domain/tbl-usuarios-modulos/usesCases/tbl-usuarios-modulos.usecase';
-import { IGetTblUsuariosModulosByIdViewModel, ISaveTblUsuariosModulosViewModel, IUpdateTblUsuariosModulosViewModel } from '../../../domain/tbl-usuarios-modulos/viewModels/i-tbl-usuarios-modulos.viewModel';
+import { TblUsuarioModuloUseCase } from '../../../domain/tbl-usuario-modulo/usesCases/tbl-usuario-modulo.usecase'
+import { IGetTblUsuarioModuloByIdViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -35,13 +35,13 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
-	selector: 'create-tbl-usuarios-modulos-page',
-	templateUrl: './create-tbl-usuarios-modulos.component.html',
-	styleUrls: ['./create-tbl-usuarios-modulos.component.scss'],
+	selector: 'create-tbl-usuario-modulo-page',
+	templateUrl: './create-tbl-usuario-modulo.component.html',
+	styleUrls: ['./create-tbl-usuario-modulo.component.scss'],
 	standalone: true,
 	imports: [
 		CommonModule,
-		
+
 		ReactiveFormsModule,
 		//TooltipDirective,
 		ButtonModule,
@@ -61,7 +61,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	host: {ngSkipHydration: 'true' }
 })
 
-export class CreateTblUsuariosModulosComponent implements OnInit {
+export class CreateTblUsuarioModuloComponent implements OnInit {
 
 	constructor() { }
 
@@ -74,11 +74,11 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
-	_tblUsuariosModulosUseCase: TblUsuariosModulosUseCase = inject(TblUsuariosModulosUseCase);
+	_tblUsuarioModuloUseCase: TblUsuarioModuloUseCase = inject(TblUsuarioModuloUseCase);
 
-	@Output() closeTblUsuariosModulos = new EventEmitter();
-	public title = 'Formulario TblUsuariosModulos';
-	public formTblUsuariosModulos!: FormGroup;
+	@Output() closeTblUsuarioModulo = new EventEmitter();
+	public title = 'Formulario TblUsuarioModulo';
+	public formTblUsuarioModulo!: FormGroup;
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
@@ -89,7 +89,7 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		this.formTblUsuariosModulos = new FormGroup({
+		this.formTblUsuarioModulo = new FormGroup({
 			idUsuarioModulo: new FormControl(null, Validators.compose([Validators.max(999999999)])),
 			idModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			idUsuario: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
@@ -101,14 +101,14 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 			const idParametro = params['id'];
 			if (idParametro != undefined) {
 				this.navigated = true;
-				let idUsuarioModulo: IGetTblUsuariosModulosByIdViewModel = { idUsuarioModulo: idParametro };
-				this._tblUsuariosModulosUseCase.getTblUsuariosModulosById(idUsuarioModulo).then(obs => {
+				let idUsuarioModulo: IGetTblUsuarioModuloByIdViewModel = { idUsuarioModulo: idParametro };
+				this._tblUsuarioModuloUseCase.getTblUsuarioModuloById(idUsuarioModulo).then(obs => {
 					obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
-							this.formTblUsuariosModulos.reset(result.data);
+							this.formTblUsuarioModulo.reset(result.data);
 							const estado = this.optionsEstado.find((item: any) => item.id == result.data?.estado!);
-							this.formTblUsuariosModulos.get('estado')?.setValue(estado);
+							this.formTblUsuarioModulo.get('estado')?.setValue(estado);
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
@@ -118,26 +118,26 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 		});
 	}
 
-	public saveTblUsuariosModulos(): void {
+	public saveTblUsuarioModulo(): void {
 
-		if (this.formTblUsuariosModulos.invalid) {
-			this.formTblUsuariosModulos.markAllAsTouched();
+		if (this.formTblUsuarioModulo.invalid) {
+			this.formTblUsuarioModulo.markAllAsTouched();
 			this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);
 			return;
 		}
 
-		const currentTblUsuariosModulos: any = this.currentTblUsuariosModulos;
-		currentTblUsuariosModulos.idUsuarioModulo = currentTblUsuariosModulos.idUsuarioModulo.id;
+		const currentTblUsuarioModulo: any = this.currentTblUsuarioModulo;
+		currentTblUsuarioModulo.idUsuarioModulo = currentTblUsuarioModulo.idUsuarioModulo.id;
 
-		if (this.currentTblUsuariosModulos.idUsuarioModulo) {
+		if (this.currentTblUsuarioModulo.idUsuarioModulo) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
-				this._tblUsuariosModulosUseCase.updateTblUsuariosModulos(currentTblUsuariosModulos as IUpdateTblUsuariosModulosViewModel).then(obs => {
+				this._tblUsuarioModuloUseCase.updateTblUsuarioModulo(currentTblUsuarioModulo as IUpdateTblUsuarioModuloViewModel).then(obs => {
 					this._loaderService.display(true);
 					obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-							this._router.navigateByUrl('index-tbl-usuarios-modulos');
+							this._router.navigateByUrl('index-tbl-usuario-modulo');
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
@@ -148,14 +148,14 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 		}
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			this._tblUsuariosModulosUseCase.saveTblUsuariosModulos(currentTblUsuariosModulos as ISaveTblUsuariosModulosViewModel).then(obs => {
+			this._tblUsuarioModuloUseCase.saveTblUsuarioModulo(currentTblUsuarioModulo as ISaveTblUsuarioModuloViewModel).then(obs => {
 				this._loaderService.display(true);
 				obs.subscribe((result) => {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-						this.formTblUsuariosModulos.get('idUsuarioModulo')!.patchValue(result.data?.idUsuarioModulo);
-						this._router.navigateByUrl('index-tbl-usuarios-modulos');
+						this.formTblUsuarioModulo.get('idUsuarioModulo')!.patchValue(result.data?.idUsuarioModulo);
+						this._router.navigateByUrl('index-tbl-usuario-modulo');
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
@@ -164,13 +164,13 @@ export class CreateTblUsuariosModulosComponent implements OnInit {
 		});
 	}
 
-	public cancelTblUsuariosModulos(): void{
-		this.closeTblUsuariosModulos.emit(true);
+	public cancelTblUsuarioModulo(): void{
+		this.closeTblUsuarioModulo.emit(true);
 		this._location.back();
 	}
 
-	private get currentTblUsuariosModulos(): IUpdateTblUsuariosModulosViewModel {
-		return this.formTblUsuariosModulos.value as IUpdateTblUsuariosModulosViewModel;
+	private get currentTblUsuarioModulo(): IUpdateTblUsuarioModuloViewModel {
+		return this.formTblUsuarioModulo.value as IUpdateTblUsuarioModuloViewModel;
 	}
 
 }

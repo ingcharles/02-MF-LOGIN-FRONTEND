@@ -2,10 +2,10 @@ import { Routes } from '@angular/router';
 import { AdminFirmaPazSalvoComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo/admin-firma-paz-salvo.component';
 import { CreateAdminPazSalvoComponent } from '../presentation/paz-salvo/create-admin-paz-salvo/create-admin-paz-salvo.component';
 import { AdminFirmaPazSalvoNewComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo-new/admin-firma-paz-salvo-new.component';
-import { IndexTblUsuariosModulosComponent } from '../presentation/tbl-usuarios-modulos/index-tbl-usuarios-modulos/index-tbl-usuarios-modulos.component';
-import { CreateTblUsuariosModulosComponent } from '../presentation/tbl-usuarios-modulos/create-tbl-usuarios-modulos/create-tbl-usuarios-modulos.component';
+import { IndexTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/index-tbl-usuario-modulo/index-tbl-usuario-modulo.component';
+import { CreateTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/create-tbl-usuario-modulo/create-tbl-usuario-modulo.component';
 import { MF_ADMIN_PAZ_SALVO_ROUTES } from '../presentation/paz-salvo/paz-salvo.routing';
-import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuarios-modulos/tbl-usuarios-modulos.routing';
+import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
 
 export const MODULE_ROUTES: Routes = [
   ...MF_ADMIN_PAZ_SALVO_ROUTES,
@@ -16,10 +16,10 @@ export const MODULE_ROUTES: Routes = [
 //     pathMatch: 'full'
 // },
 // {
-// 	path: 'index-admin', component: IndexTblUsuariosModulosComponent
+// 	path: 'index-admin', component: IndexTblUsuarioModuloComponent
 // 	},
 // 	{
-// 	path: 'create-admin:id', component: CreateTblUsuariosModulosComponent
+// 	path: 'create-admin:id', component: CreateTblUsuarioModuloComponent
 // 	},
 // {
 //   path: 'create-admin-paz-salvo',

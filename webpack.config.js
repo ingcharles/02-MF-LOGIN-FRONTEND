@@ -32,7 +32,7 @@ module.exports = {
       filename : "remoteEntry.js",
       exposes : {
         './PazSalvoModule' : './src/presentation/paz-salvo/paz-salvo.module.ts',
-        './TblUsuariosModulosModule' : './src/presentation/tbl-usuarios-modulos/tbl-usuarios-modulos.module.ts',
+        './TblUsuarioModuloModule' : './src/presentation/tbl-usuario-modulo/tbl-usuario-modulo.module.ts',
       },
       //library: { type: "global" },
 
