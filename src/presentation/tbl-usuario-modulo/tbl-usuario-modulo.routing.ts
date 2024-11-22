@@ -30,6 +30,7 @@ export const MF_ADMIN_ROUTES: Routes = [
 	path: '**',
 	redirectTo: 'home'
 	}
+
 ];
 
 @NgModule({
