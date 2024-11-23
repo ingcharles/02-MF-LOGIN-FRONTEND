@@ -102,7 +102,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 			if (idParametro != undefined) {
 				this.navigated = true;
 				let idUsuarioModulo: IGetTblUsuarioModuloByIdViewModel = { idUsuarioModulo: idParametro };
-				this._tblUsuarioModuloUseCase.getTblUsuarioEntityIdUsuario(idUsuarioModulo).then(obs => {
+				this._tblUsuarioModuloUseCase.getTblUsuarioModuloFindById(idUsuarioModulo).then(obs => {
 					obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
