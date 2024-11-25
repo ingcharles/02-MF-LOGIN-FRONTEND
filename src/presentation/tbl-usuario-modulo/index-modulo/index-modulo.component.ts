@@ -1,8 +1,8 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
-import { IModulo, IModuloUsuario } from '../../../domain/tbl-usuario-modulo/viewModels/i-modulo';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { TblUsuarioModuloUseCase } from '../../../domain/tbl-usuario-modulo/usesCases/tbl-usuario-modulo.usecase';
+import { IUsuarioModulo } from '../../../domain/tbl-usuario-modulo/viewModels/i-usuario-modulo';
 
 @Component({
   selector: 'app-index-modulos',
@@ -17,7 +17,7 @@ export class IndexModuloComponent implements OnInit {
 
   @Output() outputSistemaSeleccionado = new EventEmitter<number>();
 
-  sistemas: IModuloUsuario[] = [];
+  usuarioModulos: IUsuarioModulo[] = [];
   // [
   //   { idSistema: 1, rutaSistema: 'sistema-uno', nombreSistema: 'Sistema Uno', iconoSistema: 'fa fa-user', colorSistema: 'rojo100', descripcionSistema: 'Descripcion SIstema' },
   //   { idSistema: 2, rutaSistema: 'sistema-dos', nombreSistema: 'Sistema Dos', iconoSistema: 'fa fa-dark', colorSistema: 'verde100', descripcionSistema: 'Descripcion SIstema' },
@@ -35,15 +35,15 @@ export class IndexModuloComponent implements OnInit {
 
     public loadModule(): void {
       //this.loading = true;
-      const currentTblUsuarioModulo: IGetTblUsuarioModuloViewModel = {idUsuario: 1 }
-      this._tblUsuarioModuloUseCase.getTblUsuarioModuloFindByIdUsuario(currentTblUsuarioModulo).then(obs => {
+      const tblUsuarioModulo: IGetTblUsuarioModuloViewModel = {idUsuario: 1 }
+      this._tblUsuarioModuloUseCase.getTblUsuarioEntityIdUsuario(tblUsuarioModulo).then(obs => {
         this._loaderService.display(true);
         obs.subscribe((result: any) => {
           this._loaderService.display(false);
           console.log("result1:",result)
           if (result.ok) {
             console.log("result",result)
-            this.sistemas = result.data;
+            this.usuarioModulos = result.data;
             this.sendData(result.data)
             //this.tblUsuarioModuloRecords = result.data?.content!;
             //this.totalElements = result.data?.totalElements;

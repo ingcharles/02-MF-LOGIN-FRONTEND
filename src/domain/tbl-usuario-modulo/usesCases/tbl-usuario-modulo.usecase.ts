@@ -43,8 +43,8 @@ export class TblUsuarioModuloUseCase {
 	* @param tblUsuarioModulo: IGetTblUsuarioModuloViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
 	*/
-	public async getTblUsuarioModuloFindByIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>> {
-	return await this._tblUsuarioModuloService.getTblUsuarioModuloFindByIdUsuario(tblUsuarioModulo);
+	public async getTblUsuarioModuloFindById(tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>> {
+	return await this._tblUsuarioModuloService.getTblUsuarioModuloFindById(tblUsuarioModulo);
 	}
 
   /**
@@ -68,7 +68,7 @@ export class TblUsuarioModuloUseCase {
 	* @param tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
 	*/
-	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>> {
+	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>> {
 	return await this._tblUsuarioModuloService.getTblUsuarioEntityIdUsuario(tblUsuarioModulo);
 	}
 	/**

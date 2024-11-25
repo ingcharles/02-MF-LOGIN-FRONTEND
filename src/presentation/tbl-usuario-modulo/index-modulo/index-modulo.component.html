@@ -1,34 +1,33 @@
 <div class="card">
   <div class="card-body">
       <div class="row mt-3">
-        @for (sistema of sistemas; track sistema.modulo.idModulo) {
+        @for (usuarioModulo of usuarioModulos; track usuarioModulo.modulo.idModulo) {
           <!-- [data-rutaAplicacion]="{{sistema.rutaSistema}}" data-nombreAplicacion="{{sistema.nombreSistema}}" -->
         <div class="col-md-3 col-sm-6 aplicacion"  ondragstart="drag(event)"
-          draggable="true" id="{{sistema.modulo.idModulo}}" data-color="sistema" (click)="clickSistema(sistema.modulo.idModulo)">
-          <div class="widget-head-color-box {{sistema.modulo.color}} text-center">
+          draggable="true" id="{{usuarioModulo.modulo.idModulo}}" data-color="sistema" (click)="clickSistema(usuarioModulo.modulo.idModulo)">
+          <div class="widget-head-color-box {{usuarioModulo.colorModulo}} text-center">
             <div class="titulo-aplicacion">
-              <h6>{{sistema.modulo.nombre}}</h6>
+              <h6>{{usuarioModulo.modulo.nombre}}</h6>
             </div>
             <div class="icon">
-              <i class="{{sistema.modulo.imagen}}"></i>
+              <i class="{{usuarioModulo.imagenModulo}}"></i>
             </div>
             <div class="ttw-notification-menu align-self-center">
-              <div id="" class="notification-menu-item first-item aplicacion-{{sistema.modulo.idModulo}}">
+              <div id="" class="notification-menu-item first-item aplicacion-{{usuarioModulo.modulo.idModulo}}">
                 <a>Notificaciones <i class="fa fa-envelope-o"></i></a>
               </div>
             </div>
           </div>
-          <div class="widget-text-box {{sistema.modulo.color}}-borde">
+          <div class="widget-text-box {{usuarioModulo.colorModulo}}-borde">
             <p>
-              <b>{{sistema.modulo.descripcion}}</b> <a href="#" class="{{sistema.modulo.color}}-color"> Más info <i
+              <b>{{usuarioModulo.modulo.descripcion}}</b> <a href="#" class="{{usuarioModulo.colorModulo}}-color"> Más info <i
                   class="fas fa-arrow-circle-right"></i></a>
             </p>
           </div>
         </div>
       } @empty {
-        <h1>No tiene Sistemas asignados</h1>
+        <h5>No tiene Sistemas asignados</h5>
       }
-
       </div>
     </div>
 </div>

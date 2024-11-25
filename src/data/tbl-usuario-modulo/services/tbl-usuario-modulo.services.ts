@@ -58,7 +58,7 @@ export class TblUsuarioModuloService  {
 	* @param busqueda: IGetTblUsuarioModuloViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
 	*/
-	public async getTblUsuarioModuloFindByIdUsuario(busqueda: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>{
+	public async getTblUsuarioModuloFindById(busqueda: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>{
     const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByIdUsuario`;
     return this._http.post<IResultApi>(url, busqueda).pipe(
       map((result) => {
@@ -108,9 +108,9 @@ export class TblUsuarioModuloService  {
 	* @param id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
 	*/
-	public async getTblUsuarioEntityIdUsuario(id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>{
-	const url = `${apiUrl}query/tbl-usuario-modulo/findByTblUsuarioEntityIdUsuario`;
-	return this._http.post<IResultApi>(url, id_usuario_modulo).pipe(
+	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>{
+	const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByTblUsuarioEntityIdUsuario`;
+	return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblUsuarioModuloByIdRsViewModel>(result);
 		}),
