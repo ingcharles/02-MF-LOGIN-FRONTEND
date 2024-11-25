@@ -11,7 +11,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/services/tbl-usuario-modulo.services';
+import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/services/tbl-usuario-modulo.service';
 import { IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloPaginadoViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel  } from '../viewModels/i-tbl-usuario-modulo.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 

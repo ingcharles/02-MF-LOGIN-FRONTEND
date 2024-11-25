@@ -6,10 +6,12 @@ import { IndexTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modu
 import { CreateTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/create-tbl-usuario-modulo/create-tbl-usuario-modulo.component';
 import { MF_ADMIN_PAZ_SALVO_ROUTES } from '../presentation/paz-salvo/paz-salvo.routing';
 import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
+import { MF_ADMIN_MODULO_ROUTES } from '../presentation/tbl-modulo/tbl-modulo.routing';
 
 export const MODULE_ROUTES: Routes = [
   ...MF_ADMIN_PAZ_SALVO_ROUTES,
-  ...MF_ADMIN_ROUTES
+  ...MF_ADMIN_ROUTES,
+  ...MF_ADMIN_MODULO_ROUTES
 //   {
 //     path: '',
 //     redirectTo: 'admin-paz-salvo',

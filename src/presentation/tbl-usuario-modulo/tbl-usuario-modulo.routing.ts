@@ -19,7 +19,7 @@ export const MF_ADMIN_ROUTES: Routes = [
 		path: 'home',
 		component: IndexModuloComponent,
 		pathMatch: 'full'
-	  },
+	},
 	{
 	path: 'index', component: IndexTblUsuarioModuloComponent
 	},
@@ -27,7 +27,7 @@ export const MF_ADMIN_ROUTES: Routes = [
 	path: 'create:id', component: CreateTblUsuarioModuloComponent
 	},
 	{
-	path: '**',
+	path: 'home**',
 	redirectTo: 'home'
 	}
 

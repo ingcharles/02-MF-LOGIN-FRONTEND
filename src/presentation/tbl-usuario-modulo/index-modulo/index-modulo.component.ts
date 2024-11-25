@@ -9,7 +9,7 @@ import { IUsuarioModulo } from '../../../domain/tbl-usuario-modulo/viewModels/i-
   standalone: true,
   imports: [],
   templateUrl: './index-modulo.component.html',
-  styleUrl: './index-modulo.component.scss'
+  styleUrls: ['./index-modulo.component.scss']
 })
 export class IndexModuloComponent implements OnInit {
   _loaderService: LoaderService = inject(LoaderService);
@@ -31,6 +31,7 @@ export class IndexModuloComponent implements OnInit {
     clickSistema(idSistema: number) {
       console.log("idSistema",idSistema)
       this.outputSistemaSeleccionado.emit(idSistema);
+      this.sendUsuarioModulo(idSistema)
     }
 
     public loadModule(): void {
@@ -44,7 +45,7 @@ export class IndexModuloComponent implements OnInit {
           if (result.ok) {
             console.log("result",result)
             this.usuarioModulos = result.data;
-            this.sendData(result.data)
+
             //this.tblUsuarioModuloRecords = result.data?.content!;
             //this.totalElements = result.data?.totalElements;
           } else {
@@ -55,9 +56,9 @@ export class IndexModuloComponent implements OnInit {
       });
     }
 
-    sendData(data: any) {
+    sendUsuarioModulo(data: any) {
 
-      const event = new CustomEvent('mfData', { detail: data });
+      const event = new CustomEvent('mfIdUsuarioModulo', { detail: data });
       window.dispatchEvent(event);
     }
   }

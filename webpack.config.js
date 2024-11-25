@@ -33,6 +33,8 @@ module.exports = {
       exposes : {
         './PazSalvoModule' : './src/presentation/paz-salvo/paz-salvo.module.ts',
         './TblUsuarioModuloModule' : './src/presentation/tbl-usuario-modulo/tbl-usuario-modulo.module.ts',
+        './AdminModule' : './src/presentation/admin.module.ts',
+
       },
       //library: { type: "global" },
 

@@ -4,7 +4,7 @@
         @for (usuarioModulo of usuarioModulos; track usuarioModulo.modulo.idModulo) {
           <!-- [data-rutaAplicacion]="{{sistema.rutaSistema}}" data-nombreAplicacion="{{sistema.nombreSistema}}" -->
         <div class="col-md-3 col-sm-6 aplicacion"  ondragstart="drag(event)"
-          draggable="true" id="{{usuarioModulo.modulo.idModulo}}" data-color="sistema" (click)="clickSistema(usuarioModulo.modulo.idModulo)">
+          draggable="true" id="{{usuarioModulo.modulo.idModulo}}" data-color="sistema" (click)="clickSistema(usuarioModulo.idUsuarioModulo)">
           <div class="widget-head-color-box {{usuarioModulo.colorModulo}} text-center">
             <div class="titulo-aplicacion">
               <h6>{{usuarioModulo.modulo.nombre}}</h6>

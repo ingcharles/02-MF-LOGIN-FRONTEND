@@ -1,0 +1,75 @@
+<!--
+* Vista index-tbl-modulo.component.html
+*
+* @author  Carlos Anchundia
+* @date    22-11-2024
+* @name    index-tbl-modulo.component.html
+* @package presentation
+* @subpackage tbl-modulo
+-->
+
+<div class="p-3 surface-100">
+	<p-toolbar styleClass="mb-4 gap-2">
+		<ng-template pTemplate="left">
+			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
+			[routerLink]="['/admin/modulo/create']" />
+		</ng-template>
+	</p-toolbar>
+
+	<p-table #dt [value]="tblModuloRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
+		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
+		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_modulo','nemonico','nombre','numero_version','ruta','descripcion','estado','fecha_registro','id_usuario_registro',]">
+
+		<ng-template pTemplate="caption">
+			<div class="flex">
+				<div class="flex align-items-center justify-content-center" style="flex: 1;">
+					<h2 class="m-0">{{title}}</h2>
+				</div>
+				<div class="flex align-items-center justify-content-end" style="gap: 10px;">
+					<p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
+					<span class="p-input-icon-left">
+						<i class="pi pi-search"></i>
+						<input pInputText type="text" [value]="search" (input)="inputSearch($event)"
+							placeholder="Buscar..." />
+					</span>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+				<th pSortableColumn="idModulo" style="min-width:5rem">idModulo<p-sortIcon field="idModulo" /></th>
+				<th pSortableColumn="nemonico" style="min-width:10rem">nemonico<p-sortIcon field="nemonico" /></th>
+				<th pSortableColumn="nombre" style="min-width:10rem">nombre<p-sortIcon field="nombre" /></th>
+				<th pSortableColumn="numeroVersion" style="min-width:10rem">numeroVersion<p-sortIcon field="numeroVersion" /></th>
+				<th pSortableColumn="ruta" style="min-width:10rem">ruta<p-sortIcon field="ruta" /></th>
+				<th pSortableColumn="descripcion" style="min-width:10rem">descripcion<p-sortIcon field="descripcion" /></th>
+				<th pSortableColumn="estado" style="min-width:5rem">estado<p-sortIcon field="estado" /></th>
+				<th style="min-width:13rem">Acciones</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-item>
+			<tr>
+				<td><p-tableCheckbox [value]="item" /></td>
+				<td>{{ item.idModulo }}</td>
+				<td>{{ item.nemonico }}</td>
+				<td>{{ item.nombre }}</td>
+				<td>{{ item.numeroVersion }}</td>
+				<td>{{ item.ruta }}</td>
+				<td>{{ item.descripcion }}</td>
+				<td>{{ item.estado }}</td>
+				<td>
+					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="['/admin/modulo/create']"/>
+					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="['/admin/modulo/edit',item.idModulo]" />
+					<p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" />
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="summary">
+			<div class="flex align-items-center justify-content-between">
+				En total hay {{ tblModuloRecords ? tblModuloRecords.length : 0 }} tblModulo
+			</div>
+		</ng-template>
+	</p-table>
+</div>

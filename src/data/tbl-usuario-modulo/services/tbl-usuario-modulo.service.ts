@@ -18,7 +18,7 @@ import { StatusResponseService } from '../../base/services/status-response.servi
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
 import { IResultApi } from '../../base/interfaces/i-result-api';
 
-const apiUrl: string = environment.apiUrl;
+const apiAdminUrl: string = environment.apiAdminUrl;
 
 @Injectable({
 	providedIn: 'root',
@@ -42,7 +42,7 @@ export class TblUsuarioModuloService  {
 	*/
 	public async saveTblUsuarioModulo(tblUsuarioModulo: ISaveTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>>{
 	tblUsuarioModulo.auditoria = 'transaccionAuditoria';
-	const url = `${apiUrl}command/tbl-usuario-modulo/saveTblUsuarioModulo`;
+	const url = `${apiAdminUrl}command/tbl-usuario-modulo/saveTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<ISaveTblUsuarioModuloRsViewModel>(result);
@@ -59,7 +59,7 @@ export class TblUsuarioModuloService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
 	*/
 	public async getTblUsuarioModulo(busqueda: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>{
-	const url = `${apiUrl}query/tbl-usuario-modulo/getTblUsuarioModulo`;
+	const url = `${apiAdminUrl}query/tbl-usuario-modulo/getTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, busqueda).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblUsuarioModuloRsViewModel>(result);
@@ -76,7 +76,7 @@ export class TblUsuarioModuloService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>>
 	*/
 	public async getTblUsuarioModuloPaginado(dataViewModel: IGetTblUsuarioModuloPaginadoViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>>{
-	const url = `${apiUrl}query/tbl-usuario-modulo/findAllPaginateTblUsuarioModulo`;
+	const url = `${apiAdminUrl}query/tbl-usuario-modulo/findAllPaginateTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, dataViewModel).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblUsuarioModuloPaginadoRsViewModel>(result);
@@ -87,13 +87,30 @@ export class TblUsuarioModuloService  {
 	);
 	}
 
+    	/**
+	* Obtiene el/los registros
+	* @param busqueda: IGetTblUsuarioModuloViewModel
+	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
+	*/
+	public async getTblUsuarioModuloFindById(busqueda: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>{
+    const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByIdUsuario`;
+    return this._http.post<IResultApi>(url, busqueda).pipe(
+      map((result) => {
+      return this._statusResponseService.succes<IGetTblUsuarioModuloRsViewModel>(result);
+      }),
+      catchError((error) => {
+      return of(this._statusResponseService.error<IGetTblUsuarioModuloRsViewModel>(error));
+      })
+    );
+  }
+
 	/**
 	* Obtiene el registro actual
 	* @param id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
 	*/
 	public async getTblUsuarioModuloById(id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>{
-	const url = `${apiUrl}query/tbl-usuario-modulo/findByIdTblUsuarioModulo`;
+	const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByIdTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, id_usuario_modulo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblUsuarioModuloByIdRsViewModel>(result);
@@ -104,6 +121,23 @@ export class TblUsuarioModuloService  {
 	);
 	}
 
+  	/**
+	* Obtiene el registro actual
+	* @param id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel
+	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
+	*/
+	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>{
+    const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByTblUsuarioEntityIdUsuario`;
+    return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
+      map((result) => {
+      return this._statusResponseService.succes<IGetTblUsuarioModuloByIdRsViewModel>(result);
+      }),
+      catchError((error) => {
+      return of(this._statusResponseService.error<IGetTblUsuarioModuloByIdRsViewModel>(error));
+      })
+    );
+    }
+
 	/**
 	* Actualizar el registro actual
 	* @param tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel
@@ -111,7 +145,7 @@ export class TblUsuarioModuloService  {
 	*/
 	public async updateTblUsuarioModulo(tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>>{
 	tblUsuarioModulo.auditoria = 'transaccionAuditoria';
-	const url = `${apiUrl}command/tbl-usuario-modulo/updateTblUsuarioModulo`;
+	const url = `${apiAdminUrl}command/tbl-usuario-modulo/updateTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IUpdateTblUsuarioModuloRsViewModel>(result);

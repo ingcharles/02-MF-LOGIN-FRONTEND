@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8084/api/catalogo/', //PARA LOCAL
+    //apiUrl: 'http://localhost:8084/api/catalogo/', //PARA LOCAL
     apiAdminUrl: 'http://localhost:8081/api/admin/',
     //  apiUrl: 'https://desa-app01.cne.gob.ec/apigateway/cne.scf.services.api/', // PARA DESARROLLO
      apiReportUrl: 'https://localhost:57265/',
