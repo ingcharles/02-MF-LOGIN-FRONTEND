@@ -27,7 +27,7 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      //library: { type: "module" },
+      library: { type: "module" },
       name : "MFADMINPAZSALVO",
       filename : "remoteEntry.js",
       exposes : {
