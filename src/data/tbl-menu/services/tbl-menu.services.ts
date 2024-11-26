@@ -41,7 +41,6 @@ export class TblMenuService  {
 	* @return Promise<Observable<IResponseStatusViewModel<ISaveTblMenuRsViewModel>>>
 	*/
 	public async saveTblMenu(tblMenu: ISaveTblMenuViewModel): Promise<Observable<IResponseStatusViewModel<ISaveTblMenuRsViewModel>>>{
-	tblMenu.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/tbl-menu/saveTblMenu`;
 	return this._http.post<IResultApi>(url, tblMenu).pipe(
 		map((result) => {
@@ -110,7 +109,7 @@ export class TblMenuService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IUpdateTblMenuRsViewModel>>>
 	*/
 	public async updateTblMenu(tblMenu: IUpdateTblMenuViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblMenuRsViewModel>>>{
-	tblMenu.auditoria = 'transaccionAuditoria';
+
 	const url = `${apiAdminUrl}command/tbl-menu/updateTblMenu`;
 	return this._http.post<IResultApi>(url, tblMenu).pipe(
 		map((result) => {

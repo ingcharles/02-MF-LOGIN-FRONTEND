@@ -60,16 +60,16 @@ export class CreateTblMenuComponent implements OnInit {
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{name: 'Item 1', id: 1 },
-	{name: 'Item 2', id: 2 },
-	{name: 'Item 3', id: 3 }
+	{name: 'Activo', id: 'Activo' },
+	{name: 'Inactivo', id: 'Inactivo' },
+	//{name: 'Activo', id: 3 }
 	];
 
 	ngOnInit(): void {
 
 		this.formTblMenu = new FormGroup({
 			idMenu: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			idMenuPadre: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			idMenuPadre: new FormControl(null, Validators.compose([ Validators.min(1), Validators.max(999999999)])),
 			nemonico: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			nemonicoPadre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
@@ -135,7 +135,10 @@ export class CreateTblMenuComponent implements OnInit {
 		}
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			this._tblMenuUseCase.saveTblMenu(currentTblMenu as ISaveTblMenuViewModel).then(obs => {
+			currentTblMenu['estado']= this.formTblMenu.get('estado')?.value?.id;
+      console.log("formTblMenu",this.formTblMenu.get('estado')?.value?.id)
+      console.log("currentTblMenu",currentTblMenu)
+      this._tblMenuUseCase.saveTblMenu(currentTblMenu as ISaveTblMenuViewModel).then(obs => {
 				this._loaderService.display(true);
 				obs.subscribe((result) => {
 					this._loaderService.display(false);
