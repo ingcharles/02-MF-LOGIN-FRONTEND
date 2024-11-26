@@ -1,0 +1,114 @@
+<!--
+* Vista create-tbl-menu.component.html
+*
+* @author  Carlos Anchundia
+* @date    22-11-2024
+* @name    create-tbl-menu.component.html
+* @package presentation
+* @subpackage tbl-menu
+-->
+
+<div class="p-4 surface-200">
+	<form autocomplete="off" [formGroup]="formTblMenu" (ngSubmit)="saveTblMenu()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario TblMenu</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general del TblMenu. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="p-fluid formgrid grid">
+
+						<div class="field col-12 md:col-6">
+							<label for="idMenuPadre"> idMenuPadre (*)</label>
+							<p-inputNumber id="idMenuPadre" name="idMenuPadre" formControlName="idMenuPadre" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuPadre',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idMenuPadre', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="nemonico"> nemonico (*)</label>
+							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="p-inputtext-sm w-full"  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="nemonicoPadre"> nemonicoPadre (*)</label>
+							<input pInputText id="nemonicoPadre" name="nemonicoPadre" formControlName="nemonicoPadre" class="p-inputtext-sm w-full"  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonicoPadre',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('nemonicoPadre', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="nombre"> nombre (*)</label>
+							<input pInputText id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="imagen"> imagen (*)</label>
+							<input pInputText id="imagen" name="imagen" formControlName="imagen" class="p-inputtext-sm w-full"  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagen',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('imagen', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="ruta"> ruta (*)</label>
+							<input pInputText id="ruta" name="ruta" formControlName="ruta" class="p-inputtext-sm w-full"  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ruta',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('ruta', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="orden"> orden (*)</label>
+							<p-inputNumber id="orden" name="orden" formControlName="orden" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('orden',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('orden', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="estado"> estado (*)</label>
+							<p-dropdown id="estado" name="estado" class="small-dropdown" 
+							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionLabel="name"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblMenu)" tooltipPosition="top" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="fechaRegistro"> fechaRegistro (*)</label>
+							<p-calendar id="fechaRegistro" name="fechaRegistro" formControlName="fechaRegistro" class="p-inputtext-sm" dateFormat="dd/mm/yy" 
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblMenu)" tooltipPosition="top" placeholder ="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="idUsuarioRegistro"> idUsuarioRegistro (*)</label>
+							<p-inputNumber id="idUsuarioRegistro" name="idUsuarioRegistro" formControlName="idUsuarioRegistro" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuarioRegistro',formTblMenu)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idUsuarioRegistro', formTblMenu)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+					</div>
+				</p-fieldset>
+				<div class="p-fluid formgrid grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblMenu()" />
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>

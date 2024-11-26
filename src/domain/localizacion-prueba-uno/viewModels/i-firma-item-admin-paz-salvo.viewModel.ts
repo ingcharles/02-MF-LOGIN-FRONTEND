@@ -8,7 +8,6 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
 
 
 export interface IFirmaItemAdminPazSalvoViewModel {

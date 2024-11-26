@@ -12,27 +12,19 @@
 	<form autocomplete="off" [formGroup]="formTblModulo" (ngSubmit)="saveTblModulo()">
 		<div class="card card-custom">
 			<div class="card-header card-header-custom">
-				<h4>Formulario TblModulo</h4>
+				<h4>Formulario para el registro de módulos</h4>
 			</div>
 
 			<p-card>
 				<p class="m-0 mb-4">
-					<small>Información general del TblModulo. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+					<small>Información general del módulo. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
 				</p>
 
 				<p-fieldset legend="Datos Generales">
 					<div class="p-fluid formgrid grid">
 
 						<div class="field col-12 md:col-6">
-							<label for="nemonico"> nemonico (*)</label>
-							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="p-inputtext-sm w-full"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblModulo)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblModulo)" tooltipPosition="top"
-							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
-						</div>
-
-						<div class="field col-12 md:col-6">
-							<label for="nombre"> nombre (*)</label>
+							<label for="nombre"> Nombre (*)</label>
 							<textarea pInputTextarea id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblModulo)" tooltipPosition="top"
@@ -40,7 +32,18 @@
 						</div>
 
 						<div class="field col-12 md:col-6">
-							<label for="numeroVersion"> numeroVersion (*)</label>
+							<label for="nemonico"> Nemónico (*)</label>
+							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" [showMaskTyped]="true"
+              [specialCharacters]="['_']"
+              [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'"
+              mask="SSSSSS_SSSSSS_SSSSSS" [validation]="true" characterPattern="[0-9]" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblModulo)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblModulo)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="numeroVersion"> Nímero de versión (*)</label>
 							<input pInputText id="numeroVersion" name="numeroVersion" formControlName="numeroVersion" class="p-inputtext-sm w-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('numeroVersion',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('numeroVersion', formTblModulo)" tooltipPosition="top"
@@ -48,7 +51,7 @@
 						</div>
 
 						<div class="field col-12 md:col-6">
-							<label for="ruta"> ruta (*)</label>
+							<label for="ruta"> Ruta (*)</label>
 							<textarea pInputTextarea id="ruta" name="ruta" formControlName="ruta" class="p-inputtext-sm w-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ruta',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('ruta', formTblModulo)" tooltipPosition="top"
@@ -56,7 +59,7 @@
 						</div>
 
 						<div class="field col-12 md:col-6">
-							<label for="descripcion"> descripcion (*)</label>
+							<label for="descripcion"> Descripción (*)</label>
 							<textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion" class="p-inputtext-sm w-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('descripcion',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('descripcion', formTblModulo)" tooltipPosition="top"

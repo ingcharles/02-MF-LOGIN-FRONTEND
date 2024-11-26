@@ -1,3 +1,4 @@
+import { MF_ADMIN_TBLMENU_ROUTES } from './../presentation/tbl-menu/tbl-menu.routing';
 import { Routes } from '@angular/router';
 import { AdminFirmaPazSalvoComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo/admin-firma-paz-salvo.component';
 import { CreateAdminPazSalvoComponent } from '../presentation/paz-salvo/create-admin-paz-salvo/create-admin-paz-salvo.component';
@@ -6,12 +7,13 @@ import { IndexTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modu
 import { CreateTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/create-tbl-usuario-modulo/create-tbl-usuario-modulo.component';
 import { MF_ADMIN_PAZ_SALVO_ROUTES } from '../presentation/paz-salvo/paz-salvo.routing';
 import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
-import { MF_ADMIN_MODULO_ROUTES } from '../presentation/tbl-modulo/tbl-modulo.routing';
+import { MF_ADMIN_TBLMODULO_ROUTES } from '../presentation/tbl-modulo/tbl-modulo.routing';
 
 export const MODULE_ROUTES: Routes = [
-  ...MF_ADMIN_PAZ_SALVO_ROUTES,
-  ...MF_ADMIN_ROUTES,
-  ...MF_ADMIN_MODULO_ROUTES
+  //...MF_ADMIN_PAZ_SALVO_ROUTES,
+  //...MF_ADMIN_ROUTES,
+  ...MF_ADMIN_TBLMODULO_ROUTES,
+  ...MF_ADMIN_TBLMENU_ROUTES
 //   {
 //     path: '',
 //     redirectTo: 'admin-paz-salvo',

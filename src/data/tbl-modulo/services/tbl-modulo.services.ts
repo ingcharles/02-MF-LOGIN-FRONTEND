@@ -109,7 +109,6 @@ export class TblModuloService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>>
 	*/
 	public async updateTblModulo(tblModulo: IUpdateTblModuloViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>>{
-	tblModulo.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/tbl-modulo/updateTblModulo`;
 	return this._http.post<IResultApi>(url, tblModulo).pipe(
 		map((result) => {

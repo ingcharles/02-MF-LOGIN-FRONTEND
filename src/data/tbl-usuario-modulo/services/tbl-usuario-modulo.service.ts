@@ -41,7 +41,6 @@ export class TblUsuarioModuloService  {
 	* @return Promise<Observable<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>>
 	*/
 	public async saveTblUsuarioModulo(tblUsuarioModulo: ISaveTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>>{
-	tblUsuarioModulo.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/tbl-usuario-modulo/saveTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
 		map((result) => {
@@ -144,7 +143,6 @@ export class TblUsuarioModuloService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>>
 	*/
 	public async updateTblUsuarioModulo(tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>>{
-	tblUsuarioModulo.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/tbl-usuario-modulo/updateTblUsuarioModulo`;
 	return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
 		map((result) => {

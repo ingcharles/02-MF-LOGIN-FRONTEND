@@ -41,7 +41,6 @@ export class FirmaAdminPazSalvoService  {
 	* @return Promise<Observable<IResponseStatusViewModel<ISaveAdminPazSalvoRsViewModel>>>
 	*/
 	public async saveAdminPazSalvo(AdminPazSalvo: ISaveAdminPazSalvoViewModel): Promise<Observable<IResponseStatusViewModel<ISaveAdminPazSalvoRsViewModel>>>{
-	AdminPazSalvo.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/localizacion-prueba-uno/saveAdminPazSalvo`;
 	return this._http.post<IResultApi>(url, AdminPazSalvo).pipe(
 		map((result) => {
@@ -110,7 +109,6 @@ export class FirmaAdminPazSalvoService  {
 	* @return Promise<Observable<IResponseStatusViewModel<IUpdateAdminPazSalvoRsViewModel>>>
 	*/
 	public async updateAdminPazSalvo(AdminPazSalvo: IUpdateAdminPazSalvoViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateAdminPazSalvoRsViewModel>>>{
-	AdminPazSalvo.auditoria = 'transaccionAuditoria';
 	const url = `${apiAdminUrl}command/localizacion-prueba-uno/updateAdminPazSalvo`;
 	return this._http.post<IResultApi>(url, AdminPazSalvo).pipe(
 		map((result) => {

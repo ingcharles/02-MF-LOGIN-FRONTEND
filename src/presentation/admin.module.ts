@@ -11,12 +11,14 @@
 import { NgModule } from '@angular/core';
 import { TblModuloRouting } from './tbl-modulo/tbl-modulo.routing';
 import { TblUsuarioModuloRouting } from './tbl-usuario-modulo/tbl-usuario-modulo.routing';
+import { TblMenuRouting } from './tbl-menu/tbl-menu.routing';
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
 	TblModuloRouting,
+  TblMenuRouting,
   TblUsuarioModuloRouting
 	],
 

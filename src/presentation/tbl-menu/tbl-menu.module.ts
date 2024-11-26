@@ -1,23 +1,24 @@
 /**
-* Modulo tbl-modulo.module.ts
+* Modulo tbl-menu.module.ts
 *
 * @author  Carlos Anchundia
 * @date    22-11-2024
 * @name    NgModule
 * @package presentation
-* @subpackage tbl-modulo
+* @subpackage tbl-menu
 */
 
 import { NgModule } from '@angular/core';
-import { TblModuloRouting } from './tbl-modulo.routing';
+import { TblMenuRouting } from './tbl-menu.routing';
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
-	TblModuloRouting,
+	TblMenuRouting
 	],
-
+	providers: [
+	]
 })
 
-export class TblModuloModule { }
+export class TblMenuModule { }

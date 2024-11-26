@@ -1,3 +1,4 @@
+
 /**
 * Vista create-tbl-modulo.component.ts
 *
@@ -7,31 +8,21 @@
 * @package presentation
 * @subpackage tbl-modulo
 */
-
-import { CommonModule, DatePipe, Location } from '@angular/common';
+import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
+import {Location } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, PLATFORM_ID, inject} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';
 import { messages } from '../../../data/base/constants/messages';
-import { TooltipDirective } from '../../../data/base/directives/tooltip-directive';
 import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
 import { IGetTblModuloByIdViewModel, ISaveTblModuloViewModel, IUpdateTblModuloViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { FieldsetModule } from 'primeng/fieldset';
-import { CardModule } from 'primeng/card';
-import { InputMaskModule } from 'primeng/inputmask';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { TooltipModule } from 'primeng/tooltip';
-import { CalendarModule } from 'primeng/calendar';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { DropdownModule } from 'primeng/dropdown';
-import { FloatLabelModule } from 'primeng/floatlabel';
+
+import { ROUTES_CORE } from '../../../data/base/constants/routes';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
 	selector: 'create-tbl-modulo-page',
@@ -39,22 +30,11 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 	styleUrls: ['./create-tbl-modulo.component.scss'],
 	standalone: true,
 	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		ButtonModule,
-		InputTextModule,
-		FieldsetModule,
-		CardModule,
-		InputMaskModule,
-		InputSwitchModule,
-		InputTextareaModule,
-		TooltipModule,
-		CalendarModule,
-		InputNumberModule,
-		DropdownModule,
-		FloatLabelModule,
+    NgxMaskDirective,
+    SharedCreateModule
+    
 	],
-	providers: [],
+	providers: [provideNgxMask()],
 	host: {ngSkipHydration: 'true' }
 })
 
@@ -74,6 +54,7 @@ export class CreateTblModuloComponent implements OnInit {
 	_tblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
 
 	@Output() closeTblModulo = new EventEmitter();
+  public routeCore = ROUTES_CORE;
 	public title = 'Formulario TblModulo';
 	public formTblModulo!: FormGroup;
 	public navigated = false;
@@ -129,9 +110,10 @@ export class CreateTblModuloComponent implements OnInit {
 		}
 
 		const currentTblModulo: any = this.currentTblModulo;
-		currentTblModulo.idModulo = currentTblModulo.idModulo.id;
+    console.log("currentTblModulo",currentTblModulo)
+		//currentTblModulo.idModulo = currentTblModulo.idModulo.id;
 
-		if (this.currentTblModulo.idModulo) {
+		if (currentTblModulo.idModulo) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
 				this._tblModuloUseCase.updateTblModulo(currentTblModulo as IUpdateTblModuloViewModel).then(obs => {
 					this._loaderService.display(true);
@@ -139,7 +121,7 @@ export class CreateTblModuloComponent implements OnInit {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-							this._router.navigateByUrl('index-tbl-modulo');
+							this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMODULO.INDEX);
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
@@ -157,7 +139,7 @@ export class CreateTblModuloComponent implements OnInit {
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
 						this.formTblModulo.get('idModulo')!.patchValue(result.data?.idModulo);
-						this._router.navigateByUrl('index-tbl-modulo');
+						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMODULO.INDEX);
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
