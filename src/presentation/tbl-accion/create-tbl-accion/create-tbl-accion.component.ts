@@ -60,9 +60,9 @@ export class CreateTblAccionComponent implements OnInit {
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{nombre: 'Item 1', id_accion: 1 }},
-	{nombre: 'Item 2', id_accion: 2 }},
-	{nombre: 'Item 3', id_accion: 3 }}
+	{nombre: 'Item 1', id_accion: 1 },
+	{nombre: 'Item 2', id_accion: 2 },
+	{nombre: 'Item 3', id_accion: 3}
 	];
 
 	ngOnInit(): void {
@@ -100,8 +100,9 @@ export class CreateTblAccionComponent implements OnInit {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
 					});
-				});
-			};
+        }
+				//});
+			});
 	}
 
 	public saveTblAccion(): void {
