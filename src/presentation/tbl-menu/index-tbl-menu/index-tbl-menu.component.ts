@@ -16,7 +16,7 @@ import { messages } from '../../../data/base/constants/messages';
 import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { TblMenuUseCase } from '../../../domain/tbl-menu/usesCases/tbl-menu.usecase';
-import { IGetTblMenuPaginadoViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
+import { IGetTblMenuPaginadoRsViewModel, IGetTblMenuPaginadoViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
 
@@ -36,7 +36,7 @@ export class IndexTblMenuComponent implements OnInit {
 	_fb: FormBuilder = inject(FormBuilder);
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
-	_TblMenuUseCase: TblMenuUseCase = inject(TblMenuUseCase);
+	_tblMenuUseCase: TblMenuUseCase = inject(TblMenuUseCase);
 
 	public routeCore = ROUTES_CORE;
 	public page: number = 0;
@@ -44,7 +44,7 @@ export class IndexTblMenuComponent implements OnInit {
 	public totalElements: number = 0;
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 	public title:string = 'Listado de menú';
-	public tblMenuRecords: any[] = [];
+	public tblMenuRecords: IGetTblMenuPaginadoRsViewModel[] = [];
 	public search: string = '';
 	public sortBy: string = 'nombre';
 	public sortDirection: string = 'ASC';
@@ -56,7 +56,7 @@ export class IndexTblMenuComponent implements OnInit {
 	public loadData(): void {
 		this.loading = true;
 		const currentTblMenu: IGetTblMenuPaginadoViewModel = {page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
-		this._TblMenuUseCase.getTblMenuPaginado(currentTblMenu).then(obs => {
+		this._tblMenuUseCase.getTblMenuPaginado(currentTblMenu).then(obs => {
 			this._loaderService.display(true);
 			obs.subscribe((result: any) => {
 				this._loaderService.display(false);

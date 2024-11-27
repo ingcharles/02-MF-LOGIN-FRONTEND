@@ -70,7 +70,7 @@ export interface IGetTblMenuViewModel {
 */
 export interface IGetTblMenuPaginadoRsViewModel {
 	idMenu?: number | null;
-	idMenuPadre?: number | null;
+	menuPadre?: IGetTblMenuPaginadoRsViewModel | null;
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;

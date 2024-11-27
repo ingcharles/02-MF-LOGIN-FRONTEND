@@ -57,9 +57,9 @@ export class TblMenuService  {
 	* @param busqueda: IGetTblMenuViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>
 	*/
-	public async getTblMenu(busqueda: IGetTblMenuViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>{
-	const url = `${apiAdminUrl}query/tbl-menu/getTblMenu`;
-	return this._http.post<IResultApi>(url, busqueda).pipe(
+	public async getAllTblMenu(): Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>{
+	const url = `${apiAdminUrl}query/tbl-menu/findAllTblMenu`;
+	return this._http.get<IResultApi>(url).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblMenuRsViewModel>(result);
 		}),

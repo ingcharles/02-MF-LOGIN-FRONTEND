@@ -18,7 +18,7 @@ import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
 import { TblMenuUseCase } from '../../../domain/tbl-menu/usesCases/tbl-menu.usecase';
-import { IGetTblMenuByIdViewModel, ISaveTblMenuViewModel, IUpdateTblMenuViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
+import { IGetTblMenuByIdViewModel, IGetTblMenuRsViewModel, IGetTblMenuViewModel, ISaveTblMenuViewModel, IUpdateTblMenuViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
@@ -64,12 +64,14 @@ export class CreateTblMenuComponent implements OnInit {
 	{name: 'Inactivo', id: 'Inactivo' },
 	//{name: 'Activo', id: 3 }
 	];
+  public optionsMenuPadre: IGetTblMenuRsViewModel[] = [];
+
 
 	ngOnInit(): void {
 
 		this.formTblMenu = new FormGroup({
 			idMenu: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			idMenuPadre: new FormControl(null, Validators.compose([ Validators.min(1), Validators.max(999999999)])),
+			idMenuPadre: new FormControl(null, Validators.compose([])),
 			nemonico: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			nemonicoPadre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
@@ -77,7 +79,7 @@ export class CreateTblMenuComponent implements OnInit {
 			ruta: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
 			orden: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
+			//fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
 			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 		});
 
@@ -104,6 +106,8 @@ export class CreateTblMenuComponent implements OnInit {
 				});
 			};
 		});
+
+    this.loadDataMenuPadre();
 	}
 
 	public saveTblMenu(): void {
@@ -162,5 +166,30 @@ export class CreateTblMenuComponent implements OnInit {
 	private get currentTblMenu(): IUpdateTblMenuViewModel {
 		return this.formTblMenu.value as IUpdateTblMenuViewModel;
 	}
+
+
+  public loadDataMenuPadre(): void {
+		this._tblMenuUseCase.getAllTblMenu().then(obs => {
+			this._loaderService.display(true);
+			obs.subscribe((result: any) => {
+				this._loaderService.display(false);
+				if (result.ok) {
+
+					this.optionsMenuPadre = result.data;
+          console.log("result",this.optionsMenuPadre);
+					//this.totalElements = result.data?.totalElements;
+				} else {
+					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+				}
+				//this.loading = false;
+			});
+		});
+	}
+
+  onMenuPadreChange(event: any): void {
+    const selectedId = event.value?.idMenu || null; // Obtén solo el ID
+    this.formTblMenu.patchValue({ idMenuPadre: selectedId });
+    console.log('Nuevo valor de idMenuPadre:', this.formTblMenu.value.idMenuPadre);
+  }
 
 }
