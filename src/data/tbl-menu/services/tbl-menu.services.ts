@@ -57,16 +57,28 @@ export class TblMenuService  {
 	* @param busqueda: IGetTblMenuViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>
 	*/
-	public async getAllTblMenu(): Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>{
+	public getAllTblMenu(): Promise<IResponseStatusViewModel<IGetTblMenuRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-menu/findAllTblMenu`;
-	return this._http.get<IResultApi>(url).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<IGetTblMenuRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<IGetTblMenuRsViewModel>(error));
-		})
-	);
+	return new Promise<IResponseStatusViewModel<IGetTblMenuRsViewModel>>((resolve, reject) => {
+    this._http.get<IResultApi>(url)
+    .subscribe({
+      next: (response: IResultApi) => {
+        resolve(this._statusResponseService.succes<IGetTblMenuRsViewModel>(response));
+      },
+      error: (error) => {
+        reject(this._statusResponseService.error<IGetTblMenuRsViewModel>(error));
+      }
+    });
+    /*.pipe(
+      map((result) => {
+      return this._statusResponseService.succes<IGetTblMenuRsViewModel>(result);
+      }),
+      catchError((error) => {
+      return of(this._statusResponseService.error<IGetTblMenuRsViewModel>(error));
+      })
+    );*/
+  });
+
 	}
 
 	/**
@@ -91,17 +103,29 @@ export class TblMenuService  {
 	* @param id_menu: IGetTblMenuByIdViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>>
 	*/
-	public async getTblMenuById(id_menu: IGetTblMenuByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>>{
-	const url = `${apiAdminUrl}query/tbl-menu/findByIdTblMenu`;
-	return this._http.post<IResultApi>(url, id_menu).pipe(
+	public getTblMenuById(id_menu: IGetTblMenuByIdViewModel): Promise<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>{
+    const url = `${apiAdminUrl}query/tbl-menu/findByIdTblMenu`;
+    return new Promise<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>((resolve, reject) => {
+      this._http.post<IResultApi>(url, id_menu)
+      .subscribe({
+        next: (response: IResultApi) => {
+          resolve(this._statusResponseService.succes<IGetTblMenuByIdRsViewModel>(response));
+        },
+        error: (error) => {
+          reject(this._statusResponseService.error<IGetTblMenuByIdRsViewModel>(error));
+        }
+      });
+    });
+  }
+	/*return this._http.post<IResultApi>(url, id_menu).pipe(
 		map((result) => {
 		return this._statusResponseService.succes<IGetTblMenuByIdRsViewModel>(result);
 		}),
 		catchError((error) => {
 		return of(this._statusResponseService.error<IGetTblMenuByIdRsViewModel>(error));
 		})
-	);
-	}
+	);*/
+	//}
 
 	/**
 	* Actualizar el registro actual

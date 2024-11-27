@@ -1,0 +1,83 @@
+<!--
+* Vista index-tbl-accion.component.html
+*
+* @author  Carlos Anchundia
+* @date    22-11-2024
+* @name    index-tbl-accion.component.html
+* @package presentation
+* @subpackage tbl-accion
+-->
+
+<div class="p-3 surface-100">
+	<p-toolbar styleClass="mb-4 gap-2">
+		<ng-template pTemplate="left">
+			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
+			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLACCION.CREATE]" />
+		</ng-template>
+	</p-toolbar>
+
+	<p-table #dt [value]="tblAccionRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
+		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
+		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_accion','nombre','nemonico','pagina','imagen','color','descripcion','orden','estado','fecha_registro','id_usuario_registro',]">
+
+		<ng-template pTemplate="caption">
+			<div class="flex">
+				<div class="flex align-items-center justify-content-center" style="flex: 1;">
+					<h2 class="m-0">{{title}}</h2>
+				</div>
+				<div class="flex align-items-center justify-content-end" style="gap: 10px;">
+					<p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
+					<span class="p-input-icon-left">
+						<i class="pi pi-search"></i>
+						<input pInputText type="text" [value]="search" (input)="inputSearch($event)"
+							placeholder="Buscar..." />
+					</span>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+				<th pSortableColumn="idAccion" style="min-width:7rem">IdAccion<p-sortIcon field="idAccion" /></th>
+				<th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre" /></th>
+				<th pSortableColumn="nemonico" style="min-width:10rem">Nemonico<p-sortIcon field="nemonico" /></th>
+				<th pSortableColumn="pagina" style="min-width:10rem">Pagina<p-sortIcon field="pagina" /></th>
+				<th pSortableColumn="imagen" style="min-width:10rem">Imagen<p-sortIcon field="imagen" /></th>
+				<th pSortableColumn="color" style="min-width:10rem">Color<p-sortIcon field="color" /></th>
+				<th pSortableColumn="descripcion" style="min-width:10rem">Descripcion<p-sortIcon field="descripcion" /></th>
+				<th pSortableColumn="orden" style="min-width:7rem">Orden<p-sortIcon field="orden" /></th>
+				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
+				<th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro" /></th>
+				<th pSortableColumn="idUsuarioRegistro" style="min-width:7rem">IdUsuarioRegistro<p-sortIcon field="idUsuarioRegistro" /></th>
+				<th style="min-width:13rem">Acciones</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-item>
+			<tr>
+				<td><p-tableCheckbox [value]="item" /></td>
+				<td>{{ item.idAccion }}</td>
+				<td>{{ item.nombre }}</td>
+				<td>{{ item.nemonico }}</td>
+				<td>{{ item.pagina }}</td>
+				<td>{{ item.imagen }}</td>
+				<td>{{ item.color }}</td>
+				<td>{{ item.descripcion }}</td>
+				<td>{{ item.orden }}</td>
+				<td>{{ item.estado }}</td>
+				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd') : '' }}</td>
+				<td>{{ item.idUsuarioRegistro }}</td>
+				<td>
+					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.CREATE]"/>
+					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.EDIT(item.idAccion)]" />
+					<p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" />
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="summary">
+			<div class="flex align-items-center justify-content-between">
+				En total hay {{ tblAccionRecords ? tblAccionRecords.length : 0 }} tblAccion
+			</div>
+		</ng-template>
+	</p-table>
+</div>

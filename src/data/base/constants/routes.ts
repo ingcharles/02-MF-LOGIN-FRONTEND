@@ -10,6 +10,11 @@ export const ROUTES_CORE = {
       INDEX: 'menu',
       CREATE: 'menu/create',
       EDIT: (id: String | number) => `menu/edit/${id}`
+    },
+    TBLACCION: {
+      INDEX: 'accion',
+      CREATE: 'accion/create',
+      EDIT: (id: String | number) => `accion/edit/${id}`
     }
   }
 };

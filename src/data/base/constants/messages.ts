@@ -19,6 +19,7 @@ export const messages = {
   aportanteNoExist: "Aportante no registrado, por favor registrelo",
   camposVacios: "Debe completar todos los campos",
   warningTitle: "¡Advertencia!",
+  errorTitle: "Error!",
   informativeTitle: "¡Informativo!",
   successTitle: "¡Éxito!",
   confirmationTitle: "¡Confirmación!",
@@ -43,6 +44,7 @@ export const messages = {
   isError: isError,
 
   successSave: 'registro guardado exitosamente',
+  error: 'error al obtener los datos',
   successUpdate: 'registro actualizado exitosamente',
 
 

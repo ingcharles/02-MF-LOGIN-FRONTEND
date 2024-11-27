@@ -1,9 +1,9 @@
 /**
-* Interface i-tbl-menu.viewModel.
+* Interface i-tbl-accion.viewModel.
 *
 * @author  Carlos Anchundia
 * @date    22-11-2024
-* @name    TblMenuviewModel
+* @name    TblAccionviewModel
 * @package viewModel
 * @subpackage Domain
 */
@@ -13,24 +13,24 @@ import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name ISaveTblMenuRsViewModel
+* @name ISaveTblAccionRsViewModel
 */
-export interface ISaveTblMenuRsViewModel {
-	idMenu: number | null;
+export interface ISaveTblAccionRsViewModel {
+	idAccion: number | null;
 }
 
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaViewModel
-* @name ISaveTblMenuViewModel
+* @name ISaveTblAccionViewModel
 */
-export interface ISaveTblMenuViewModel extends IAuditoriaViewModel {
-	idMenuPadre?: number | null;
-	nemonico?: string | null;
-	nemonicoPadre?: string | null;
+export interface ISaveTblAccionViewModel extends IAuditoriaViewModel {
 	nombre?: string | null;
+	nemonico?: string | null;
+	pagina?: string | null;
 	imagen?: string | null;
-	ruta?: string | null;
+	color?: string | null;
+	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
@@ -39,16 +39,16 @@ export interface ISaveTblMenuViewModel extends IAuditoriaViewModel {
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblMenuRsViewModel
+* @name IGetTblAccionRsViewModel
 */
-export interface IGetTblMenuRsViewModel {
-	idMenu?: number | null;
-	menuPadre?: number | null;
-	nemonico?: string | null;
-	nemonicoPadre?: string | null;
+export interface IGetTblAccionRsViewModel {
+	idAccion?: number | null;
 	nombre?: string | null;
+	nemonico?: string | null;
+	pagina?: string | null;
 	imagen?: string | null;
-	ruta?: string | null;
+	color?: string | null;
+	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
@@ -58,24 +58,24 @@ export interface IGetTblMenuRsViewModel {
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaModel
-* @name IGetTblMenuViewModel
+* @name IGetTblAccionViewModel
 */
-export interface IGetTblMenuViewModel {
+export interface IGetTblAccionViewModel {
 	busqueda?: string | null;
 }
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblMenuPaginadoRsViewModel
+* @name IGetTblAccionPaginadoRsViewModel
 */
-export interface IGetTblMenuPaginadoRsViewModel {
-	idMenu?: number | null;
-	menuPadre?: IGetTblMenuPaginadoRsViewModel | null;
-	nemonico?: string | null;
-	nemonicoPadre?: string | null;
+export interface IGetTblAccionPaginadoRsViewModel {
+	idAccion?: number | null;
 	nombre?: string | null;
+	nemonico?: string | null;
+	pagina?: string | null;
 	imagen?: string | null;
-	ruta?: string | null;
+	color?: string | null;
+	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
@@ -84,9 +84,9 @@ export interface IGetTblMenuPaginadoRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* @name IGetTblMenuPaginadoViewModel
+* @name IGetTblAccionPaginadoViewModel
 */
-export interface IGetTblMenuPaginadoViewModel {
+export interface IGetTblAccionPaginadoViewModel {
 	page: number;
 	size: number;
 	search: string;
@@ -96,16 +96,16 @@ export interface IGetTblMenuPaginadoViewModel {
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IGetTblMenuByIdRsViewModel
+* @name IGetTblAccionByIdRsViewModel
 */
-export interface IGetTblMenuByIdRsViewModel {
-	idMenu?: number | null;
-	menuPadre?: IGetTblMenuByIdRsViewModel | null;
-	nemonico?: string | null;
-	nemonicoPadre?: string | null;
+export interface IGetTblAccionByIdRsViewModel {
+	idAccion?: number | null;
 	nombre?: string | null;
+	nemonico?: string | null;
+	pagina?: string | null;
 	imagen?: string | null;
-	ruta?: string | null;
+	color?: string | null;
+	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
@@ -115,33 +115,33 @@ export interface IGetTblMenuByIdRsViewModel {
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaModel
-* @name IGetTblMenuByIdViewModel
+* @name IGetTblAccionByIdViewModel
 */
-export interface IGetTblMenuByIdViewModel {
-	idMenu: number | null;
+export interface IGetTblAccionByIdViewModel {
+	idAccion: number | null;
 }
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio
-* @name IUpdateTblMenuRsViewModel
+* @name IUpdateTblAccionRsViewModel
 */
-export interface IUpdateTblMenuRsViewModel {
-	idMenu: number | null;
+export interface IUpdateTblAccionRsViewModel {
+	idAccion: number | null;
 }
 
 /**
 * Interface que contiene los datos de salida que van al servicio
 * Extiende IAuditoriaViewModel
-* @name IUpdateTblMenuViewModel
+* @name IUpdateTblAccionViewModel
 */
-export interface IUpdateTblMenuViewModel extends IAuditoriaViewModel {
-	idMenu?: number | null;
-	idMenuPadre?: number | null;
-	nemonico?: string | null;
-	nemonicoPadre?: string | null;
+export interface IUpdateTblAccionViewModel extends IAuditoriaViewModel {
+	idAccion?: number | null;
 	nombre?: string | null;
+	nemonico?: string | null;
+	pagina?: string | null;
 	imagen?: string | null;
-	ruta?: string | null;
+	color?: string | null;
+	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;

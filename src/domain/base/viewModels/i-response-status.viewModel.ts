@@ -1,6 +1,3 @@
-
-
-
 export interface IResponseStatusViewModel<T>{
   data?: T | null,
   message: string;

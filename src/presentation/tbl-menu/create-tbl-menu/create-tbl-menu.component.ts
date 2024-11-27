@@ -67,47 +67,47 @@ export class CreateTblMenuComponent implements OnInit {
   public optionsMenuPadre: IGetTblMenuRsViewModel[] = [];
 
 
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 
 		this.formTblMenu = new FormGroup({
 			idMenu: new FormControl(null, Validators.compose([Validators.max(999999999)])),
 			idMenuPadre: new FormControl(null, Validators.compose([])),
 			nemonico: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			nemonicoPadre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			imagen: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			ruta: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
 			orden: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			//fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
-			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			//idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 		});
 
-		this.sub = this._activatedRoute.params.subscribe(params => {
+    await this.loadDataMenuPadre();
+
+		this.sub = this._activatedRoute.params.subscribe(async params => {
 			this.navigated = true;
 			const idParametro = params['id'];
 			if (idParametro != undefined) {
 				this.navigated = true;
 				let idMenu: IGetTblMenuByIdViewModel = { idMenu: idParametro };
-				this._tblMenuUseCase.getTblMenuById(idMenu).then(obs => {
-					obs.subscribe((result) => {
+				await this._tblMenuUseCase.getTblMenuById(idMenu).then(result => {
+				//	obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this.formTblMenu.reset(result.data);
-							const estado = this.optionsEstado.find((item: any) => item.id == result.data?.estado!);
-							this.formTblMenu.get('estado')?.setValue(estado);
+              this.formTblMenu.get('idMenuPadre')?.setValue(this.findMenuPadre(result.data?.menuPadre?.idMenu!)?.idMenu);
 							if (result.data?.fechaRegistro != null) {
 								this.formTblMenu.get('fechaRegistro')?.setValue(new Date(result.data?.fechaRegistro));
 							}
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
-					});
+					//});
 				});
 			};
 		});
 
-    this.loadDataMenuPadre();
+
 	}
 
 	public saveTblMenu(): void {
@@ -139,9 +139,9 @@ export class CreateTblMenuComponent implements OnInit {
 		}
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			currentTblMenu['estado']= this.formTblMenu.get('estado')?.value?.id;
-      console.log("formTblMenu",this.formTblMenu.get('estado')?.value?.id)
-      console.log("currentTblMenu",currentTblMenu)
+			//currentTblMenu['estado']= this.formTblMenu.get('estado')?.value?.id;
+      //console.log("formTblMenu",this.formTblMenu.get('estado')?.value?.id)
+      //console.log("currentTblMenu",currentTblMenu)
       this._tblMenuUseCase.saveTblMenu(currentTblMenu as ISaveTblMenuViewModel).then(obs => {
 				this._loaderService.display(true);
 				obs.subscribe((result) => {
@@ -168,28 +168,26 @@ export class CreateTblMenuComponent implements OnInit {
 	}
 
 
-  public loadDataMenuPadre(): void {
-		this._tblMenuUseCase.getAllTblMenu().then(obs => {
+  public async loadDataMenuPadre(): Promise<void> {
+		await this._tblMenuUseCase.getAllTblMenu().then((result: any) => {
 			this._loaderService.display(true);
-			obs.subscribe((result: any) => {
+			//obs.subscribe((result: any) => {
 				this._loaderService.display(false);
 				if (result.ok) {
 
 					this.optionsMenuPadre = result.data;
-          console.log("result",this.optionsMenuPadre);
+          console.log("result11:",this.optionsMenuPadre);
 					//this.totalElements = result.data?.totalElements;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
 				//this.loading = false;
-			});
+			//});
 		});
 	}
 
-  onMenuPadreChange(event: any): void {
-    const selectedId = event.value?.idMenu || null; // Obtén solo el ID
-    this.formTblMenu.patchValue({ idMenuPadre: selectedId });
-    console.log('Nuevo valor de idMenuPadre:', this.formTblMenu.value.idMenuPadre);
+  findMenuPadre(idMenu: number): IGetTblMenuRsViewModel | undefined {
+    return this.optionsMenuPadre.find(item => item.idMenu === idMenu);
   }
 
 }

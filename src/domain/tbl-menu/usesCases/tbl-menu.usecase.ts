@@ -43,8 +43,8 @@ export class TblMenuUseCase {
 	* @param tblMenu: IGetTblMenuViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>>
 	*/
-	public async getAllTblMenu(): Promise<Observable<IResponseStatusViewModel<IGetTblMenuRsViewModel>>> {
-	return await this._tblMenuService.getAllTblMenu();
+	public async getAllTblMenu(): Promise<IResponseStatusViewModel<IGetTblMenuRsViewModel>> {
+	return this._tblMenuService.getAllTblMenu();
 	}
 	/**
 	* Obtiene el/los registros
@@ -59,7 +59,7 @@ export class TblMenuUseCase {
 	* @param tblMenu: IGetTblMenuByIdViewModel
 	* @return Promise<Observable<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>>
 	*/
-	public async getTblMenuById(tblMenu: IGetTblMenuByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>>> {
+	public async getTblMenuById(tblMenu: IGetTblMenuByIdViewModel): Promise<IResponseStatusViewModel<IGetTblMenuByIdRsViewModel>> {
 	return await this._tblMenuService.getTblMenuById(tblMenu);
 	}
 	/**

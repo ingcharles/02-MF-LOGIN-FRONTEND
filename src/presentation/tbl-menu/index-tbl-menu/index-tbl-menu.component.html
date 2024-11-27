@@ -38,35 +38,25 @@
 		</ng-template>
 		<ng-template pTemplate="header">
 			<tr>
-				<th style="width: 4rem"><p-tableHeaderCheckbox /></th>
-				<th pSortableColumn="idMenu" style="min-width:5rem">IdMenu<p-sortIcon field="idMenu" /></th>
-				<th pSortableColumn="nombreMenuPadre" style="min-width:5rem">Menu Padre<p-sortIcon field="nombreMenuPadre" /></th>
-				<th pSortableColumn="nemonico" style="min-width:10rem">Nemonico<p-sortIcon field="nemonico" /></th>
-				<th pSortableColumn="nemonicoPadre" style="min-width:10rem">NemonicoPadre<p-sortIcon field="nemonicoPadre" /></th>
-				<th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre" /></th>
+        <th pSortableColumn="nombre" style="min-width:10rem">Menú<p-sortIcon field="nombre" /></th>
+				<th pSortableColumn="nombreMenuPadre" style="min-width:10rem">Menú Padre<p-sortIcon field="nombreMenuPadre" /></th>
+				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico" /></th>
 				<th pSortableColumn="imagen" style="min-width:10rem">Imagen<p-sortIcon field="imagen" /></th>
 				<th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta" /></th>
-				<th pSortableColumn="orden" style="min-width:5rem">Orden<p-sortIcon field="orden" /></th>
-				<th pSortableColumn="estado" style="min-width:5rem">Estado<p-sortIcon field="estado" /></th>
-				<th pSortableColumn="fechaRegistro" style="min-width:5rem">FechaRegistro<p-sortIcon field="fechaRegistro" /></th>
-				<th pSortableColumn="idUsuarioRegistro" style="min-width:5rem">IdUsuarioRegistro<p-sortIcon field="idUsuarioRegistro" /></th>
+				<th pSortableColumn="orden" style="min-width:7rem">Orden<p-sortIcon field="orden" /></th>
+				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
 				<th style="min-width:13rem">Acciones</th>
 			</tr>
 		</ng-template>
 		<ng-template pTemplate="body" let-item>
 			<tr>
-				<td><p-tableCheckbox [value]="item" field="idMenu" /></td>
-				<td>{{ item.idMenu }}</td>
+        <td>{{ item.nombre }}</td>
 				<td>{{ item.menuPadre?.nombre }}</td>
 				<td>{{ item.nemonico }}</td>
-				<td>{{ item.nemonicoPadre }}</td>
-				<td>{{ item.nombre }}</td>
 				<td>{{ item.imagen }}</td>
 				<td>{{ item.ruta }}</td>
 				<td>{{ item.orden }}</td>
 				<td>{{ item.estado }}</td>
-				<td>{{ item.fechaRegistro ? (item.fechaRegistro | date: 'yyyy-MM-dd') : '' }}</td>
-				<td>{{ item.idUsuarioRegistro }}</td>
 				<td>
 					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENU.CREATE]"/>
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENU.EDIT(item.idMenu)]" />

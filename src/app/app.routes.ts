@@ -8,12 +8,14 @@ import { CreateTblUsuarioModuloComponent } from '../presentation/tbl-usuario-mod
 import { MF_ADMIN_PAZ_SALVO_ROUTES } from '../presentation/paz-salvo/paz-salvo.routing';
 import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
 import { MF_ADMIN_TBLMODULO_ROUTES } from '../presentation/tbl-modulo/tbl-modulo.routing';
+import { MF_ADMIN_TBLACCION_ROUTES } from '../presentation/tbl-accion/tbl-accion.routing';
 
 export const MODULE_ROUTES: Routes = [
   //...MF_ADMIN_PAZ_SALVO_ROUTES,
   //...MF_ADMIN_ROUTES,
   ...MF_ADMIN_TBLMODULO_ROUTES,
-  ...MF_ADMIN_TBLMENU_ROUTES
+  ...MF_ADMIN_TBLMENU_ROUTES,
+  ...MF_ADMIN_TBLACCION_ROUTES
 //   {
 //     path: '',
 //     redirectTo: 'admin-paz-salvo',
