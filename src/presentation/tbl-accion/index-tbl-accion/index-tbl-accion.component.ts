@@ -7,19 +7,15 @@
 * @package presentation
 * @subpackage tbl-accion
 */
-
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 import { messages } from '../../../data/base/constants/messages';
 import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { TblAccionUseCase } from '../../../domain/tbl-accion/usesCases/tbl-accion.usecase';
-import { IGetTblAccionPaginadoRsViewModel, IGetTblAccionPaginadoViewModel, IGetTblAccionRsViewModel } from '../../../domain/tbl-accion/viewModels/i-tbl-accion.viewModel';
+import { IGetTblAccionPaginadoRsViewModel ,IGetTblAccionPaginadoViewModel } from '../../../domain/tbl-accion/viewModels/i-tbl-accion.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
-import { IResultApiPaginado } from '../../../data/base/interfaces/i-result-api-paginado';
 import { IPaginado } from '../../../data/base/interfaces/i-paginado';
 
 @Component({
@@ -43,10 +39,9 @@ export class IndexTblAccionComponent implements OnInit {
 	public routeCore = ROUTES_CORE;
 	public page: number = 0;
 	public size: number = 10;
-	public totalElements: number = 0;
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 	public title:string = 'Listado TblAccion';
-	public tblAccionRecords: IGetTblAccionPaginadoRsViewModel = {};
+	public tblAccionRecords: IPaginado<IGetTblAccionPaginadoRsViewModel> | null = null;
 	public search: string = '';
 	public sortBy: string = 'idAccion';
 	public sortDirection: string = 'ASC';
@@ -58,12 +53,11 @@ export class IndexTblAccionComponent implements OnInit {
 	public loadData(): void {
 		this.loading = true;
 		const currentTblAccion: IGetTblAccionPaginadoViewModel = {page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
-		this._TblAccionUseCase.getTblAccionPaginado(currentTblAccion).then((result) => {
+		this._TblAccionUseCase.getPaginadoTblAccion(currentTblAccion).then(result => {
 			this._loaderService.display(true);
 				this._loaderService.display(false);
 				if (result.ok) {
-					this.tblAccionRecords = result.data?.content!;
-					this.totalElements = result.data?.totalElements!;
+					this.tblAccionRecords = result.data!;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

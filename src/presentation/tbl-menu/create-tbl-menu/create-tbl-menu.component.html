@@ -12,12 +12,12 @@
 	<form autocomplete="off" [formGroup]="formTblMenu" (ngSubmit)="saveTblMenu()">
 		<div class="card card-custom">
 			<div class="card-header card-header-custom">
-				<h4>Formulario TblMenu</h4>
+				<h4>Formulario para el registro de menú</h4>
 			</div>
 
 			<p-card>
 				<p class="m-0 mb-4">
-					<small>Información general del menu. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+					<small>Información general del menú. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
 				</p>
 
 				<p-fieldset legend="Datos Generales">
@@ -42,14 +42,14 @@
 						<div class="field col-12 md:col-6">
 							<label for="nemonico"> Nemónico (*)</label>
 							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="p-inputtext-sm w-full text-uppercase"
-              [showMaskTyped]="true"
+              [showMaskTyped]="true" [dropSpecialCharacters]="false"
               [specialCharacters]="['_']" [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS" [validation]="true"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblMenu)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblMenu)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
 						</div>
 
-						
+
 						<div class="field col-12 md:col-6">
 							<label for="nombre"> Nombre (*)</label>
 							<input pInputText id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"
@@ -97,7 +97,7 @@
 							[pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblMenu)" tooltipPosition="top" placeholder ="" />
 						</div> -->
 
-	
+
 					</div>
 				</p-fieldset>
 				<div class="p-fluid formgrid grid my-2 justify-content-end">

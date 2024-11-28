@@ -16,8 +16,8 @@ import { IGetTblAccionRsViewModel, IGetTblAccionViewModel, IGetTblAccionPaginado
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
-import { IResultApi } from '../../base/interfaces/i-result-api';
 import { IResponseStatusPaginadoViewModel } from '../../../domain/base/viewModels/i-response-status-paginado.viewModel';
+import { IResultApi } from '../../base/interfaces/i-result-api';
 
 const apiAdminUrl: string = environment.apiAdminUrl;
 
@@ -61,7 +61,7 @@ export class TblAccionService  {
 	* @param busqueda: IGetTblAccionViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>
 	*/
-	public getTblAccion(): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>{
+	public getAllTblAccion(): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-accion/getAllTblAccion`;
 	return new Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>((resolve, reject) => {
 	this._http.get<IResultApi>(url)
@@ -79,9 +79,9 @@ export class TblAccionService  {
 	/**
 	* Obtiene el/los registros
 	* @param busqueda: IGetTblAccionPaginadoViewModel
-	* @return Promise<IResponseStatusViewModel<IGetTblAccionPaginadoRsViewModel>>
+	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>>
 	*/
-	public getTblAccionPaginado(dataViewModel: IGetTblAccionPaginadoViewModel):  Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>> {
+	public getPaginadoTblAccion(dataViewModel: IGetTblAccionPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-accion/findAllPaginateTblAccion`;
 	return new Promise<IResponseStatusPaginadoViewModel<IGetTblAccionRsViewModel>>((resolve, reject) => {
 	this._http.post<IResultApi>(url, dataViewModel)
@@ -101,7 +101,7 @@ export class TblAccionService  {
 	* @param id_accion: IGetTblAccionByIdViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>>
 	*/
-	public getTblAccionById(id_accion: IGetTblAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>>{
+	public getByIdTblAccion(id_accion: IGetTblAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-accion/findByIdTblAccion`;
 	return new Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>>((resolve, reject) => {
 	this._http.post<IResultApi>(url, id_accion)

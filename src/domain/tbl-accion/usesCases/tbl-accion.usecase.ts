@@ -40,27 +40,26 @@ export class TblAccionUseCase {
 	}
 	/**
 	* Obtiene el/los registros
-	* @param tblAccion: IGetTblAccionViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>
 	*/
-	public async getTblAccion(): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>> {
-	return await this._tblAccionService.getTblAccion();
+	public async getAllTblAccion(): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>> {
+	return await this._tblAccionService.getAllTblAccion();
 	}
 	/**
 	* Obtiene el/los registros
 	* @param tblAccion: IGetTblAccionPaginadoViewModel
-	* @return Promise<IResponseStatusViewModel<IGetTblAccionPaginadoRsViewModel>>
+	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>>
 	*/
-	public async getTblAccionPaginado(tblAccion: IGetTblAccionPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>> {
-	return await this._tblAccionService.getTblAccionPaginado(tblAccion);
+	public async getPaginadoTblAccion(tblAccion: IGetTblAccionPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblAccionPaginadoRsViewModel>> {
+	return await this._tblAccionService.getPaginadoTblAccion(tblAccion);
 	}
 	/**
 	* Obtiene el registro por id
 	* @param tblAccion: IGetTblAccionByIdViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>>
 	*/
-	public async getTblAccionById(tblAccion: IGetTblAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>> {
-	return await this._tblAccionService.getTblAccionById(tblAccion);
+	public async getByIdTblAccion(tblAccion: IGetTblAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionByIdRsViewModel>> {
+	return await this._tblAccionService.getByIdTblAccion(tblAccion);
 	}
 	/**
 	* Obtiene el/los registros

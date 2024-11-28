@@ -33,10 +33,9 @@
 
 						<div class="field col-12 md:col-6">
 							<label for="nemonico"> Nemónico (*)</label>
-							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" [showMaskTyped]="true"
-              [specialCharacters]="['_']"
-              [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'"
-              mask="SSSSSS_SSSSSS_SSSSSS" [validation]="true" characterPattern="[0-9]" class="p-inputtext-sm w-full"
+							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="p-inputtext-sm w-full text-uppercase"
+              [showMaskTyped]="true" [dropSpecialCharacters]="false"
+              [specialCharacters]="['_']" [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS" [validation]="true"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />

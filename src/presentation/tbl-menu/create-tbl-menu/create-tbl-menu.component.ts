@@ -77,7 +77,7 @@ export class CreateTblMenuComponent implements OnInit {
 			imagen: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			ruta: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
 			orden: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
+			estado: new FormControl(null, Validators.compose([ Validators.maxLength(64)])),
 			//fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
 			//idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 		});

@@ -1,3 +1,4 @@
+import { ICatalogo } from './../../../data/base/interfaces/i-catalogo';
 /**
 * Vista create-tbl-accion.component.ts
 *
@@ -22,6 +23,7 @@ import { IGetTblAccionByIdViewModel, ISaveTblAccionViewModel, IUpdateTblAccionVi
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
 
 @Component({
 	selector: 'create-tbl-accion-page',
@@ -52,18 +54,28 @@ export class CreateTblAccionComponent implements OnInit {
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
 	_tblAccionUseCase: TblAccionUseCase = inject(TblAccionUseCase);
+  _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
 
 	@Output() closeTblAccion = new EventEmitter();
 	public routeCore = ROUTES_CORE;
 	public title = 'Formulario TblAccion';
 	public formTblAccion!: FormGroup;
+  public optionsIcon:ICatalogo[] = [];
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{nombre: 'Item 1', id_accion: 1 },
-	{nombre: 'Item 2', id_accion: 2 },
-	{nombre: 'Item 3', id_accion: 3}
+	{name: 'Activo', value: 'Activo' },
+	{name: 'Inactivo', value: 'Inactivo' },
 	];
+
+
+  colors = [
+    { name: 'Red', value: 'red-class', color: '#FF0000' },
+    { name: 'Green', value: 'green-class', color: '#00FF00' },
+    { name: 'Blue', value: 'blue-class', color: '#0000FF' },
+    { name: 'Yellow', value: 'yellow-class', color: '#FFFF00' },
+    { name: 'Purple', value: 'purple-class', color: '#800080' }
+  ];
 
 	ngOnInit(): void {
 
@@ -76,33 +88,28 @@ export class CreateTblAccionComponent implements OnInit {
 			color: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			descripcion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
 			orden: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
-			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			estado: new FormControl(null, Validators.compose([Validators.maxLength(64)])),
 		});
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
-			this.navigated = true;
 			const idParametro = params['id'];
 			if (idParametro != undefined) {
-				this.navigated = true;
 				let idAccion: IGetTblAccionByIdViewModel = { idAccion: idParametro };
-				this._tblAccionUseCase.getTblAccionById(idAccion).then(result => {
+				this._tblAccionUseCase.getByIdTblAccion(idAccion).then(result => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this.formTblAccion.reset(result.data);
-							const estado = this.optionsEstado.find((item: any) => item.id == result.data?.estado!);
-							this.formTblAccion.get('estado')?.setValue(estado);
 							if (result.data?.fechaRegistro != null) {
 								this.formTblAccion.get('fechaRegistro')?.setValue(new Date(result.data?.fechaRegistro));
 							}
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
-						}
+						};
 					});
-        }
-				//});
+				};
 			});
+      this.optionsIcon = this._fontAwesomeService.loadIcons();
+      console.log(this.optionsIcon);
 	}
 
 	public saveTblAccion(): void {
@@ -117,32 +124,32 @@ export class CreateTblAccionComponent implements OnInit {
 
 		if (currentTblAccion.idAccion) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
-				this._tblAccionUseCase.updateTblAccion(currentTblAccion as IUpdateTblAccionViewModel).then(result => {
-					this._loaderService.display(true);
-						this._loaderService.display(false);
-						if (result.ok) {
-							this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-							this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.INDEX);
-						} else {
-							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
-						}
-					});
-				});
-			return;
-		}
-
-		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			this._tblAccionUseCase.saveTblAccion(currentTblAccion as ISaveTblAccionViewModel).then(result => {
 				this._loaderService.display(true);
+				this._tblAccionUseCase.updateTblAccion(currentTblAccion as IUpdateTblAccionViewModel).then(result => {
 					this._loaderService.display(false);
 					if (result.ok) {
-						this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-						this.formTblAccion.get('idAccion')!.patchValue(result.data?.idAccion);
+						this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
 						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.INDEX);
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
 				});
+			});
+		return;
+	}
+
+		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
+			this._loaderService.display(true);
+			this._tblAccionUseCase.saveTblAccion(currentTblAccion as ISaveTblAccionViewModel).then(result => {
+				this._loaderService.display(false);
+				if (result.ok) {
+					this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
+					this.formTblAccion.get('idAccion')!.patchValue(result.data?.idAccion);
+					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.INDEX);
+				} else {
+					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+				}
+			});
 		});
 	}
 

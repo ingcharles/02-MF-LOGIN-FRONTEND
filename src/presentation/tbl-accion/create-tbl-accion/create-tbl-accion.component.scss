@@ -1,1 +1,13 @@
+.color-option {
+  display: flex;
+  align-items: center;
+  //padding: 5px;
+}
+
+.color-box {
+  width: 40px;  /* Ancho del rectángulo */
+  height: 20px;  /* Alto del rectángulo */
+  margin-right: 10px;  /* Espacio entre el rectángulo y el texto */
+  border: 1px solid #ccc;  /* Borde alrededor del rectángulo */
+}
 

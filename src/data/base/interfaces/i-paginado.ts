@@ -2,7 +2,7 @@ import { IPageable } from "./i-pageable";
 import { ISort } from "./i-shot";
 
 export interface IPaginado<T> {
-  content?: T | null; // Lista de módulos
+  content?: any[T] | null; // Lista de módulos
   pageable: IPageable; // Información de la paginación
   last: boolean;
   totalPages: number;
