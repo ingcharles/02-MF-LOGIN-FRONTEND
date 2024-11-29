@@ -17,6 +17,9 @@ import { IGetTblAccionPaginadoRsViewModel ,IGetTblAccionPaginadoViewModel } from
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
 import { IPaginado } from '../../../data/base/interfaces/i-paginado';
+import { ColorService } from '../../../data/base/services/color.service';
+import { ICatalogo } from '../../../data/base/interfaces/i-catalogo';
+import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
 
 @Component({
 	selector: 'index-tbl-accion-page',
@@ -35,19 +38,25 @@ export class IndexTblAccionComponent implements OnInit {
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
 	_TblAccionUseCase: TblAccionUseCase = inject(TblAccionUseCase);
+  _colorService: ColorService = inject(ColorService);
+  _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
 
 	public routeCore = ROUTES_CORE;
 	public page: number = 0;
 	public size: number = 10;
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
-	public title:string = 'Listado TblAccion';
+	public title:string = 'Listado de menú';
 	public tblAccionRecords: IPaginado<IGetTblAccionPaginadoRsViewModel> | null = null;
+  public optionsIcon:ICatalogo[] = [];
+  public optionsColor:ICatalogo[] = [];
 	public search: string = '';
-	public sortBy: string = 'idAccion';
+	public sortBy: string = 'nombre';
 	public sortDirection: string = 'ASC';
 	public loading: boolean = false;
 
 	public ngOnInit(): void {
+    this.optionsIcon = this._fontAwesomeService.loadIcons();
+    this.optionsColor = this._colorService.loadColors();
 	}
 
 	public loadData(): void {
@@ -95,9 +104,16 @@ export class IndexTblAccionComponent implements OnInit {
 	public lazyLoadData(event: any) {
 		this.page = event.first / event.rows;
 		this.size = event.rows
-		this.sortBy = event.sortField || 'idAccion';
+		this.sortBy = event.sortField || 'nombre';
 		this.sortDirection = event.sortOrder === 1 ? 'ASC' : 'DESC';
 		this.loadData();
 	}
 
+  getColorDetails(value: string): ICatalogo {
+    return this.optionsColor.find(color => color.value === value)!;
+  }
+
+  getIconDetails(value: string): ICatalogo {
+    return this.optionsIcon.find(icon => icon.value === value)!;
+  }
 }

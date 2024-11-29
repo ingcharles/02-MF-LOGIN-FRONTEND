@@ -69,7 +69,7 @@
             <div class="field col-12 md:col-6">
               <label for="color"> Color (*)</label>
               <p-dropdown id="color" name="color" class="small-dropdown" formControlName="color"
-                placeholder="Seleccione..." [options]="colors" optionValue="value" optionLabel="name"
+                placeholder="Seleccione..." [options]="optionsColor" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('color',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('color', formTblAccion)" tooltipPosition="top">>
                 <ng-template let-color pTemplate="item">

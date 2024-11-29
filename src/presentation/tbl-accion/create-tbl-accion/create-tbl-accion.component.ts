@@ -24,6 +24,7 @@ import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
+import { ColorService } from '../../../data/base/services/color.service';
 
 @Component({
 	selector: 'create-tbl-accion-page',
@@ -55,12 +56,14 @@ export class CreateTblAccionComponent implements OnInit {
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
 	_tblAccionUseCase: TblAccionUseCase = inject(TblAccionUseCase);
   _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
+  _colorService: ColorService = inject(ColorService);
 
 	@Output() closeTblAccion = new EventEmitter();
 	public routeCore = ROUTES_CORE;
 	public title = 'Formulario TblAccion';
 	public formTblAccion!: FormGroup;
   public optionsIcon:ICatalogo[] = [];
+  public optionsColor:ICatalogo[] = [];
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
@@ -69,13 +72,6 @@ export class CreateTblAccionComponent implements OnInit {
 	];
 
 
-  colors = [
-    { name: 'Red', value: 'red-class', color: '#FF0000' },
-    { name: 'Green', value: 'green-class', color: '#00FF00' },
-    { name: 'Blue', value: 'blue-class', color: '#0000FF' },
-    { name: 'Yellow', value: 'yellow-class', color: '#FFFF00' },
-    { name: 'Purple', value: 'purple-class', color: '#800080' }
-  ];
 
 	ngOnInit(): void {
 
@@ -109,6 +105,7 @@ export class CreateTblAccionComponent implements OnInit {
 				};
 			});
       this.optionsIcon = this._fontAwesomeService.loadIcons();
+      this.optionsColor = this._colorService.loadColors();
       console.log(this.optionsIcon);
 	}
 
