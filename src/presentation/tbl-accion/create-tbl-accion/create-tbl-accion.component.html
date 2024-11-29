@@ -20,7 +20,6 @@
           <small>Información general de la acción. Los campos señalados con <strong>(*)</strong> son
             obligatorios.</small>
         </p>
-        <li class="fa fa-user"></li>
         <p-fieldset legend="Datos Generales">
           <div class="p-fluid formgrid grid">
 
@@ -86,13 +85,6 @@
                 </ng-template>
               </p-dropdown>
             </div>
-            <!-- <div class="field col-12 md:col-6">
-							<label for="color"> Color (*)</label>
-							<input pInputText id="color" name="color" formControlName="color" class="p-inputtext-sm w-full"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('color',formTblAccion)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('color', formTblAccion)" tooltipPosition="top"
-							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
-						</div> -->
 
             <div class="field col-12 md:col-6">
               <label for="descripcion"> Descripcion (*)</label>
@@ -118,7 +110,6 @@
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblAccion)" tooltipPosition="top" />
             </div>
-
 
           </div>
         </p-fieldset>

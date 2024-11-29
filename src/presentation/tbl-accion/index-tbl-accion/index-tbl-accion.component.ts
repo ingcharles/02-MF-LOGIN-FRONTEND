@@ -45,7 +45,7 @@ export class IndexTblAccionComponent implements OnInit {
 	public page: number = 0;
 	public size: number = 10;
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
-	public title:string = 'Listado de menú';
+	public title:string = 'Listado de acción';
 	public tblAccionRecords: IPaginado<IGetTblAccionPaginadoRsViewModel> | null = null;
   public optionsIcon:ICatalogo[] = [];
   public optionsColor:ICatalogo[] = [];
@@ -114,6 +114,7 @@ export class IndexTblAccionComponent implements OnInit {
   }
 
   getIconDetails(value: string): ICatalogo {
-    return this.optionsIcon.find(icon => icon.value === value)!;
+    return this.optionsIcon.find(icon => icon.value === value)!
+
   }
 }
