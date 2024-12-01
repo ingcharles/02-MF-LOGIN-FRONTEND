@@ -22,17 +22,5 @@ export class FontAwesomeService {
     });
     return options;
   }
-  cleanIconClass(input: string): string {
-    // Dividir la cadena en palabras.
-    const parts = input.split(' ');
 
-    // Eliminar la primera palabra.
-    parts.shift();
-
-    // Procesar cada parte eliminando los prefijos 'fas-', 'fa-', o 'fas'.
-    const cleanedParts = parts.map(part => part.replace(/^(far-?|fab-?|fas-?|fa-)/, ''));
-
-    // Unir las partes restantes en una sola cadena.
-    return cleanedParts.join(' ');
-  }
 }

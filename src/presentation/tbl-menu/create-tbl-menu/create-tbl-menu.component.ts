@@ -22,6 +22,8 @@ import { IGetTblMenuByIdViewModel, IGetTblMenuRsViewModel, IGetTblMenuViewModel,
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { ICatalogo } from '../../../data/base/interfaces/i-catalogo';
+import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
 
 @Component({
 	selector: 'create-tbl-menu-page',
@@ -52,11 +54,13 @@ export class CreateTblMenuComponent implements OnInit {
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
 	_tblMenuUseCase: TblMenuUseCase = inject(TblMenuUseCase);
+  _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
 
 	@Output() closeTblMenu = new EventEmitter();
 	public routeCore = ROUTES_CORE;
 	public title = 'Formulario TblMenu';
 	public formTblMenu!: FormGroup;
+  public optionsIcon:ICatalogo[] = [];
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
@@ -107,7 +111,7 @@ export class CreateTblMenuComponent implements OnInit {
 			};
 		});
 
-
+    this.optionsIcon = this._fontAwesomeService.loadIcons();
 	}
 
 	public saveTblMenu(): void {

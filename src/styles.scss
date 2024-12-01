@@ -348,7 +348,7 @@ body {
 .card-header.card-header-custom::after {
   content: '';
   position: absolute;
-  top: -25px;
+  top: -24px;
   bottom: 0;
   width: 15px;
   background-color: #005cbb;
@@ -375,4 +375,14 @@ body {
 
 .p-fieldset .p-fieldset-legend {
   border: 0;
-  }
+}
+
+.p-element .p-toolbar {
+  border-radius: 0 !important;
+  border-width: 1px 0 0 0 !important;
+  padding: 1.00rem 0 1.00rem 0;
+}
+
+.p-card .p-card-content {
+  padding: 0 !important
+}

@@ -19,6 +19,8 @@ import { TblMenuUseCase } from '../../../domain/tbl-menu/usesCases/tbl-menu.usec
 import { IGetTblMenuPaginadoRsViewModel, IGetTblMenuPaginadoViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
+import { ICatalogo } from '../../../data/base/interfaces/i-catalogo';
+import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
 
 @Component({
 	selector: 'index-tbl-menu-page',
@@ -37,6 +39,7 @@ export class IndexTblMenuComponent implements OnInit {
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
 	_tblMenuUseCase: TblMenuUseCase = inject(TblMenuUseCase);
+  _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
 
 	public routeCore = ROUTES_CORE;
 	public page: number = 0;
@@ -45,12 +48,14 @@ export class IndexTblMenuComponent implements OnInit {
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
 	public title:string = 'Listado de menú';
 	public tblMenuRecords: IGetTblMenuPaginadoRsViewModel[] = [];
+  public optionsIcon:ICatalogo[] = [];
 	public search: string = '';
 	public sortBy: string = 'nombre';
 	public sortDirection: string = 'ASC';
 	public loading: boolean = false;
 
 	public ngOnInit(): void {
+    this.optionsIcon = this._fontAwesomeService.loadIcons();
 	}
 
 	public loadData(): void {
@@ -105,5 +110,7 @@ export class IndexTblMenuComponent implements OnInit {
 		this.sortDirection = event.sortOrder === 1 ? 'ASC' : 'DESC';
 		this.loadData();
 	}
-
+  getIconDetails(value: string): ICatalogo {
+    return this.optionsIcon.find(icon => icon.value === value)!
+  }
 }

@@ -8,8 +8,8 @@
 * @subpackage tbl-menu
 -->
 
-<div class="p-3 surface-100">
-	<p-toolbar styleClass="mb-4 gap-2">
+<div class="container-fluid">
+	<p-toolbar >
 		<ng-template pTemplate="left">
 			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
 			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENU.CREATE]" />
@@ -53,7 +53,12 @@
         <td>{{ item.nombre }}</td>
 				<td>{{ item.menuPadre?.nombre }}</td>
 				<td>{{ item.nemonico }}</td>
-				<td>{{ item.imagen }}</td>
+        <td>
+          <div *ngIf="getIconDetails(item.imagen) as iconDetails">
+            <i class="{{item.imagen}}"></i>
+            {{ iconDetails.name }}
+          </div>
+        </td>
 				<td>{{ item.ruta }}</td>
 				<td>{{ item.orden }}</td>
 				<td>{{ item.estado }}</td>

@@ -8,8 +8,8 @@
 * @subpackage tbl-accion
 -->
 
-<div class="p-3 surface-100">
-  <p-toolbar styleClass="mb-4 gap-2">
+<div class="container-fluid">
+  <p-toolbar >
     <ng-template pTemplate="left">
       <p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
         [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLACCION.CREATE]" />
@@ -60,6 +60,7 @@
             <i class="{{item.imagen}}"></i>
             {{ iconDetails.name }}
           </div>
+        </td>
         <td>
           <div class="color-option" *ngIf="getColorDetails(item.color) as colorDetails">
             <div class="color-box mr-3" [style.background-color]="colorDetails.color"></div>

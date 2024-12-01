@@ -15,6 +15,11 @@ export const ROUTES_CORE = {
       INDEX: 'accion',
       CREATE: 'accion/create',
       EDIT: (id: String | number) => `accion/edit/${id}`
+    },
+    TBLPERFIL: {
+      INDEX: 'perfil',
+      CREATE: 'perfil/create',
+      EDIT: (id: String | number) => `perfil/edit/${id}`
     }
   }
 };

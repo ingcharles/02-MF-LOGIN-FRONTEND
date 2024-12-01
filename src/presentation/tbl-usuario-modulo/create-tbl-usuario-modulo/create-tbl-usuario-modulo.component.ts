@@ -107,8 +107,6 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this.formTblUsuarioModulo.reset(result.data);
-							const estado = this.optionsEstado.find((item: any) => item.id == result.data?.estado!);
-							this.formTblUsuarioModulo.get('estado')?.setValue(estado);
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
