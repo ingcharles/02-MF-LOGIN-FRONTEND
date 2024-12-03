@@ -1,0 +1,74 @@
+<!--
+* Vista create-tbl-perfil-menu-accion.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    create-tbl-perfil-menu-accion.component.html
+* @package presentation
+* @subpackage tbl-perfil-menu-accion
+-->
+
+<div class="pt-3 container-fluid">
+	<form autocomplete="off" [formGroup]="formTblPerfilMenuAccion" (ngSubmit)="saveTblPerfilMenuAccion()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario para el registro de TblPerfilMenuAccion</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general del TblPerfilMenuAccion. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="p-fluid formgrid grid">
+
+						<div class="field col-12 md:col-6">
+							<label for="idPerfil"> IdPerfil (*)</label>
+							<p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblPerfilMenuAccion)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="idMenuAccion"> IdMenuAccion (*)</label>
+							<p-inputNumber id="idMenuAccion" name="idMenuAccion" formControlName="idMenuAccion" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuAccion',formTblPerfilMenuAccion)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idMenuAccion', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="estado"> estado (*)</label>
+							<p-dropdown id="estado" name="estado" class="small-dropdown" 
+							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblPerfilMenuAccion)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblPerfilMenuAccion)" tooltipPosition="top" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="fechaRegistro"> fechaRegistro (*)</label>
+							<p-calendar id="fechaRegistro" name="fechaRegistro" formControlName="fechaRegistro" class="p-inputtext-sm" dateFormat="dd/mm/yy" 
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblPerfilMenuAccion)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblPerfilMenuAccion)" tooltipPosition="top" placeholder ="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="idUsuarioRegistro"> IdUsuarioRegistro (*)</label>
+							<p-inputNumber id="idUsuarioRegistro" name="idUsuarioRegistro" formControlName="idUsuarioRegistro" size="small" class="p-inputtext-sm "  
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuarioRegistro',formTblPerfilMenuAccion)}" 
+							[pTooltip]="_utilsService.getFieldErrorRequired('idUsuarioRegistro', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div>
+
+					</div>
+				</p-fieldset>
+				<div class="p-fluid formgrid grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblPerfilMenuAccion()" />
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>

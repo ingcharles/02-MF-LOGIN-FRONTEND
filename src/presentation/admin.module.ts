@@ -14,6 +14,8 @@ import { TblUsuarioModuloRouting } from './tbl-usuario-modulo/tbl-usuario-modulo
 import { TblMenuRouting } from './tbl-menu/tbl-menu.routing';
 import { TblAccionRouting } from './tbl-accion/tbl-accion.routing';
 import { TblPerfilRouting } from './tbl-perfil/tbl-perfil.routing';
+import { TblMenuAccionRouting } from './tbl-menu-accion/tbl-menu-accion.routing';
+import { TblPerfilMenuAccionRouting } from './tbl-perfil-menu-accion/tbl-perfil-menu-accion.routing';
 
 @NgModule({
 	declarations: [
@@ -23,7 +25,9 @@ import { TblPerfilRouting } from './tbl-perfil/tbl-perfil.routing';
   TblMenuRouting,
   TblUsuarioModuloRouting,
   TblAccionRouting,
-  TblPerfilRouting
+  TblPerfilRouting,
+  TblMenuAccionRouting,
+  TblPerfilMenuAccionRouting
 	],
 
 })

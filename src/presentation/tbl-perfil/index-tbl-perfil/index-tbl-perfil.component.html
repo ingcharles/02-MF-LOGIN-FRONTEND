@@ -54,7 +54,8 @@
 				<td>
 					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFIL.CREATE]"/>
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFIL.EDIT(item.idPerfil)]" />
-					<p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" />
+					<!-- <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" /> -->
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir menú acción" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]"/>
 				</td>
 			</tr>
 		</ng-template>

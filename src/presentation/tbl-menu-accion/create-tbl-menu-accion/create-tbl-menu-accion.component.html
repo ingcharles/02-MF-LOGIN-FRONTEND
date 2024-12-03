@@ -1,0 +1,62 @@
+<!--
+* Vista create-tbl-menu-accion.component.html
+*
+* @author  Carlos Anchundia
+* @date    22-11-2024
+* @name    create-tbl-menu-accion.component.html
+* @package presentation
+* @subpackage tbl-menu-accion
+-->
+
+<div class="pt-3 container-fluid">
+	<form autocomplete="off" [formGroup]="formTblMenuAccion" (ngSubmit)="saveTblMenuAccion()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario para el registro de acciones para menú {{tblMenuRecords?.nombre}}</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general de la acción. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="p-fluid formgrid grid">
+
+            <div class="field col-12 md:col-6">
+              <label for="idAccion"> Acción (*)</label>
+              <p-dropdown id="idAccion" name="idAccion" class="small-dropdown" formControlName="idAccion"
+                placeholder="Seleccione..." [options]="optionsAccion" optionValue="idAccion" optionLabel="nombre"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top">>
+
+              </p-dropdown>
+            </div>
+
+
+						<!-- <div class="field col-12 md:col-6">
+							<label for="idAccion"> IdAccion (*)</label>
+							<p-inputNumber id="idAccion" name="idAccion" formControlName="idAccion" size="small" class="p-inputtext-sm "
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+						</div> -->
+
+						<div class="field col-12 md:col-6" *ngIf="formTblMenuAccion.get('idMenuAccion')?.value !== null">
+							<label for="estado"> Estado (*)</label>
+							<p-dropdown id="estado" name="estado" class="small-dropdown"
+							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblMenuAccion)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblMenuAccion)" tooltipPosition="top" />
+						</div>
+
+					</div>
+				</p-fieldset>
+				<div class="p-fluid formgrid grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblMenuAccion()" />
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>

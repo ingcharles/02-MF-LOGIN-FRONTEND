@@ -62,7 +62,7 @@ export class TblAccionService  {
 	* @return Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>
 	*/
 	public getAllTblAccion(): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>{
-	const url = `${apiAdminUrl}query/tbl-accion/getAllTblAccion`;
+	const url = `${apiAdminUrl}query/tbl-accion/findAllTblAccion`;
 	return new Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>((resolve, reject) => {
 	this._http.get<IResultApi>(url)
 		.subscribe({

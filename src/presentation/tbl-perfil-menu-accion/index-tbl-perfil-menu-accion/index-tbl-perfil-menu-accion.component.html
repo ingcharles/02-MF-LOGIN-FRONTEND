@@ -1,0 +1,70 @@
+<!--
+* Vista index-tbl-perfil-menu-accion.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    index-tbl-perfil-menu-accion.component.html
+* @package presentation
+* @subpackage tbl-perfil-menu-accion
+-->
+
+<div class="container-fluid">
+	<p-toolbar>
+		<ng-template pTemplate="left">
+			<p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary"
+			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]" />
+
+		</ng-template>
+	</p-toolbar>
+
+	<p-table #dt [value]="tblPerfilMenuAccionRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="tblPerfilMenuAccionRecords?.totalElements!"
+		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
+		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_perfil_menu_accion','id_perfil','id_menu_accion','estado','fecha_registro','id_usuario_registro',]">
+
+		<ng-template pTemplate="caption">
+			<div class="flex">
+				<div class="flex align-items-center justify-content-center" style="flex: 1;">
+					<h2 class="m-0">{{title}}</h2>
+				</div>
+				<div class="flex align-items-center justify-content-end" style="gap: 10px;">
+					<p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
+					<span class="p-input-icon-left">
+						<i class="pi pi-search"></i>
+						<input pInputText type="text" [value]="search" (input)="inputSearch($event)"
+							placeholder="Buscar..." />
+					</span>
+				</div>
+			</div>
+		</ng-template>
+		<ng-template pTemplate="header">
+			<tr>
+				<th pSortableColumn="nombrePerfil" style="min-width:7rem">Perfil<p-sortIcon field="nombrePerfil" /></th>
+				<th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu" /></th>
+				<th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion" /></th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
+				<th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro" /></th>
+				<th style="min-width:13rem">Acciones</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-item>
+			<tr>
+				<td>{{ item.perfil.nombre }}</td>
+				<td>{{ item.menu.nombre }}</td>
+        <td>{{ item.accion.nombre }}</td>
+				<td>{{ item.estado }}</td>
+				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd') : '' }}</td>
+				<td>
+					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]"/>
+					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.EDIT(idPerfil,item.idMenuAccion)]" />
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.INDEX(item.idMenu)]"/>
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="summary">
+			<div class="flex align-items-center justify-content-between">
+				En total hay {{ tblPerfilMenuAccionRecords?.content ? tblPerfilMenuAccionRecords?.content?.length : 0 }} tblPerfilMenuAccion
+			</div>
+		</ng-template>
+	</p-table>
+</div>
