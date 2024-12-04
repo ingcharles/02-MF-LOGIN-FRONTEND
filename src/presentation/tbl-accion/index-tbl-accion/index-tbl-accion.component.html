@@ -72,9 +72,9 @@
         <td>{{ item.estado }}</td>
         <td>
           <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
-            [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.CREATE]" />
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLACCION.CREATE]" />
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
-            [routerLink]="[this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLACCION.EDIT(item.idAccion)]" />
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLACCION.EDIT(item.idAccion)]" />
           <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" />
         </td>
       </tr>

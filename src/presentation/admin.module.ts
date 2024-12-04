@@ -27,7 +27,8 @@ import { TblPerfilMenuAccionRouting } from './tbl-perfil-menu-accion/tbl-perfil-
   TblAccionRouting,
   TblPerfilRouting,
   TblMenuAccionRouting,
-  TblPerfilMenuAccionRouting
+  TblPerfilMenuAccionRouting,
+  TblUsuarioModuloRouting
 	],
 
 })

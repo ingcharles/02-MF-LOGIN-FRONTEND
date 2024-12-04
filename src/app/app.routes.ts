@@ -12,6 +12,7 @@ import { MF_ADMIN_TBLACCION_ROUTES } from '../presentation/tbl-accion/tbl-accion
 import { MF_ADMIN_TBLPERFIL_ROUTES } from '../presentation/tbl-perfil/tbl-perfil.routing';
 import { MF_ADMIN_TBLMENUACCION_ROUTES } from '../presentation/tbl-menu-accion/tbl-menu-accion.routing';
 import { MF_ADMIN_TBLPERFILMENUACCION_ROUTES } from '../presentation/tbl-perfil-menu-accion/tbl-perfil-menu-accion.routing';
+import { MF_ADMIN_TBLUSUARIO_ROUTES } from '../presentation/tbl-usuario/tbl-usuario.routing';
 
 export const MODULE_ROUTES: Routes = [
   //...MF_ADMIN_PAZ_SALVO_ROUTES,
@@ -21,7 +22,8 @@ export const MODULE_ROUTES: Routes = [
   ...MF_ADMIN_TBLACCION_ROUTES,
   ...MF_ADMIN_TBLPERFIL_ROUTES,
   ...MF_ADMIN_TBLMENUACCION_ROUTES,
-  ...MF_ADMIN_TBLPERFILMENUACCION_ROUTES
+  ...MF_ADMIN_TBLPERFILMENUACCION_ROUTES,
+  ...MF_ADMIN_TBLUSUARIO_ROUTES
 //   {
 //     path: '',
 //     redirectTo: 'admin-paz-salvo',

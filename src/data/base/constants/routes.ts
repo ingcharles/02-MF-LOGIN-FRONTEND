@@ -1,6 +1,11 @@
 export const ROUTES_CORE = {
   ADMIN: {
     BASE: '/admin/',
+    TBLUSUARIO: {
+      INDEX: 'usuario',
+      CREATE: 'usuario/create',
+      EDIT: (id: String | number) => `usuario/edit/${id}`
+    },
     TBLMODULO: {
       INDEX: 'modulo',
       CREATE: 'modulo/create',

@@ -32,7 +32,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 	imports: [
     NgxMaskDirective,
     SharedCreateModule
-    
+
 	],
 	providers: [provideNgxMask()],
 	host: {ngSkipHydration: 'true' }
@@ -138,7 +138,6 @@ export class CreateTblModuloComponent implements OnInit {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-						this.formTblModulo.get('idModulo')!.patchValue(result.data?.idModulo);
 						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMODULO.INDEX);
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);

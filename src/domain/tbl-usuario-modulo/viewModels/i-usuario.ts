@@ -1,7 +1,6 @@
 export interface IUsuario {
   idUsuario: number;
   usuario: string;
-  idCatalogoIdentificacion: number;
   identificacion: string;
   nombreCompleto: string;
   nombre: string;

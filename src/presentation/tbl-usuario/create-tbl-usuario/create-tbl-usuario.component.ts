@@ -1,11 +1,11 @@
 /**
-* Vista create-tbl-perfil-menu-accion.component.ts
+* Vista create-tbl-usuario.component.ts
 *
 * @author  Carlos Anchundia
 * @date    03-12-2024
-* @name    CreateTblPerfilMenuAccionComponent
+* @name    CreateTblUsuarioComponent
 * @package presentation
-* @subpackage tbl-perfil-menu-accion
+* @subpackage tbl-usuario
 */
 
 import { Location } from '@angular/common';
@@ -17,16 +17,16 @@ import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
-import { TblPerfilMenuAccionUseCase } from '../../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
-import { IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { TblUsuarioUseCase } from '../../../domain/tbl-usuario/usesCases/tbl-usuario.usecase';
+import { IGetTblUsuarioByIdViewModel, ISaveTblUsuarioViewModel, IUpdateTblUsuarioViewModel } from '../../../domain/tbl-usuario/viewModels/i-tbl-usuario.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
-	selector: 'create-tbl-perfil-menu-accion-page',
-	templateUrl: './create-tbl-perfil-menu-accion.component.html',
-	styleUrls: ['./create-tbl-perfil-menu-accion.component.scss'],
+	selector: 'create-tbl-usuario-page',
+	templateUrl: './create-tbl-usuario.component.html',
+	styleUrls: ['./create-tbl-usuario.component.scss'],
 	standalone: true,
 	imports: [
 		SharedCreateModule,
@@ -38,7 +38,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 	host: {ngSkipHydration: 'true' }
 })
 
-export class CreateTblPerfilMenuAccionComponent implements OnInit {
+export class CreateTblUsuarioComponent implements OnInit {
 
 	constructor() { }
 
@@ -51,42 +51,48 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
-	_tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase = inject(TblPerfilMenuAccionUseCase);
+	_tblUsuarioUseCase: TblUsuarioUseCase = inject(TblUsuarioUseCase);
 
-	@Output() closeTblPerfilMenuAccion = new EventEmitter();
+	@Output() closeTblUsuario = new EventEmitter();
 	public routeCore = ROUTES_CORE;
-	public title = 'Formulario TblPerfilMenuAccion';
-	public formTblPerfilMenuAccion!: FormGroup;
+	public title = 'Formulario TblUsuario';
+	public formTblUsuario!: FormGroup;
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{name: 'Item 1', value: 1 },
-	{name: 'Item 2', value: 2 },
-	{name: 'Item 3', value: 3 }
+	{name: 'Activo', value: 'Activo' },
+	{name: 'Inactivo', value: 'Inactivo' }
 	];
 
 	ngOnInit(): void {
 
-		this.formTblPerfilMenuAccion = new FormGroup({
-			idPerfilMenuAccion: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			idPerfil: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			idMenuAccion: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
-			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+		this.formTblUsuario = new FormGroup({
+			idUsuario: new FormControl(null, Validators.compose([Validators.max(999999999)])),
+			usuario: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
+			identificacion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(13)])),
+			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
+			apellido: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
+			contrasenia: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
+			estado: new FormControl(null, Validators.compose([Validators.maxLength(64)])),
 		});
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
 			const idParametro = params['id'];
 			if (idParametro != undefined) {
-				let idPerfilMenuAccion: IGetTblPerfilMenuAccionByIdViewModel = { idPerfilMenuAccion: idParametro };
+				let idUsuario: IGetTblUsuarioByIdViewModel = { idUsuario: idParametro };
 				this._loaderService.display(true);
-				this._tblPerfilMenuAccionUseCase.getByIdTblPerfilMenuAccion(idPerfilMenuAccion).then(result => {
+				this._tblUsuarioUseCase.getByIdTblUsuario(idUsuario).then(result => {
 					this._loaderService.display(false);
 					if (result.ok) {
-						this.formTblPerfilMenuAccion.reset(result.data);
+						this.formTblUsuario.reset(result.data);
+						if (result.data?.fechaModificacionContrasenia != null) {
+							this.formTblUsuario.get('fechaModificacionContrasenia')?.setValue(new Date(result.data?.fechaModificacionContrasenia));
+						}
+						if (result.data?.fechaUltimoAcceso != null) {
+							this.formTblUsuario.get('fechaUltimoAcceso')?.setValue(new Date(result.data?.fechaUltimoAcceso));
+						}
 						if (result.data?.fechaRegistro != null) {
-							this.formTblPerfilMenuAccion.get('fechaRegistro')?.setValue(new Date(result.data?.fechaRegistro));
+							this.formTblUsuario.get('fechaRegistro')?.setValue(new Date(result.data?.fechaRegistro));
 						}
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
@@ -96,24 +102,24 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 		});
 	}
 
-	public saveTblPerfilMenuAccion(): void {
+	public saveTblUsuario(): void {
 
-		if (this.formTblPerfilMenuAccion.invalid) {
-			this.formTblPerfilMenuAccion.markAllAsTouched();
+		if (this.formTblUsuario.invalid) {
+			this.formTblUsuario.markAllAsTouched();
 			this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);
 			return;
 		}
 
-		const currentTblPerfilMenuAccion: any = this.currentTblPerfilMenuAccion;
+		const currentTblUsuario: any = this.currentTblUsuario;
 
-		if (currentTblPerfilMenuAccion.idPerfilMenuAccion) {
+		if (currentTblUsuario.idUsuario) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
 				this._loaderService.display(true);
-				this._tblPerfilMenuAccionUseCase.updateTblPerfilMenuAccion(currentTblPerfilMenuAccion as IUpdateTblPerfilMenuAccionViewModel).then(result => {
+				this._tblUsuarioUseCase.updateTblUsuario(currentTblUsuario as IUpdateTblUsuarioViewModel).then(result => {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX);
+						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIO.INDEX);
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
@@ -124,11 +130,11 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
 			this._loaderService.display(true);
-			this._tblPerfilMenuAccionUseCase.saveTblPerfilMenuAccion(currentTblPerfilMenuAccion as ISaveTblPerfilMenuAccionViewModel).then(result => {
+			this._tblUsuarioUseCase.saveTblUsuario(currentTblUsuario as ISaveTblUsuarioViewModel).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
 					this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX);
+					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIO.INDEX);
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
@@ -136,13 +142,13 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 		});
 	}
 
-	public cancelTblPerfilMenuAccion(): void{
-		this.closeTblPerfilMenuAccion.emit(true);
+	public cancelTblUsuario(): void{
+		this.closeTblUsuario.emit(true);
 		this._location.back();
 	}
 
-	private get currentTblPerfilMenuAccion(): IUpdateTblPerfilMenuAccionViewModel {
-		return this.formTblPerfilMenuAccion.value as IUpdateTblPerfilMenuAccionViewModel;
+	private get currentTblUsuario(): IUpdateTblUsuarioViewModel {
+		return this.formTblUsuario.value as IUpdateTblUsuarioViewModel;
 	}
 
 }

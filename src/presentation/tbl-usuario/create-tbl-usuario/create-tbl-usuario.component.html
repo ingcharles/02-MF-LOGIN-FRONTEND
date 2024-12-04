@@ -1,0 +1,84 @@
+<!--
+* Vista create-tbl-usuario.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    create-tbl-usuario.component.html
+* @package presentation
+* @subpackage tbl-usuario
+-->
+
+<div class="pt-3 container-fluid">
+	<form autocomplete="off" [formGroup]="formTblUsuario" (ngSubmit)="saveTblUsuario()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario para el registro de TblUsuario</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general del TblUsuario. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="p-fluid formgrid grid">
+
+						<div class="field col-12 md:col-6">
+							<label for="usuario"> Usuario (*)</label>
+							<input pInputText id="usuario" name="usuario" formControlName="usuario" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('usuario',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('usuario', formTblUsuario)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+
+						<div class="field col-12 md:col-6">
+							<label for="identificacion"> Identificacion (*)</label>
+							<input pInputText id="identificacion" name="identificacion" formControlName="identificacion" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('identificacion',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('identificacion', formTblUsuario)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="nombre"> Nombre (*)</label>
+							<input pInputText id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblUsuario)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="apellido"> Apellido (*)</label>
+							<input pInputText id="apellido" name="apellido" formControlName="apellido" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('apellido',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('apellido', formTblUsuario)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6">
+							<label for="contrasenia"> Contrasenia (*)</label>
+							<input pInputText id="contrasenia" name="contrasenia" formControlName="contrasenia" class="p-inputtext-sm w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('contrasenia',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('contrasenia', formTblUsuario)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" />
+						</div>
+
+						<div class="field col-12 md:col-6" *ngIf="formTblUsuario.get('idUsuario')?.value !== null">
+							<label for="estado"> Estado (*)</label>
+							<p-dropdown id="estado" name="estado" class="small-dropdown"
+							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblUsuario)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblUsuario)" tooltipPosition="top" />
+						</div>
+
+					</div>
+				</p-fieldset>
+				<div class="p-fluid formgrid grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblUsuario()" />
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>

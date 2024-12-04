@@ -126,7 +126,6 @@ export class CreateTblPerfilComponent implements OnInit {
 				this._loaderService.display(false);
 				if (result.ok) {
 					this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-					this.formTblPerfil.get('idPerfil')!.patchValue(result.data?.idPerfil);
 					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFIL.INDEX);
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
