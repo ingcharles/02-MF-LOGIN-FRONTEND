@@ -386,3 +386,17 @@ body {
 .p-card .p-card-content {
   padding: 0 !important
 }
+
+.color-option {
+  display: flex;
+  align-items: center;
+  //padding: 5px;
+}
+
+.color-box {
+  width: 40px;
+  height: 20px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+}
+

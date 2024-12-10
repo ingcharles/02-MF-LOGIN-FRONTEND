@@ -37,9 +37,9 @@ export class IndexModuloComponent implements OnInit {
     public loadModule(): void {
       //this.loading = true;
       const tblUsuarioModulo: IGetTblUsuarioModuloViewModel = {idUsuario: 1 }
-      this._tblUsuarioModuloUseCase.getTblUsuarioEntityIdUsuario(tblUsuarioModulo).then(obs => {
+      this._tblUsuarioModuloUseCase.getTblUsuarioEntityIdUsuario(tblUsuarioModulo).then(result => {
         this._loaderService.display(true);
-        obs.subscribe((result: any) => {
+        //obs.subscribe((result: any) => {
           this._loaderService.display(false);
           console.log("result1:",result)
           if (result.ok) {
@@ -52,7 +52,7 @@ export class IndexModuloComponent implements OnInit {
            // this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
           }
           //this.loading = false;
-        });
+       // });
       });
     }
 

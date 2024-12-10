@@ -82,8 +82,8 @@ export class CreateTblModuloComponent implements OnInit {
 			if (idParametro != undefined) {
 				this.navigated = true;
 				let idModulo: IGetTblModuloByIdViewModel = { idModulo: idParametro };
-				this._tblModuloUseCase.getTblModuloById(idModulo).then(obs => {
-					obs.subscribe((result) => {
+				this._tblModuloUseCase.getByIdTblModulo(idModulo).then(result => {
+					//obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this.formTblModulo.reset(result.data);
@@ -96,7 +96,7 @@ export class CreateTblModuloComponent implements OnInit {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
 					});
-				});
+			//});
 			};
 		});
 	}
@@ -115,9 +115,9 @@ export class CreateTblModuloComponent implements OnInit {
 
 		if (currentTblModulo.idModulo) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
-				this._tblModuloUseCase.updateTblModulo(currentTblModulo as IUpdateTblModuloViewModel).then(obs => {
+				this._tblModuloUseCase.updateTblModulo(currentTblModulo as IUpdateTblModuloViewModel).then(result => {
 					this._loaderService.display(true);
-					obs.subscribe((result) => {
+					//obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
@@ -125,16 +125,16 @@ export class CreateTblModuloComponent implements OnInit {
 						} else {
 							this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 						}
-					});
+					//});
 				});
 			});
 			return;
 		}
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			this._tblModuloUseCase.saveTblModulo(currentTblModulo as ISaveTblModuloViewModel).then(obs => {
+			this._tblModuloUseCase.saveTblModulo(currentTblModulo as ISaveTblModuloViewModel).then(result => {
 				this._loaderService.display(true);
-				obs.subscribe((result) => {
+			//	obs.subscribe((result) => {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
@@ -142,7 +142,7 @@ export class CreateTblModuloComponent implements OnInit {
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
-				});
+				//});
 			});
 		});
 	}

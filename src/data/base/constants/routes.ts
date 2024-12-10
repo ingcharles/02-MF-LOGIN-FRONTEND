@@ -11,6 +11,11 @@ export const ROUTES_CORE = {
       CREATE: 'modulo/create',
       EDIT: (id: String | number) => `modulo/edit/${id}`
     },
+    TBLUSUARIOMODULO: {
+      INDEX: (idUsuario: String | number) => `usuario-modulo/${idUsuario}`,
+      CREATE: (idUsuario: String | number) => `usuario-modulo/${idUsuario}/create`,
+      EDIT: (idUsuario: String | number, id: String | number) => `usuario-modulo/${idUsuario}/edit/${id}`
+    },
     TBLMENU: {
       INDEX: 'menu',
       CREATE: 'menu/create',

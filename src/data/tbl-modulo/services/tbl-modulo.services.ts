@@ -3,7 +3,7 @@
 * Este archivo se complementa con el archivo ATblModuloService.
 *
 * @author  Carlos Anchundia
-* @date    22-11-2024
+* @date    03-12-2024
 * @name    TblModuloService
 * @package Service
 * @subpackage Data
@@ -11,11 +11,12 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of  } from 'rxjs';
+import { catchError, map, of  } from 'rxjs';
 import { IGetTblModuloRsViewModel, IGetTblModuloViewModel, IGetTblModuloPaginadoViewModel, IGetTblModuloPaginadoRsViewModel, IGetTblModuloByIdRsViewModel, IGetTblModuloByIdViewModel, ISaveTblModuloRsViewModel, ISaveTblModuloViewModel, IUpdateTblModuloRsViewModel, IUpdateTblModuloViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
+import { IResponseStatusPaginadoViewModel } from '../../../domain/base/viewModels/i-response-status-paginado.viewModel';
 import { IResultApi } from '../../base/interfaces/i-result-api';
 
 const apiAdminUrl: string = environment.apiAdminUrl;
@@ -38,86 +39,101 @@ export class TblModuloService  {
 	/**
 	* Guarda el registro actual
 	* @param tblModulo: ISaveTblModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<ISaveTblModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<ISaveTblModuloRsViewModel>>
 	*/
-	public async saveTblModulo(tblModulo: ISaveTblModuloViewModel): Promise<Observable<IResponseStatusViewModel<ISaveTblModuloRsViewModel>>>{
+	public saveTblModulo(tblModulo: ISaveTblModuloViewModel): Promise<IResponseStatusViewModel<ISaveTblModuloRsViewModel>>{
 	const url = `${apiAdminUrl}command/tbl-modulo/saveTblModulo`;
-	return this._http.post<IResultApi>(url, tblModulo).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<ISaveTblModuloRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<ISaveTblModuloRsViewModel>(error));
-		})
-	);
+	return new Promise<IResponseStatusViewModel<ISaveTblModuloRsViewModel>>((resolve, reject) => {
+	this._http.post<IResultApi>(url, tblModulo)
+		.subscribe({
+			next: (result: IResultApi) => {
+				resolve(this._statusResponseService.succes<ISaveTblModuloRsViewModel>(result));
+			},
+			error: (error) => {
+				reject(this._statusResponseService.error<ISaveTblModuloRsViewModel>(error));
+			}
+		});
+	});
 	}
 
 	/**
 	* Obtiene el/los registros
 	* @param busqueda: IGetTblModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IGetTblModuloRsViewModel>>
 	*/
-	public async getTblModulo(busqueda: IGetTblModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblModuloRsViewModel>>>{
-	const url = `${apiAdminUrl}query/tbl-modulo/getTblModulo`;
-	return this._http.post<IResultApi>(url, busqueda).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<IGetTblModuloRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<IGetTblModuloRsViewModel>(error));
-		})
-	);
+	public getAllTblModulo(): Promise<IResponseStatusViewModel<IGetTblModuloRsViewModel>>{
+	const url = `${apiAdminUrl}query/tbl-modulo/findAllTblModulo`;
+	return new Promise<IResponseStatusViewModel<IGetTblModuloRsViewModel>>((resolve, reject) => {
+	this._http.get<IResultApi>(url)
+		.subscribe({
+			next: (result: IResultApi) => {
+				resolve(this._statusResponseService.succes<IGetTblModuloRsViewModel>(result));
+			},
+			error: (error) => {
+				reject(this._statusResponseService.error<IGetTblModuloRsViewModel>(error));
+			}
+		});
+	});
 	}
 
 	/**
 	* Obtiene el/los registros
 	* @param busqueda: IGetTblModuloPaginadoViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblModuloPaginadoRsViewModel>>>
+	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblModuloPaginadoRsViewModel>>
 	*/
-	public async getTblModuloPaginado(dataViewModel: IGetTblModuloPaginadoViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblModuloPaginadoRsViewModel>>>{
+	public getPaginadoTblModulo(dataViewModel: IGetTblModuloPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblModuloPaginadoRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-modulo/findAllPaginateTblModulo`;
-	return this._http.post<IResultApi>(url, dataViewModel).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<IGetTblModuloPaginadoRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<IGetTblModuloPaginadoRsViewModel>(error));
-		})
-	);
+	return new Promise<IResponseStatusPaginadoViewModel<IGetTblModuloRsViewModel>>((resolve, reject) => {
+	this._http.post<IResultApi>(url, dataViewModel)
+		.subscribe({
+			next: (result: IResultApi) => {
+				resolve(this._statusResponseService.succesPaginado<IGetTblModuloRsViewModel>(result));
+			},
+			error: (error) => {
+				reject(this._statusResponseService.errorPaginado<IGetTblModuloRsViewModel>(error));
+			}
+		});
+	});
 	}
 
 	/**
 	* Obtiene el registro actual
 	* @param id_modulo: IGetTblModuloByIdViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblModuloByIdRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IGetTblModuloByIdRsViewModel>>
 	*/
-	public async getTblModuloById(id_modulo: IGetTblModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblModuloByIdRsViewModel>>>{
+	public getByIdTblModulo(id_modulo: IGetTblModuloByIdViewModel): Promise<IResponseStatusViewModel<IGetTblModuloByIdRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-modulo/findByIdTblModulo`;
-	return this._http.post<IResultApi>(url, id_modulo).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<IGetTblModuloByIdRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<IGetTblModuloByIdRsViewModel>(error));
-		})
-	);
+	return new Promise<IResponseStatusViewModel<IGetTblModuloByIdRsViewModel>>((resolve, reject) => {
+	this._http.post<IResultApi>(url, id_modulo)
+		.subscribe({
+			next: (result: IResultApi) => {
+				resolve(this._statusResponseService.succes<IGetTblModuloByIdRsViewModel>(result));
+			},
+			error: (error) => {
+				reject(this._statusResponseService.error<IGetTblModuloByIdRsViewModel>(error));
+			}
+		});
+	});
 	}
 
 	/**
 	* Actualizar el registro actual
 	* @param tblModulo: IUpdateTblModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>
 	*/
-	public async updateTblModulo(tblModulo: IUpdateTblModuloViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>>{
+	public updateTblModulo(tblModulo: IUpdateTblModuloViewModel): Promise<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>{
 	const url = `${apiAdminUrl}command/tbl-modulo/updateTblModulo`;
-	return this._http.post<IResultApi>(url, tblModulo).pipe(
-		map((result) => {
-		return this._statusResponseService.succes<IUpdateTblModuloRsViewModel>(result);
-		}),
-		catchError((error) => {
-		return of(this._statusResponseService.error<IUpdateTblModuloRsViewModel>(error));
-		})
-	);
+	return new Promise<IResponseStatusViewModel<IUpdateTblModuloRsViewModel>>((resolve, reject) => {
+		this._http.post<IResultApi>(url, tblModulo)
+		.subscribe({
+			next: (result: IResultApi) => {
+				resolve(this._statusResponseService.succes<IUpdateTblModuloRsViewModel>(result));
+			},
+			error: (error) => {
+				reject(this._statusResponseService.error<IUpdateTblModuloRsViewModel>(error));
+			}
+		});
+		});
 	}
 
 }

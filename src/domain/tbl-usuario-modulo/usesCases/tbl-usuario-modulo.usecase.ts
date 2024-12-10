@@ -2,18 +2,18 @@
 * Clase TblUsuarioModuloUseCase.
 *
 * @author  Carlos Anchundia
-* @date    22-10-2024
+* @date    03-12-2024
 * @name    TblUsuarioModuloUseCase
 * @package UseCase
 * @subpackage Domain
 */
 
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
 
-import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/services/tbl-usuario-modulo.service';
+import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/services/tbl-usuario-modulo.services';
 import { IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloPaginadoViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel  } from '../viewModels/i-tbl-usuario-modulo.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
+import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
 
 
 @Injectable({
@@ -33,51 +33,50 @@ export class TblUsuarioModuloUseCase {
 	/**
 	* Guarda el registro actual
 	* @param tblUsuarioModulo: ISaveTblUsuarioModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>
 	*/
-	public async saveTblUsuarioModulo(tblUsuarioModulo: ISaveTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>>> {
+	public async saveTblUsuarioModulo(tblUsuarioModulo: ISaveTblUsuarioModuloViewModel): Promise<IResponseStatusViewModel<ISaveTblUsuarioModuloRsViewModel>> {
 	return await this._tblUsuarioModuloService.saveTblUsuarioModulo(tblUsuarioModulo);
 	}
 	/**
 	* Obtiene el/los registros
-	* @param tblUsuarioModulo: IGetTblUsuarioModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>
 	*/
-	public async getTblUsuarioModuloFindById(tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>> {
-	return await this._tblUsuarioModuloService.getTblUsuarioModuloFindById(tblUsuarioModulo);
+	public async getAllTblUsuarioModulo(): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>> {
+	return await this._tblUsuarioModuloService.getAllTblUsuarioModulo();
 	}
-
-  /**
-	* Obtiene el/los registros
-	* @param tblUsuarioModulo: IGetTblUsuarioModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>>
-	*/
-	public async getTblUsuarioModulo(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloRsViewModel>>> {
-    return await this._tblUsuarioModuloService.getTblUsuarioModulo(tblUsuarioModulo);
-    }
 	/**
 	* Obtiene el/los registros
 	* @param tblUsuarioModulo: IGetTblUsuarioModuloPaginadoViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>>
+	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>
 	*/
-	public async getTblUsuarioModuloPaginado(tblUsuarioModulo: IGetTblUsuarioModuloPaginadoViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>> {
-	return await this._tblUsuarioModuloService.getTblUsuarioModuloPaginado(tblUsuarioModulo);
+	public async getPaginadoTblUsuarioModulo(tblUsuarioModulo: IGetTblUsuarioModuloPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>> {
+	return await this._tblUsuarioModuloService.getPaginadoTblUsuarioModulo(tblUsuarioModulo);
 	}
 	/**
 	* Obtiene el registro por id
 	* @param tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>
 	*/
-	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>> {
-	return await this._tblUsuarioModuloService.getTblUsuarioEntityIdUsuario(tblUsuarioModulo);
+	public async getByIdTblUsuarioModulo(tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>> {
+	return await this._tblUsuarioModuloService.getByIdTblUsuarioModulo(tblUsuarioModulo);
 	}
 	/**
 	* Obtiene el/los registros
 	* @param tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel
-	* @return Promise<Observable<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>>
+	* @return Promise<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>
 	*/
-	public async updateTblUsuarioModulo(tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel): Promise<Observable<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>>> {
+	public async updateTblUsuarioModulo(tblUsuarioModulo: IUpdateTblUsuarioModuloViewModel): Promise<IResponseStatusViewModel<IUpdateTblUsuarioModuloRsViewModel>> {
 	return await this._tblUsuarioModuloService.updateTblUsuarioModulo(tblUsuarioModulo);
 	}
+
+  	/**
+	* Obtiene el registro por id
+	* @param tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel
+	* @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
+	*/
+	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>> {
+    return await this._tblUsuarioModuloService.getTblUsuarioEntityIdUsuario(tblUsuarioModulo);
+    }
 
 }

@@ -1,18 +1,12 @@
 import { MF_ADMIN_TBLMENU_ROUTES } from './../presentation/tbl-menu/tbl-menu.routing';
 import { Routes } from '@angular/router';
-import { AdminFirmaPazSalvoComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo/admin-firma-paz-salvo.component';
-import { CreateAdminPazSalvoComponent } from '../presentation/paz-salvo/create-admin-paz-salvo/create-admin-paz-salvo.component';
-import { AdminFirmaPazSalvoNewComponent } from '../presentation/paz-salvo/admin-firma-paz-salvo-new/admin-firma-paz-salvo-new.component';
-import { IndexTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/index-tbl-usuario-modulo/index-tbl-usuario-modulo.component';
-import { CreateTblUsuarioModuloComponent } from '../presentation/tbl-usuario-modulo/create-tbl-usuario-modulo/create-tbl-usuario-modulo.component';
-import { MF_ADMIN_PAZ_SALVO_ROUTES } from '../presentation/paz-salvo/paz-salvo.routing';
-import { MF_ADMIN_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
 import { MF_ADMIN_TBLMODULO_ROUTES } from '../presentation/tbl-modulo/tbl-modulo.routing';
 import { MF_ADMIN_TBLACCION_ROUTES } from '../presentation/tbl-accion/tbl-accion.routing';
 import { MF_ADMIN_TBLPERFIL_ROUTES } from '../presentation/tbl-perfil/tbl-perfil.routing';
 import { MF_ADMIN_TBLMENUACCION_ROUTES } from '../presentation/tbl-menu-accion/tbl-menu-accion.routing';
 import { MF_ADMIN_TBLPERFILMENUACCION_ROUTES } from '../presentation/tbl-perfil-menu-accion/tbl-perfil-menu-accion.routing';
 import { MF_ADMIN_TBLUSUARIO_ROUTES } from '../presentation/tbl-usuario/tbl-usuario.routing';
+import { MF_ADMIN_TBLUSUARIOMODULO_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
 
 export const MODULE_ROUTES: Routes = [
   //...MF_ADMIN_PAZ_SALVO_ROUTES,
@@ -23,7 +17,8 @@ export const MODULE_ROUTES: Routes = [
   ...MF_ADMIN_TBLPERFIL_ROUTES,
   ...MF_ADMIN_TBLMENUACCION_ROUTES,
   ...MF_ADMIN_TBLPERFILMENUACCION_ROUTES,
-  ...MF_ADMIN_TBLUSUARIO_ROUTES
+  ...MF_ADMIN_TBLUSUARIO_ROUTES,
+  ...MF_ADMIN_TBLUSUARIOMODULO_ROUTES
 //   {
 //     path: '',
 //     redirectTo: 'admin-paz-salvo',

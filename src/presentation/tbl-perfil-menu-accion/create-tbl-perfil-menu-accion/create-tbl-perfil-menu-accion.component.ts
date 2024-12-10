@@ -85,9 +85,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this.formTblPerfilMenuAccion.reset(result.data);
-						if (result.data?.fechaRegistro != null) {
-							this.formTblPerfilMenuAccion.get('fechaRegistro')?.setValue(new Date(result.data?.fechaRegistro));
-						}
+
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					};

@@ -2,7 +2,7 @@
 * Interface i-tbl-usuario-modulo.viewModel.
 *
 * @author  Carlos Anchundia
-* @date    22-10-2024
+* @date    03-12-2024
 * @name    TblUsuarioModuloviewModel
 * @package viewModel
 * @subpackage Domain
@@ -25,8 +25,12 @@ export interface ISaveTblUsuarioModuloRsViewModel {
 * @name ISaveTblUsuarioModuloViewModel
 */
 export interface ISaveTblUsuarioModuloViewModel extends IAuditoriaViewModel {
-	idModulo?: number | null;
 	idUsuario?: number | null;
+	idModulo?: number | null;
+	colorModulo?: string | null;
+	imagenModulo?: string | null;
+	numeroVisitaModulo?: number | null;
+	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
 
@@ -36,8 +40,12 @@ export interface ISaveTblUsuarioModuloViewModel extends IAuditoriaViewModel {
 */
 export interface IGetTblUsuarioModuloRsViewModel {
 	idUsuarioModulo?: number | null;
-	idModulo?: number | null;
 	idUsuario?: number | null;
+	idModulo?: number | null;
+	colorModulo?: string | null;
+	imagenModulo?: string | null;
+	numeroVisitaModulo?: number | null;
+	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
 
@@ -57,8 +65,12 @@ export interface IGetTblUsuarioModuloViewModel {
 */
 export interface IGetTblUsuarioModuloPaginadoRsViewModel {
 	idUsuarioModulo?: number | null;
-	idModulo?: number | null;
 	idUsuario?: number | null;
+	idModulo?: number | null;
+	colorModulo?: string | null;
+	imagenModulo?: string | null;
+	numeroVisitaModulo?: number | null;
+	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
 
@@ -80,8 +92,12 @@ export interface IGetTblUsuarioModuloPaginadoViewModel {
 */
 export interface IGetTblUsuarioModuloByIdRsViewModel {
 	idUsuarioModulo?: number | null;
-	idModulo?: number | null;
 	idUsuario?: number | null;
+	idModulo?: number | null;
+	colorModulo?: string | null;
+	imagenModulo?: string | null;
+	numeroVisitaModulo?: number | null;
+	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
 
@@ -109,7 +125,11 @@ export interface IUpdateTblUsuarioModuloRsViewModel {
 */
 export interface IUpdateTblUsuarioModuloViewModel extends IAuditoriaViewModel {
 	idUsuarioModulo?: number | null;
-	idModulo?: number | null;
 	idUsuario?: number | null;
+	idModulo?: number | null;
+	colorModulo?: string | null;
+	imagenModulo?: string | null;
+	numeroVisitaModulo?: number | null;
+	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
