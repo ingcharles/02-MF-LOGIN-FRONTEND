@@ -7,6 +7,7 @@
 * @package presentation
 * @subpackage tbl-usuario-modulo
 */
+import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { messages } from '../../../data/base/constants/messages';
@@ -22,7 +23,6 @@ import { ICatalogo } from '../../../data/base/interfaces/i-catalogo';
 import { ColorService } from '../../../data/base/services/color.service';
 import { FontAwesomeService } from '../../../data/base/services/font-awesome.service';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
-import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 
 @Component({
 	selector: 'index-tbl-usuario-modulo-page',
@@ -45,7 +45,7 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
   _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   _colorService: ColorService = inject(ColorService);
   _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
-
+	_location: Location = inject(Location);
 
 	public routeCore = ROUTES_CORE;
 	public page: number = 0;
@@ -129,5 +129,10 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
   getIconDetails(value: string): ICatalogo {
     return this.optionsImagenModulo.find(icon => icon.value === value)!
   }
+
+  public cancelTblUsuarioModulo(): void{
+		//this.closeTblMenuAccion.emit(true);
+		this._location.back();
+	}
 
 }

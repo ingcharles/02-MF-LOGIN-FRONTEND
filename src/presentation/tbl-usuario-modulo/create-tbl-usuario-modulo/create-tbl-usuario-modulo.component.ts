@@ -26,6 +26,8 @@ import { FontAwesomeService } from '../../../data/base/services/font-awesome.ser
 import { ColorService } from '../../../data/base/services/color.service';
 import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
+import { IGetTblUsuarioByIdRsViewModel, IGetTblUsuarioByIdViewModel } from '../../../domain/tbl-usuario/viewModels/i-tbl-usuario.viewModel';
+import { TblUsuarioUseCase } from '../../../domain/tbl-usuario/usesCases/tbl-usuario.usecase';
 
 @Component({
 	selector: 'create-tbl-usuario-modulo-page',
@@ -57,6 +59,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
   _fontAwesomeService: FontAwesomeService = inject(FontAwesomeService);
   _colorService: ColorService = inject(ColorService);
   _tblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
+  _tblUsuarioUseCase: TblUsuarioUseCase = inject(TblUsuarioUseCase);
 
 	@Output() closeTblUsuarioModulo = new EventEmitter();
 	public routeCore = ROUTES_CORE;
@@ -67,27 +70,35 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
   public optionsImagenModulo:ICatalogo[] = [];
   public optionsColorModulo:ICatalogo[] = [];
   public optionsModulo:IGetTblModuloRsViewModel [] = [];
+  public idUsuario!: number;
+  public tblUsuarioRecords: IGetTblUsuarioByIdRsViewModel | null = null;
 
 	public optionsEstado = [
-	{name: 'Item 1', value: 1 },
-	{name: 'Item 2', value: 2 },
-	{name: 'Item 3', value: 3 }
+	{name: 'Activo', value: 'Activo' },
+	{name: 'Inactivo', value: 'Inactivo' }
 	];
 
 	ngOnInit(): void {
 
+    this.sub = this._activatedRoute.params.subscribe(params => {
+      this.idUsuario= params['idUsuario'];
+    });
+
+    this.optionsImagenModulo = this._fontAwesomeService.loadIcons();
+    this.optionsColorModulo = this._colorService.loadColors();
+    this.loadDataUsuario(this.idUsuario);
+    this.loadDataModulos();
+
 		this.formTblUsuarioModulo = new FormGroup({
 			idUsuarioModulo: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			idUsuario: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			idUsuario: new FormControl(this.idUsuario, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			idModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			colorModulo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
 			imagenModulo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
-			numeroVisitaModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			numeroNotificaciones: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			fechaRegistro: new FormControl(null, Validators.compose([Validators.maxLength(8)])),
-			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			ipCreaRegistro: new FormControl(null, Validators.compose([Validators.maxLength(32)])),
+      ordenModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			numeroVisitaModulo: new FormControl(0, Validators.compose([Validators.required, Validators.min(0), Validators.max(999999999)])),
+			numeroNotificaciones: new FormControl(0, Validators.compose([Validators.required, Validators.min(0), Validators.max(999999999)])),
+			estado: new FormControl(null, Validators.compose([Validators.maxLength(64)]))
 		});
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
@@ -99,19 +110,19 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this.formTblUsuarioModulo.reset(result.data);
+            this.formTblUsuarioModulo.get('idModulo')?.setValue(result.data!.modulo.idModulo);
+            this.formTblUsuarioModulo.get('idUsuario')?.setValue(result.data!.usuario.idUsuario);
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					};
 				});
 			};
 		});
-    this.optionsImagenModulo = this._fontAwesomeService.loadIcons();
-    this.optionsColorModulo = this._colorService.loadColors();
-    this.loadDataModulos();
+
 	}
 
 	public saveTblUsuarioModulo(): void {
-
+      console.log("this.formTblUsuarioModulo",this.formTblUsuarioModulo.value);
 		if (this.formTblUsuarioModulo.invalid) {
 			this.formTblUsuarioModulo.markAllAsTouched();
 			this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);
@@ -127,7 +138,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIOMODULO.INDEX);
+						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(this.idUsuario));
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
@@ -143,7 +154,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 				if (result.ok) {
 					this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
 					this.formTblUsuarioModulo.get('idUsuarioModulo')!.patchValue(result.data?.idUsuarioModulo);
-					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIOMODULO.INDEX);
+					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(this.idUsuario));
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
@@ -174,5 +185,22 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 			});
   }
 
+  public loadDataUsuario(idUsuario:number){
+    console.log("Loading dataloadDataUsuario",idUsuario)
+    const currentTblUsuario: IGetTblUsuarioByIdViewModel = {idUsuario}
+    this._loaderService.display(true);
+		this._tblUsuarioUseCase.getByIdTblUsuario(currentTblUsuario).then(result => {
+				this._loaderService.display(false);
+				if (result.ok) {
+          this.tblUsuarioRecords = result.data!;
+          //console.log("resultado",result)
+          //this.title ='Listado acciones para el menú ' + this.tblUsuarioRecords?.nombreCompleto
+					//this.tblMenuAccionRecords = result.data!;
+				} else {
+					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+				}
+				//this.loading = false;
+			});
+  }
 
 }

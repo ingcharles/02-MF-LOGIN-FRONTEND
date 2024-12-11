@@ -14,13 +14,13 @@ import { messages } from '../../../data/base/constants/messages';
 import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { TblMenuAccionUseCase } from '../../../domain/tbl-menu-accion/usesCases/tbl-menu-accion.usecase';
-import { IGetPaginateByTblMenuEntityIdMenuViewModel, IGetTblMenuAccionPaginadoRsViewModel ,IGetTblMenuAccionPaginadoViewModel } from '../../../domain/tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
+import { IGetPaginateByTblMenuEntityIdMenuViewModel, IGetTblMenuAccionPaginadoRsViewModel } from '../../../domain/tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
 import { IPaginado } from '../../../data/base/interfaces/i-paginado';
 import { ActivatedRoute } from '@angular/router';
 import { TblMenuUseCase } from '../../../domain/tbl-menu/usesCases/tbl-menu.usecase';
-import { IGetTblMenuByIdRsViewModel, IGetTblMenuByIdViewModel, IGetTblMenuRsViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
+import { IGetTblMenuByIdViewModel } from '../../../domain/tbl-menu/viewModels/i-tbl-menu.viewModel';
 
 @Component({
 	selector: 'index-tbl-menu-accion-page',

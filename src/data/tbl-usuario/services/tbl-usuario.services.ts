@@ -62,7 +62,7 @@ export class TblUsuarioService  {
 	* @return Promise<IResponseStatusViewModel<IGetTblUsuarioRsViewModel>>
 	*/
 	public getAllTblUsuario(): Promise<IResponseStatusViewModel<IGetTblUsuarioRsViewModel>>{
-	const url = `${apiAdminUrl}query/tbl-usuario/getAllTblUsuario`;
+	const url = `${apiAdminUrl}query/tbl-usuario/findAllTblUsuario`;
 	return new Promise<IResponseStatusViewModel<IGetTblUsuarioRsViewModel>>((resolve, reject) => {
 	this._http.get<IResultApi>(url)
 		.subscribe({

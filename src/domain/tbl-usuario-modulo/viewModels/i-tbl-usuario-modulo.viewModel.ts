@@ -71,6 +71,7 @@ export interface IGetTblUsuarioModuloPaginadoRsViewModel {
 	imagenModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
+  ordenModulo?: number | null;
 	estado?: string | null;
 }
 
