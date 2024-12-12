@@ -45,6 +45,25 @@
         </div>
 
 				<p-fieldset legend="Datos Generales">
+          <div class="grid">
+            <div class="col-12 md:col-6">
+                <!-- <div class="text-center p-3 border-round-sm bg-primary font-bold ">2</div> -->
+            		<label for="idModulo"> Módulo (*)</label>
+              <!-- small-dropdown -->
+							<p-multiselect [options]="cities" optionLabel="name"  formControlName="idModulo" class="w-full"
+	 />
+              </div>
+            <div class="col-12 md:col-6">
+              <label for="idModulo"> Módulo (*)</label>
+              <!-- small-dropdown -->
+							<p-multiselect [options]="cities" optionLabel="name"  formControlName="idModulo" class="w-full"
+	 />
+                <!-- <div class="text-center p-3 border-round-sm bg-primary font-bold ">6</div> -->
+            </div>
+            <div class="col-4">
+                <div class="text-center p-3 border-round-sm bg-primary font-bold ">4</div>
+            </div>
+        </div>
 					<div class="formgrid grid">
 
             <div class="field col">
