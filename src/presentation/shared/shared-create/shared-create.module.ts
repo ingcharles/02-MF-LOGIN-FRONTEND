@@ -5,7 +5,6 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { CardModule } from 'primeng/card';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TooltipModule } from 'primeng/tooltip';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -13,7 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [],
@@ -26,13 +25,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 		CardModule,
 		InputMaskModule,
 		InputSwitchModule,
-		InputTextareaModule,
 		TooltipModule,
 		CalendarModule,
 		InputNumberModule,
 		DropdownModule,
 		FloatLabelModule,
-  ], 
+    MultiSelectModule
+  ],
   exports: [
     CommonModule,
 		ReactiveFormsModule,
@@ -42,12 +41,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 		CardModule,
 		InputMaskModule,
 		InputSwitchModule,
-		InputTextareaModule,
 		TooltipModule,
 		CalendarModule,
 		InputNumberModule,
 		DropdownModule,
 		FloatLabelModule,
+    MultiSelectModule
   ]
 })
 export class SharedCreateModule { }

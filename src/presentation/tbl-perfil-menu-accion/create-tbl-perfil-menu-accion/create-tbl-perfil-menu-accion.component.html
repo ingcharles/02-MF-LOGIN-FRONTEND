@@ -15,50 +15,81 @@
 				<h4>Formulario para el registro de TblPerfilMenuAccion</h4>
 			</div>
 
+
+
 			<p-card>
 				<p class="m-0 mb-4">
 					<small>Información general del TblPerfilMenuAccion. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
 				</p>
 
-				<p-fieldset legend="Datos Generales">
-					<div class="p-fluid formgrid grid">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+              <div class="flex-1">
+                  <label for="firstname" class="block font-semibold mb-2">Firstname</label>
+                  <input type="text" pInputText id="firstname" class="w-full" />
+              </div>
+              <div class="flex-1">
+                  <label for="lastname" class="block font-semibold mb-2">Lastname</label>
+                  <input type="text" pInputText id="lastname" class="w-full" />
+              </div>
 
-						<div class="field col-12 md:col-6">
+          </div>
+          <div class="formgrid grid">
+            <div class="field col">
+                <label for="firstname2">Firstname</label>
+                <input id="firstname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+            <div class="field col">
+                <label for="lastname2">Lastname</label>
+                <input id="lastname2" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+            </div>
+        </div>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="formgrid grid">
+
+            <div class="field col">
+							<label for="idModulo"> Módulo (*)</label>
+              <!-- small-dropdown -->
+							<p-multiselect [options]="cities" optionLabel="name"  formControlName="idModulo" class="w-full"
+	 />
+						</div>
+
+						<div class="field col">
 							<label for="idPerfil"> IdPerfil (*)</label>
-							<p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="p-inputtext-sm "  
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblPerfilMenuAccion)}" 
-							[pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							<p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="p-inputtext-sm "
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblPerfilMenuAccion)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblPerfilMenuAccion)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
 						</div>
 
 						<div class="field col-12 md:col-6">
 							<label for="idMenuAccion"> IdMenuAccion (*)</label>
-							<p-inputNumber id="idMenuAccion" name="idMenuAccion" formControlName="idMenuAccion" size="small" class="p-inputtext-sm "  
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuAccion',formTblPerfilMenuAccion)}" 
-							[pTooltip]="_utilsService.getFieldErrorRequired('idMenuAccion', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							<p-inputNumber id="idMenuAccion" name="idMenuAccion" formControlName="idMenuAccion" size="small" class="p-inputtext-sm "
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuAccion',formTblPerfilMenuAccion)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('idMenuAccion', formTblPerfilMenuAccion)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
 						</div>
 
 						<div class="field col-12 md:col-6">
 							<label for="estado"> estado (*)</label>
-							<p-dropdown id="estado" name="estado" class="small-dropdown" 
+							<p-dropdown id="estado" name="estado" class="small-dropdown"
 							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblPerfilMenuAccion)}" 
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblPerfilMenuAccion)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblPerfilMenuAccion)" tooltipPosition="top" />
 						</div>
 
 						<div class="field col-12 md:col-6">
 							<label for="fechaRegistro"> fechaRegistro (*)</label>
-							<p-calendar id="fechaRegistro" name="fechaRegistro" formControlName="fechaRegistro" class="p-inputtext-sm" dateFormat="dd/mm/yy" 
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblPerfilMenuAccion)}" 
+							<p-calendar id="fechaRegistro" name="fechaRegistro" formControlName="fechaRegistro" class="p-inputtext-sm" dateFormat="dd/mm/yy"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblPerfilMenuAccion)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblPerfilMenuAccion)" tooltipPosition="top" placeholder ="" />
 						</div>
 
 						<div class="field col-12 md:col-6">
 							<label for="idUsuarioRegistro"> IdUsuarioRegistro (*)</label>
-							<p-inputNumber id="idUsuarioRegistro" name="idUsuarioRegistro" formControlName="idUsuarioRegistro" size="small" class="p-inputtext-sm "  
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuarioRegistro',formTblPerfilMenuAccion)}" 
-							[pTooltip]="_utilsService.getFieldErrorRequired('idUsuarioRegistro', formTblPerfilMenuAccion)" tooltipPosition="top" 
+							<p-inputNumber id="idUsuarioRegistro" name="idUsuarioRegistro" formControlName="idUsuarioRegistro" size="small" class="p-inputtext-sm "
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuarioRegistro',formTblPerfilMenuAccion)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('idUsuarioRegistro', formTblPerfilMenuAccion)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
 						</div>
 

@@ -30,7 +30,6 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 	standalone: true,
 	imports: [
 		SharedCreateModule,
-		NgxMaskDirective
 	],
 	providers: [
 	provideNgxMask()
@@ -60,16 +59,22 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{name: 'Item 1', value: 1 },
-	{name: 'Item 2', value: 2 },
-	{name: 'Item 3', value: 3 }
+	{name: 'Activo', value: 'Activo' },
+	{name: 'Inactivo', value: 'Inactivo' }
 	];
-
+  cities!: any[];
 	ngOnInit(): void {
-
+    this.cities = [
+      { name: 'New York', code: 'NY' },
+      { name: 'Rome', code: 'RM' },
+      { name: 'London', code: 'LDN' },
+      { name: 'Istanbul', code: 'IST' },
+      { name: 'Paris', code: 'PRS' }
+  ];
 		this.formTblPerfilMenuAccion = new FormGroup({
 			idPerfilMenuAccion: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-			idPerfil: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+			idModulo: new FormControl(null, Validators.compose([Validators.required, Validators.max(999999999)])),
+      idPerfil: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			idMenuAccion: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),

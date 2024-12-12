@@ -39,7 +39,8 @@
 		</ng-template>
 		<ng-template pTemplate="header">
 			<tr>
-				<th pSortableColumn="nombrePerfil" style="min-width:7rem">Perfil<p-sortIcon field="nombrePerfil" /></th>
+        <th pSortableColumn="nombreModulo" style="min-width:7rem">Módulo<p-sortIcon field="nombreModulo" /></th>
+				<th pSortableColumn="nombrePerfil" style="min-width:7rem">Perfíl<p-sortIcon field="nombrePerfil" /></th>
 				<th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu" /></th>
 				<th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion" /></th>
         <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
@@ -49,6 +50,7 @@
 		</ng-template>
 		<ng-template pTemplate="body" let-item>
 			<tr>
+        <td>{{ item.modulo.nombre }}</td>
 				<td>{{ item.perfil.nombre }}</td>
 				<td>{{ item.menu.nombre }}</td>
         <td>{{ item.accion.nombre }}</td>
