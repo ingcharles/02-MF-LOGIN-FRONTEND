@@ -13,7 +13,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { SelectModule } from 'primeng/select';
+import { DatePicker } from 'primeng/datepicker';
 @NgModule({
   declarations: [],
   imports: [
@@ -26,11 +27,11 @@ import { MultiSelectModule } from 'primeng/multiselect';
 		InputMaskModule,
 		InputSwitchModule,
 		TooltipModule,
-		CalendarModule,
 		InputNumberModule,
-		DropdownModule,
+		SelectModule,
 		FloatLabelModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DatePicker
   ],
   exports: [
     CommonModule,
@@ -42,11 +43,11 @@ import { MultiSelectModule } from 'primeng/multiselect';
 		InputMaskModule,
 		InputSwitchModule,
 		TooltipModule,
-		CalendarModule,
 		InputNumberModule,
-		DropdownModule,
+		SelectModule,
 		FloatLabelModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DatePicker
   ]
 })
 export class SharedCreateModule { }

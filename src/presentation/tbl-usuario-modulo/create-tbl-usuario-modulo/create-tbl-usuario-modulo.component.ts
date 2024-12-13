@@ -176,9 +176,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 		this._tblModuloUseCase.getAllTblModulo().then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
-          console.log("loadDataModulos",result)
           this.optionsModulo = result.data!;
-          console.log("resultado optionsAccion",result)
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

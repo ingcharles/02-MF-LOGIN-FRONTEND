@@ -22,6 +22,8 @@ import { IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionViewModel
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
+import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 
 @Component({
 	selector: 'create-tbl-perfil-menu-accion-page',
@@ -51,6 +53,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
 	_tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase = inject(TblPerfilMenuAccionUseCase);
+  _tblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
 
 	@Output() closeTblPerfilMenuAccion = new EventEmitter();
 	public routeCore = ROUTES_CORE;
@@ -63,7 +66,9 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	{name: 'Inactivo', value: 'Inactivo' }
 	];
   cities!: any[];
+  public optionsModulo:IGetTblModuloRsViewModel [] = [];
 	ngOnInit(): void {
+
     this.cities = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
@@ -80,6 +85,8 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 			fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
 			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 		});
+
+    this.loadDataModulos();
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
 			const idParametro = params['id'];
@@ -148,4 +155,15 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 		return this.formTblPerfilMenuAccion.value as IUpdateTblPerfilMenuAccionViewModel;
 	}
 
+  public loadDataModulos(){
+    this._loaderService.display(true);
+		this._tblModuloUseCase.getAllTblModulo().then(result => {
+				this._loaderService.display(false);
+				if (result.ok) {
+          this.optionsModulo = result.data!;
+				} else {
+					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+				}
+			});
+  }
 }

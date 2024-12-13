@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PanelModule } from 'primeng/panel';
 import { StyleClassModule } from 'primeng/styleclass';
 import { TableModule } from 'primeng/table';
+import { SharedCreateModule } from '../../shared/shared-create/shared-create.module';
 interface Registro {
   area: string;
   persona: string;
@@ -32,7 +33,8 @@ interface Registro {
       InputTextModule,
       ButtonModule,
       FloatLabelModule,
-      StyleClassModule
+      StyleClassModule,
+      SharedCreateModule
     ]
 })
 export class AdminFirmaPazSalvoNewComponent implements OnInit {

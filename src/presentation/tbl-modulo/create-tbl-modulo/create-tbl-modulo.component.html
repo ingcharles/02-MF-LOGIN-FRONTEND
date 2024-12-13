@@ -21,19 +21,19 @@
 				</p>
 
 				<p-fieldset legend="Datos Generales">
-					<div class="p-fluid formgrid grid">
+					<div class="p-fluid grid">
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="nombre"> Nombre (*)</label>
-							<textarea pInputTextarea id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"
+							<textarea pInputTextarea id="nombre" name="nombre" formControlName="nombre" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="nemonico"> Nemónico (*)</label>
-							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="p-inputtext-sm w-full text-uppercase"
+							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico" class="w-fullw-full text-uppercase"
               [showMaskTyped]="true" [dropSpecialCharacters]="false"
               [specialCharacters]="['_']" [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS" [validation]="true"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblModulo)}"
@@ -41,25 +41,25 @@
 							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="numeroVersion"> Nímero de versión (*)</label>
-							<input pInputText id="numeroVersion" name="numeroVersion" formControlName="numeroVersion" class="p-inputtext-sm w-full"
+							<input pInputText id="numeroVersion" name="numeroVersion" formControlName="numeroVersion" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('numeroVersion',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('numeroVersion', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="ruta"> Ruta (*)</label>
-							<textarea pInputTextarea id="ruta" name="ruta" formControlName="ruta" class="p-inputtext-sm w-full"
+							<textarea pInputTextarea id="ruta" name="ruta" formControlName="ruta" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ruta',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('ruta', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="descripcion"> Descripción (*)</label>
-							<textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion" class="p-inputtext-sm w-full"
+							<textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('descripcion',formTblModulo)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('descripcion', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
@@ -67,7 +67,7 @@
 
 					</div>
 				</p-fieldset>
-				<div class="p-fluid formgrid grid my-2 justify-content-end">
+				<div class="p-fluid grid my-2 justify-content-end">
 					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblModulo()" />
 					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
 				</div>

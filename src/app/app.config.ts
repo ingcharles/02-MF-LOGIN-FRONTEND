@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MODULE_ROUTES } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
 import Lara from '@primeng/themes/lara';
+import { MyPreset } from './my-preset';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -16,11 +18,15 @@ export const appConfig: ApplicationConfig = {
     //provideAnimationsAsync(),
         providePrimeNG({
             theme: {
-                preset: Lara,
+                preset: MyPreset,
                 options: {
                   prefix: 'p',
                   darkModeSelector: 'system',
-                  cssLayer: false
+                  cssLayer: false,
+                  variables: {
+                    'primary-color': '#007bff', // Azul estándar
+                    'primary-color-text': '#ffffff', // Color de texto sobre azul
+                  },
               }
             }
         })

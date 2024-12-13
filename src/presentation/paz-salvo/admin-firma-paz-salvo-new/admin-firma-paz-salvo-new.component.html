@@ -21,8 +21,8 @@
         <div class="ui-g ui-fluid top-buffer">
           <div class="ui-xl-2 ui-lg-2 ui-md-3">
             <span class="ui-float-label">
-              <p-dropdown placeholder="Service Line*" [style]="{'width':'100%'}" [required]="true"
-                name="serviceLineOptions"></p-dropdown>
+              <p-select placeholder="Service Line*" [style]="{'width':'100%'}" [required]="true"
+                name="serviceLineOptions"></p-select>
             </span>
           </div>
           <div class="ui-xl-1 ui-lg-1 ui-md-3">
@@ -39,8 +39,8 @@
           </div>
           <div class="ui-xl-2 ui-lg-2 ui-md-3">
             <label for="add-owner">Owner*</label>
-            <p-dropdown name="statusOptions" placeholder="Status*" [required]="true"
-              [style]="{'width':'100%'}"></p-dropdown>
+            <p-select name="statusOptions" placeholder="Status*" [required]="true"
+              [style]="{'width':'100%'}"></p-select>
           </div>
           <div class="ui-xl-1 ui-lg-1 ui-md-3">
             <span class="ui-float-label">
@@ -103,7 +103,7 @@
       <div class="flex-2 flex">Área</div>
       <div class="flex-10 flex">
 
-        <p-dropdown [options]="areas"></p-dropdown>
+        <p-select [options]="areas"></p-select>
       </div>
       <div class="flex align-items-center justify-content-center w-4rem h-4rem bg-primary font-bold border-round m-2">2
       </div>
@@ -112,26 +112,26 @@
     </div>
     <div class="flex">
       <div class="flex-1 flex">Área</div>
-      <div class="flex-1 flex"><p-dropdown [options]="areas"></p-dropdown></div>
+      <div class="flex-1 flex"><p-select [options]="areas"></p-select></div>
     </div>
     <div class="flex flex-wrap gap-2">
       <div class="flex">Área</div>
-      <div class="flex"><p-dropdown [options]="areas"></p-dropdown></div>
+      <div class="flex"><p-select [options]="areas"></p-select></div>
 
     </div>
     <div class="flex flex-wrap gap-1 md:gap-4 xl:gap-8">
       <div class="flex align-items-center justify-content-center">Área</div>
-      <div class="flex align-items-center justify-content-center"><p-dropdown [options]="areas"></p-dropdown></div>
+      <div class="flex align-items-center justify-content-center"><p-select [options]="areas"></p-select></div>
     </div>
 
     <div class="card">
       <h5>Advanced</h5>
-      <div class="p-fluid p-formgrid grid">
-        <div class="field col-12 md:col-6">
+      <div class="p-fluid p-grid">
+        <div class="col-12 md:col-6">
           <label htmlfor="firstname2">Firstname</label>
           <input pinputtext="" id="firstname2" type="text" class="p-inputtext p-component p-element">
         </div>
-        <div class="field col-12 md:col-6">
+        <div class="col-12 md:col-6">
           <label htmlfor="lastname2">Lastname</label>
           <input pinputtext="" id="lastname2" type="text" class="p-inputtext p-component p-element">
         </div>
@@ -139,12 +139,12 @@
           <label htmlfor="address">Address</label><input pinputtextarea="" id="address" rows="4"
             class="p-inputtextarea p-inputtext p-component p-element">
         </div>
-        <div class="field col-12 md:col-6"><label htmlfor="city">City</label><input pinputtext="" id="city" type="text"
+        <div class="col-12 md:col-6"><label htmlfor="city">City</label><input pinputtext="" id="city" type="text"
             class="p-inputtext p-component p-element"></div>
         <div class="field col-12 md:col-3"><label htmlfor="state">State</label>
-          <p-dropdown optionlabel="name" class="p-element p-inputwrapper ng-valid ng-dirty ng-touched">
+          <p-select optionlabel="name" class="p-element p-inputwrapper ng-valid ng-dirty ng-touched">
 
-          </p-dropdown>
+          </p-select>
         </div>
       </div>
     </div>
@@ -184,15 +184,15 @@
     <p-panel header="Nuevo Registro">
 
 
-        <div class="p-fluid p-formgrid grid">
+        <div class="p-fluid p-grid">
           <div class="field lg:col-5 md:col-4">
             <label for="area">Área</label>
-            <p-dropdown [options]="areas" formControlName="area"></p-dropdown>
+            <p-select [options]="areas" formControlName="area"></p-select>
           </div>
 
           <div class="field lg:col-5 md:col-4">
             <label for="persona">Persona</label>
-            <p-dropdown [options]="personas" formControlName="persona"></p-dropdown>
+            <p-select [options]="personas" formControlName="persona"></p-select>
           </div>
           <div class="field lg:col-2 md:col-4 mt-5">
             <button pButton type="submit" label="Añadir"></button>

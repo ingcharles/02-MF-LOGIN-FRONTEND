@@ -21,20 +21,20 @@
 				</p>
 
 				<p-fieldset legend="Datos Generales">
-					<div class="p-fluid formgrid grid">
+					<div class="p-fluid grid">
 
-            <div class="field col-12 md:col-6">
+            <div class="col-12 md:col-6">
 							<label for="nombre"> Nombre (*)</label>
-							<input pInputText id="nombre" name="nombre" formControlName="nombre" class="p-inputtext-sm w-full"
+							<input pInputText id="nombre" name="nombre" formControlName="nombre" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblPerfil)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblPerfil)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)"  placeholder="" />
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="nemonico"> Nemónico (*)</label>
 							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico"
-								class="p-inputtext-sm w-full text-uppercase" [showMaskTyped]="true"
+								class="w-fullw-full text-uppercase" [showMaskTyped]="true"
 								[dropSpecialCharacters]="false" [specialCharacters]="['_']"
 								[shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS"
 								[validation]="true"
@@ -44,17 +44,17 @@
 								placeholder="" />
 						</div>
 
-						<div class="field col-12 md:col-6">
+						<div class="col-12 md:col-6">
 							<label for="descripcion"> Descripcion (*)</label>
-							<textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion" class="p-inputtext-sm w-full"
+							<textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion" class="w-fullw-full"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('descripcion',formTblPerfil)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('descripcion', formTblPerfil)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
 						</div>
 
-						<div class="field col-12 md:col-6" *ngIf="formTblPerfil.get('idPerfil')?.value !== null">
+						<div class="col-12 md:col-6" *ngIf="formTblPerfil.get('idPerfil')?.value !== null">
 							<label for="estado"> Estado (*)</label>
-							<p-dropdown id="estado" name="estado" class="small-dropdown"
+							<p-select id="estado" name="estado" class="w-full"
 							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblPerfil)}"
 							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblPerfil)" tooltipPosition="top" />
@@ -62,7 +62,7 @@
 
 					</div>
 				</p-fieldset>
-				<div class="p-fluid formgrid grid my-2 justify-content-end">
+				<div class="p-fluid grid my-2 justify-content-end">
 					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblPerfil()" />
 					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
 				</div>
