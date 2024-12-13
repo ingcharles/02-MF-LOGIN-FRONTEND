@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
   declarations: [],
   imports: [
     CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule
-  ], 
+  ],
   exports:[
     CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule
   ]

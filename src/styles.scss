@@ -211,7 +211,7 @@
 }
   .form-control:not(:invalid):not(.is-invalid):focus,
   .form-select:not(:invalid):not(.is-invalid):focus {
-    border-color: #005cbb;
+    border-color: var(--p-button-primary-hover-border-color);
   }
 
   .was-validated .form-control:invalid:focus,
@@ -332,10 +332,10 @@ body {
 /* You can add global styles to this file, and also import other style files */
 
 .card-custom {
-  border-top: 5px solid #005cbb !important;
+  border-top: 5px solid var(--p-button-primary-hover-border-color) !important;
 }
   .card-header.card-header-custom {
-  background-color: #005cbb; //$primary-color-light;
+  background-color: var(--p-button-primary-hover-border-color); //$primary-color-light;
   color: white;
   position: relative;
   padding: 12px 25px;
@@ -351,7 +351,7 @@ body {
   top: -24px;
   bottom: 0;
   width: 15px;
-  background-color: #005cbb;
+  background-color: var(--p-button-primary-hover-border-color);
 }
 
 .card-header.card-header-custom::before {
@@ -387,15 +387,15 @@ body {
   padding: 0 !important
 }
 
-.color-option {
-  display: flex;
-  align-items: center;
-  //padding: 5px;
-}
+// .color-option {
+//   display: flex;
+//   align-items: center;
+//   //padding: 5px;
+// }
 
-.color-box {
-  width: 40px;
-  height: 20px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-}
+// .color-box {
+//   width: 40px;
+//   height: 20px;
+//   margin-right: 10px;
+//   border: 1px solid #ccc;
+// }

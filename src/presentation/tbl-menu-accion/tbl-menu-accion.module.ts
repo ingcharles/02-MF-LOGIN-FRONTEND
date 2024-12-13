@@ -1,5 +1,5 @@
 /**
-* Modulo tbl-menu-accion.module.ts
+* Módulo tbl-menu-accion.module.ts
 *
 * @author  Carlos Anchundia
 * @date    22-11-2024

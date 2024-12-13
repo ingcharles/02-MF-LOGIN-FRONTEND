@@ -10,60 +10,56 @@
 
 <div class="container-fluid">
 	<p-toolbar>
-		<ng-template pTemplate="left">
+
 			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
-			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.CREATE]" />
-		</ng-template>
-	</p-toolbar>
+			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.CREATE]"/>
+		</p-toolbar>
 
 	<p-table #dt [value]="tblUsuarioRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="tblUsuarioRecords?.totalElements!"
 		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
 		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
 		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_usuario','usuario','id_catalogo_identificacion','identificacion','nombre_completo','nombre','apellido','contrasenia','codigo_temporal','ip_crea_registro','fecha_modificacion_contrasenia','fecha_ultimo_acceso','ip_ultimo_acceso','estado','fecha_registro','id_usuario_registro',]">
 
-		<ng-template pTemplate="caption">
+		<ng-template #caption>
 			<div class="flex">
 				<div class="flex align-items-center justify-content-center" style="flex: 1;">
 					<h2 class="m-0">{{title}}</h2>
 				</div>
-				<div class="flex align-items-center justify-content-end" style="gap: 10px;">
-					<p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
-					<span class="p-input-icon-left">
-						<i class="pi pi-search"></i>
-						<input pInputText type="text" [value]="search" (input)="inputSearch($event)"
-							placeholder="Buscar..." />
-					</span>
-				</div>
+        <div class="flex align-items-center justify-content-end" style="gap: 10px;">
+          <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-search" />
+            <input pInputText type="text" (input)="inputSearch($event)" placeholder="Buscar..." />
+          </p-iconfield>
+        </div>
 			</div>
 		</ng-template>
-		<ng-template pTemplate="header">
+		<ng-template #header>
 			<tr>
-				<th pSortableColumn="usuario" style="min-width:10rem">Usuario<p-sortIcon field="usuario" /></th>
-				<th pSortableColumn="identificacion" style="min-width:10rem">Identificacion<p-sortIcon field="identificacion" /></th>
-				<th pSortableColumn="nombreCompleto" style="min-width:10rem">Nombres<p-sortIcon field="nombreCompleto" /></th>
-				<th pSortableColumn="contrasenia" style="min-width:10rem">Contraseña<p-sortIcon field="contrasenia" /></th>
-				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
-				<th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro" /></th>
+				<th pSortableColumn="usuario" style="min-width:10rem">Usuario<p-sortIcon field="usuario"/></th>
+				<th pSortableColumn="identificacion" style="min-width:10rem">Identificacion<p-sortIcon field="identificacion"/></th>
+				<th pSortableColumn="nombreCompleto" style="min-width:10rem">Nombres<p-sortIcon field="nombreCompleto"/></th>
+				<th pSortableColumn="contrasenia" style="min-width:10rem">Contraseña<p-sortIcon field="contrasenia"/></th>
+				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
+				<th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro"/></th>
 				<th style="min-width:13rem">Acciones</th>
 			</tr>
 		</ng-template>
-		<ng-template pTemplate="body" let-item>
+		<ng-template #body let-item>
 			<tr>
 				<td>{{ item.usuario }}</td>
 				<td>{{ item.identificacion }}</td>
 				<td>{{ item.nombreCompleto }}</td>
 				<td>{{ item.contrasenia }}</td>
 				<td>{{ item.estado }}</td>
-				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd') : '' }}</td>
+				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
 				<td>
-					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.CREATE]"/>
-					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.EDIT(item.idUsuario)]" />
-          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(item.idUsuario)]"/>
-
+					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.EDIT(item.idUsuario)]"/>
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir modulo" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(item.idUsuario)]"/>
 				</td>
 			</tr>
 		</ng-template>
-		<ng-template pTemplate="summary">
+		<ng-template #summary>
 			<div class="flex align-items-center justify-content-between">
 				En total hay {{ tblUsuarioRecords?.content ? tblUsuarioRecords?.content?.length : 0 }} tblUsuario
 			</div>

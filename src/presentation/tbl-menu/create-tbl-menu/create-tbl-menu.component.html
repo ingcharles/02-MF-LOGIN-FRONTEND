@@ -31,30 +31,30 @@
 								optionValue="idMenu" optionLabel="nombre"
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuPadre',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('idMenuPadre', formTblMenu)"
-								tooltipPosition="top" />
+								tooltipPosition="top"/>
 						</div>
 
 						<div class="col-12 md:col-6">
 							<label for="nemonico"> Nemónico (*)</label>
 							<input pInputText id="nemonico" name="nemonico" formControlName="nemonico"
-								class="w-fullw-full text-uppercase" [showMaskTyped]="true"
+								class="w-full text-uppercase" [showMaskTyped]="true"
 								[dropSpecialCharacters]="false" [specialCharacters]="['_']"
 								[shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS"
 								[validation]="true"
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblMenu)"
 								tooltipPosition="top" (keypress)="this._validatorsService.validarAlfanumericos($event)"
-								placeholder="" />
+								placeholder=""/>
 						</div>
 
 						<div class="col-12 md:col-6">
 							<label for="nombre"> Nombre (*)</label>
 							<input pInputText id="nombre" name="nombre" formControlName="nombre"
-								class="w-fullw-full"
+								class="w-full"
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblMenu)"
 								tooltipPosition="top" (keypress)="this._validatorsService.validarAlfanumericos($event)"
-								placeholder="" />
+								placeholder=""/>
 						</div>
 
             <div class="col-12 md:col-6">
@@ -63,11 +63,11 @@
                 placeholder="Seleccione" [options]="optionsIcon" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagen',formTblMenu)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('imagen', formTblMenu)" tooltipPosition="top">
-                <ng-template let-option pTemplate="item">
+                <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>
                   {{ option.name }}
                 </ng-template>
-                <ng-template let-selectedOption pTemplate="selectedItem">
+                <ng-template let-selectedOption #selectedItem>
                   <i class="{{ selectedOption.value }} mr-3"></i>
                   {{ selectedOption.name }}
                 </ng-template>
@@ -76,11 +76,11 @@
 
 						<div class="col-12 md:col-6">
 							<label for="ruta"> Ruta (*)</label>
-							<input pInputText id="ruta" name="ruta" formControlName="ruta" class="w-fullw-full"
+							<input pInputText id="ruta" name="ruta" formControlName="ruta" class="w-full"
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ruta',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('ruta', formTblMenu)"
 								tooltipPosition="top" (keypress)="this._validatorsService.validarAlfanumericos($event)"
-								placeholder="" />
+								placeholder=""/>
 						</div>
 
 						<div class="col-12 md:col-6">
@@ -90,7 +90,7 @@
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('orden',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('orden', formTblMenu)"
 								tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)"
-								placeholder="" />
+								placeholder=""/>
 						</div>
 
 						<div class="col-12 md:col-6" *ngIf="formTblMenu.get('idMenu')?.value !== null">
@@ -99,24 +99,15 @@
 								placeholder="Seleccione" [options]="optionsEstado" optionValue="id" optionLabel="name"
 								[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblMenu)}"
 								[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblMenu)"
-								tooltipPosition="top" />
+								tooltipPosition="top"/>
 						</div>
-
-						<!-- <div class="col-12 md:col-6">
-							<label for="fechaRegistro"> fechaRegistro (*)</label>
-							<p-datepicker id="fechaRegistro" name="fechaRegistro" formControlName="fechaRegistro" class="w-full" dateFormat="dd/mm/yy"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblMenu)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblMenu)" tooltipPosition="top" placeholder ="" />
-						</div> -->
-
-
 					</div>
 				</p-fieldset>
 				<div class="p-fluid grid my-2 justify-content-end">
 					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small"
-						severity="danger" (click)="cancelTblMenu()" />
+						severity="danger" (click)="cancelTblMenu()"/>
 					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small"
-						severity="primary" />
+						severity="primary"/>
 				</div>
 			</p-card>
 		</div>

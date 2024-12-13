@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
 import { DatePicker } from 'primeng/datepicker';
+import { TextareaModule } from 'primeng/textarea';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -31,7 +33,8 @@ import { DatePicker } from 'primeng/datepicker';
 		SelectModule,
 		FloatLabelModule,
     MultiSelectModule,
-    DatePicker
+    DatePicker,
+    TextareaModule
   ],
   exports: [
     CommonModule,
@@ -47,7 +50,8 @@ import { DatePicker } from 'primeng/datepicker';
 		SelectModule,
 		FloatLabelModule,
     MultiSelectModule,
-    DatePicker
+    DatePicker,
+    TextareaModule
   ]
 })
 export class SharedCreateModule { }

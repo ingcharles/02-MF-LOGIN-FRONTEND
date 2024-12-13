@@ -1,24 +1,24 @@
 /**
-* Módulo tbl-usuario-modulo.module.ts
+* Módulo tbl-modulo-perfil.module.ts
 *
 * @author  Carlos Anchundia
 * @date    03-12-2024
 * @name    NgModule
 * @package presentation
-* @subpackage tbl-usuario-modulo
+* @subpackage tbl-modulo-perfil
 */
 
 import { NgModule } from '@angular/core';
-import { TblUsuarioModuloRouting } from './tbl-usuario-modulo.routing';
+import { TblModuloPerfilRouting } from './tbl-modulo-perfil.routing';
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
-	TblUsuarioModuloRouting
+	TblModuloPerfilRouting
 	],
 	providers: [
 	]
 })
 
-export class TblUsuarioModuloModule { }
+export class TblModuloPerfilModule { }

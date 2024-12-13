@@ -29,32 +29,22 @@
                 placeholder="Seleccione..." [options]="optionsAccion" optionValue="idAccion" optionLabel="nombre"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top">>
-
               </p-select>
             </div>
-
-
-						<!-- <div class="col-12 md:col-6">
-							<label for="idAccion"> IdAccion (*)</label>
-							<p-inputNumber id="idAccion" name="idAccion" formControlName="idAccion" size="small" class="w-full"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top"
-							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
-						</div> -->
 
 						<div class="col-12 md:col-6" *ngIf="formTblMenuAccion.get('idMenuAccion')?.value !== null">
 							<label for="estado"> Estado (*)</label>
 							<p-select id="estado" name="estado" class="w-full"
 							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
 							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblMenuAccion)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblMenuAccion)" tooltipPosition="top" />
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblMenuAccion)" tooltipPosition="top"/>
 						</div>
 
 					</div>
 				</p-fieldset>
 				<div class="p-fluid grid my-2 justify-content-end">
-					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblMenuAccion()" />
-					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblMenuAccion()"/>
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary"/>
 				</div>
 			</p-card>
 		</div>

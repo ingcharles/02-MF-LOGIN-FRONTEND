@@ -9,59 +9,48 @@
 -->
 
 <div class="container mt-5">
-    <form [formGroup]="formAdminPazSalvo" (ngSubmit)="onSubmit()">
+  <form [formGroup]="formAdminPazSalvo" (ngSubmit)="onSubmit()">
 
 
-        <div  class="card mb-3">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="area">Área</label>
-              <select id="area" class="form-control" formControlName="area">
-                <option *ngFor="let area of areas" [value]="area.nombre">{{ area.nombre }}</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="nombre">Nombre</label>
-              <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
-            </div>
-            <!-- <div class="form-group">
-              <label for="posicionX">Posición X Relativa</label>
-              <input type="number" class="form-control" formControlName="posicionX" id="posicionX" placeholder="Posición X Relativa">
-            </div>
-            <div class="form-group">
-              <label for="posicionY">Posición Y Relativa</label>
-              <input type="number" class="form-control" formControlName="posicionY" id="posicionY" placeholder="Posición Y Relativa">
-            </div> -->
-            <!-- <button type="button" class="btn btn-danger" (click)="removeFirma(i)">Eliminar Firma</button> -->
-          </div>
-
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="form-group">
+          <label for="area">Área</label>
+          <select id="area" class="form-control" formControlName="area">
+            <option *ngFor="let area of areas" [value]="area.nombre">{{ area.nombre }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
+        </div>
       </div>
-      <button type="button" class="btn btn-primary" (click)="addFirma()">Añadir Firma</button>
-      <button type="submit" class="btn btn-success">Guardar</button>
-    </form>
-
-    <div *ngFor="let area of areas" class="mt-5">
-      <!-- <pre>{{area|json}}</pre> -->
-      <h3>Registros de Firmas - {{ area.nombre }}</h3>
-      <table #firmaTable class="table table-bordered" *ngIf="firmasGuardadasPorArea[area.nombre]">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Posición X</th>
-            <th>Posición Y</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let firma of firmasGuardadasPorArea[area.nombre]; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ firma.nombre }}</td>
-            <td>{{ firma.posicionX }}</td>
-            <td>{{ firma.posicionY }}</td>
-          </tr>
-        </tbody>
-      </table>
-
     </div>
-    <button type="button" class="btn btn-info" (click)="generatePDF()">Generar PDF</button>
+    <button type="button" class="btn btn-primary" (click)="addFirma()">Añadir Firma</button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+  </form>
+
+  <div *ngFor="let area of areas" class="mt-5">
+    <h3>Registros de Firmas - {{ area.nombre }}</h3>
+    <table #firmaTable class="table table-bordered" *ngIf="firmasGuardadasPorArea[area.nombre]">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Posición X</th>
+          <th>Posición Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let firma of firmasGuardadasPorArea[area.nombre]; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ firma.nombre }}</td>
+          <td>{{ firma.posicionX }}</td>
+          <td>{{ firma.posicionY }}</td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
+  <button type="button" class="btn btn-info" (click)="generatePDF()">Generar PDF</button>
+</div>

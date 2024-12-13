@@ -21,7 +21,6 @@ import { IGetTblModuloPaginadoViewModel } from '../../../domain/tbl-modulo/viewM
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 
 
-
 @Component({
 	selector: 'index-tbl-modulo-page',
 	templateUrl: './index-tbl-modulo.component.html',
@@ -55,20 +54,15 @@ export class IndexTblModuloComponent implements OnInit {
 	}
 
 	public loadData(): void {
-		//this.loading = true;
 		const currentTblModulo: IGetTblModuloPaginadoViewModel = {page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
 		this._TblModuloUseCase.getPaginadoTblModulo(currentTblModulo).then(result => {
 			this._loaderService.display(true);
-			//obs.subscribe((result: any) => {
 				this._loaderService.display(false);
 				if (result.ok) {
 					this.tblModuloRecords = result.data?.content!;
-					//this.totalElements = result.data?.totalElements;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
-				//this.loading = false;
-			//});
 		});
 	}
 

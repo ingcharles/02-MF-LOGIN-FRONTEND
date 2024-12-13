@@ -62,7 +62,7 @@ export class TblPerfilService  {
 	* @return Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>
 	*/
 	public getAllTblPerfil(): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>{
-	const url = `${apiAdminUrl}query/tbl-perfil/getAllTblPerfil`;
+	const url = `${apiAdminUrl}query/tbl-perfil/findAllTblPerfil`;
 	return new Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>((resolve, reject) => {
 	this._http.get<IResultApi>(url)
 		.subscribe({

@@ -1,0 +1,52 @@
+<!--
+* Vista create-tbl-modulo-perfil.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    create-tbl-modulo-perfil.component.html
+* @package presentation
+* @subpackage tbl-modulo-perfil
+-->
+
+<div class="pt-3 container-fluid">
+	<form autocomplete="off" [formGroup]="formTblModuloPerfil" (ngSubmit)="saveTblModuloPerfil()">
+		<div class="card card-custom">
+			<div class="card-header card-header-custom">
+				<h4>Formulario para el registro de TblModuloPerfil</h4>
+			</div>
+
+			<p-card>
+				<p class="m-0 mb-4">
+					<small>Información general del TblModuloPerfil. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
+				</p>
+
+				<p-fieldset legend="Datos Generales">
+					<div class="grid">
+
+            <div class="col-12 md:col-6">
+              <label for="idPerfil"> Perfíl (*)</label>
+              <p-multiselect id="idPerfil" [options]="optionsPerfil" optionLabel="nombre"  optionValue="idPerfil" name="idPerfil" formControlName="idPerfil" size="small"
+                class="w-full" [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblModuloPerfil)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblModuloPerfil)"
+                tooltipPosition="top" placeholder="Seleccione.."/>
+            </div>
+
+						<div class="col-12 md:col-6" *ngIf="formTblModuloPerfil.get('idModuloPerfil')?.value !== null">
+							<label for="estado"> estado (*)</label>
+							<p-select id="estado" name="estado" class="w-full" size="small"
+							formControlName="estado" placeholder="Seleccione..." [options]="optionsEstado" optionValue="name" optionLabel="value"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblModuloPerfil)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblModuloPerfil)" tooltipPosition="top"/>
+						</div>
+
+
+					</div>
+				</p-fieldset>
+				<div class="grid my-2 justify-content-end">
+					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblModuloPerfil()"/>
+					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary"/>
+				</div>
+			</p-card>
+		</div>
+	</form>
+</div>

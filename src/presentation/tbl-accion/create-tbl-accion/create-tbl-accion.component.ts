@@ -9,7 +9,7 @@ import { ICatalogo } from './../../../data/base/interfaces/i-catalogo';
 * @subpackage tbl-accion
 */
 
-import { CommonModule, DatePipe, Location } from '@angular/common';
+import { Location } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output, PLATFORM_ID, inject} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router} from '@angular/router';

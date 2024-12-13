@@ -134,3 +134,12 @@ export interface IUpdateTblUsuarioModuloViewModel extends IAuditoriaViewModel {
 	numeroNotificaciones?: number | null;
 	estado?: string | null;
 }
+
+/**
+* Interface que contiene los datos de salida que van al servicio
+* @name IGetPaginateByTblModuloPerfilEntityIdModuloViewModel
+*/
+export interface IGetPaginateByTblUsuarioEntityIdUsuarioViewModel {
+  pagination: IGetTblUsuarioModuloPaginadoViewModel;
+  idUsuario: number;
+}

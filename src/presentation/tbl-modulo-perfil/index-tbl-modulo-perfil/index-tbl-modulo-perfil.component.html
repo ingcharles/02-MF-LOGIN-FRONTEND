@@ -1,27 +1,29 @@
 <!--
-* Vista index-tbl-perfil-menu-accion.component.html
+* Vista index-tbl-modulo-perfil.component.html
 *
 * @author  Carlos Anchundia
 * @date    03-12-2024
-* @name    index-tbl-perfil-menu-accion.component.html
+* @name    index-tbl-modulo-perfil.component.html
 * @package presentation
-* @subpackage tbl-perfil-menu-accion
+* @subpackage tbl-modulo-perfil
 -->
 
 <div class="container-fluid">
   <p-toolbar>
     <div class="p-toolbar-group-left">
-      <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary"
-        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]"/>
+      <p-button label="Regresar" icon="pi pi-chevron-left" class="mr-2" severity="contrast" [raised]="true"
+        (click)="cancelTblModuloPerfil()"/>
+      <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary" [raised]="true"
+        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.CREATE(idModulo)]"/>
     </div>
   </p-toolbar>
 
-  <p-table #dt [value]="tblPerfilMenuAccionRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size"
-    [totalRecords]="tblPerfilMenuAccionRecords?.totalElements!" [showCurrentPageReport]="true"
+  <p-table #dt [value]="tblModuloPerfilRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size"
+    [totalRecords]="tblModuloPerfilRecords?.totalElements!" [showCurrentPageReport]="true"
     [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
     (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
-    [globalFilterFields]="['id_perfil_menu_accion','id_perfil','id_menu_accion','estado','fecha_registro','id_usuario_registro',]">
+    [globalFilterFields]="['id_modulo_perfil','id_modulo','id_perfil','estado','ip_crea_registro','fecha_registro','id_usuario_registro',]">
 
     <ng-template #caption>
       <div class="flex">
@@ -39,38 +41,31 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="nombreModulo" style="min-width:7rem">Módulo<p-sortIcon field="nombreModulo"/></th>
-        <th pSortableColumn="nombrePerfil" style="min-width:7rem">Perfíl<p-sortIcon field="nombrePerfil"/></th>
-        <th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu"/></th>
-        <th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion"/></th>
+        <th pSortableColumn="idPerfil" style="min-width:7rem">Perfil<p-sortIcon field="idPerfil"/></th>
         <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
-        <th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro"/>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de Registro<p-sortIcon field="fechaRegistro"/>
         </th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td>{{ item.modulo.nombre }}</td>
         <td>{{ item.perfil.nombre }}</td>
-        <td>{{ item.menu.nombre }}</td>
-        <td>{{ item.accion.nombre }}</td>
         <td>{{ item.estado }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
         <td>
           <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]"/>
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.CREATE(item.idModulo)]"/>
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.EDIT(idPerfil,item.idMenuAccion)]"/>
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.EDIT(item.idModulo,item.idModuloPerfil)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.INDEX(item.idMenu)]"/>
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.INDEX(item.idModulo)]"/>
         </td>
       </tr>
     </ng-template>
     <ng-template #summary>
       <div class="flex align-items-center justify-content-between">
-        En total hay {{ tblPerfilMenuAccionRecords?.content ? tblPerfilMenuAccionRecords?.content?.length : 0 }}
-        tblPerfilMenuAccion
+        En total hay {{ tblModuloPerfilRecords?.content ? tblModuloPerfilRecords?.content?.length : 0 }} tblModuloPerfil
       </div>
     </ng-template>
   </p-table>

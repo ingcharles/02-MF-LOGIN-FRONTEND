@@ -25,7 +25,7 @@
 
             <div class="col-12 md:col-6">
               <label for="nombre"> Nombre (*)</label>
-              <textarea pInputTextarea id="nombre" name="nombre" formControlName="nombre" class="w-fullw-full"
+              <textarea pTextarea id="nombre" name="nombre" formControlName="nombre" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblAccion)" tooltipPosition="top"
                 (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""></textarea>
@@ -34,17 +34,17 @@
             <div class="col-12 md:col-6">
               <label for="nemonico"> Nemonico (*)</label>
               <input pInputText id="nemonico" name="nemonico" formControlName="nemonico"
-                class="w-fullw-full text-uppercase" [showMaskTyped]="true" [dropSpecialCharacters]="false"
+                class="w-full text-uppercase" [showMaskTyped]="true" [dropSpecialCharacters]="false"
                 [specialCharacters]="['_']" [shownMaskExpression]="'XXXXXX_XXXXXX_XXXXXX'" mask="SSSSSS_SSSSSS_SSSSSS"
                 [validation]="true"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nemonico',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('nemonico', formTblAccion)" tooltipPosition="top"
-                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" />
+                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""/>
             </div>
 
             <div class="col-12 md:col-6">
               <label for="pagina"> Pagina (*)</label>
-              <textarea pInputTextarea id="pagina" name="pagina" formControlName="pagina" class="w-full"
+              <textarea pTextarea id="pagina" name="pagina" formControlName="pagina" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('pagina',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('pagina', formTblAccion)" tooltipPosition="top"
                 (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""></textarea>
@@ -55,11 +55,11 @@
                 placeholder="Seleccione" [options]="optionsIcon" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagen',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('imagen', formTblAccion)" tooltipPosition="top">
-                <ng-template let-option pTemplate="item">
+                <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>
                   {{ option.name }}
                 </ng-template>
-                <ng-template let-selectedOption pTemplate="selectedItem">
+                <ng-template let-selectedOption #selectedItem>
                   <i class="{{ selectedOption.value }} mr-3"></i>
                   {{ selectedOption.name }}
                 </ng-template>
@@ -71,13 +71,13 @@
                 placeholder="Seleccione..." [options]="optionsColor" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('color',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('color', formTblAccion)" tooltipPosition="top">>
-                <ng-template let-color pTemplate="item">
+                <ng-template let-color #item>
                   <div class="color-option">
                     <div class="color-box mr-3" [style.background-color]="color.color"></div>
                     <span>{{ color.name }}</span>
                   </div>
                 </ng-template>
-                <ng-template let-selectedColor pTemplate="selectedItem">
+                <ng-template let-selectedColor #selectedItem>
                   <div class="color-option">
                     <div class="color-box mr-3" [style.background-color]="selectedColor.color"></div>
                     <span>{{ selectedColor.name }}</span>
@@ -88,8 +88,8 @@
 
             <div class="col-12 md:col-6">
               <label for="descripcion"> Descripcion (*)</label>
-              <textarea pInputTextarea id="descripcion" name="descripcion" formControlName="descripcion"
-                class="w-fullw-full"
+              <textarea pTextarea id="descripcion" name="descripcion" formControlName="descripcion"
+                class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('descripcion',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('descripcion', formTblAccion)" tooltipPosition="top"
                 (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""></textarea>
@@ -100,7 +100,7 @@
               <p-inputNumber id="orden" name="orden" formControlName="orden" size="small" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('orden',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('orden', formTblAccion)" tooltipPosition="top"
-                (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+                (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder=""/>
             </div>
 
             <div class="col-12 md:col-6" *ngIf="formTblAccion.get('idAccion')?.value !== null">
@@ -108,15 +108,15 @@
               <p-select id="estado" name="estado" class="w-full" formControlName="estado"
                 placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblAccion)" tooltipPosition="top" />
+                [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblAccion)" tooltipPosition="top"/>
             </div>
 
           </div>
         </p-fieldset>
         <div class="p-fluid grid my-2 justify-content-end">
           <p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger"
-            (click)="cancelTblAccion()" />
-          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+            (click)="cancelTblAccion()"/>
+          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary"/>
         </div>
       </p-card>
     </div>

@@ -30,7 +30,8 @@ import { IPaginado } from '../../../data/base/interfaces/i-paginado';
 export class IndexTblUsuarioComponent implements OnInit {
 
 	constructor(){ }
-	_fb: FormBuilder = inject(FormBuilder);
+
+	_fb: FormBuilder = inject(FormBuilder);
 	_loaderService: LoaderService = inject(LoaderService);
 	_alertsService: AlertsService = inject(AlertsService);
 	_TblUsuarioUseCase: TblUsuarioUseCase = inject(TblUsuarioUseCase);
@@ -39,7 +40,7 @@ export class IndexTblUsuarioComponent implements OnInit {
 	public page: number = 0;
 	public size: number = 10;
 	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
-	public title:string = 'Listado TblUsuario';
+	public title:string = 'Listado de Usuarios';
 	public tblUsuarioRecords: IPaginado<IGetTblUsuarioPaginadoRsViewModel> | null = null;
 	public search: string = '';
 	public sortBy: string = 'idUsuario';

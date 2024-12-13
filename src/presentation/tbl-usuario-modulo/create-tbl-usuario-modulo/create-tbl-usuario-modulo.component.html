@@ -9,26 +9,26 @@
 -->
 
 <div class="pt-3 container-fluid">
-	<form autocomplete="off" [formGroup]="formTblUsuarioModulo" (ngSubmit)="saveTblUsuarioModulo()">
-		<div class="card card-custom">
-			<div class="card-header card-header-custom">
-				<h4>Formulario para el registro de Modulos para el usuario {{tblUsuarioRecords?.nombreCompleto}}</h4>
-			</div>
+  <form autocomplete="off" [formGroup]="formTblUsuarioModulo" (ngSubmit)="saveTblUsuarioModulo()">
+    <div class="card card-custom">
+      <div class="card-header card-header-custom">
+        <h5>Formulario para asignar módulos al usuario: {{tblUsuarioRecords?.nombreCompleto}}</h5>
+      </div>
 
-			<p-card>
-				<p class="m-0 mb-4">
-					<small>Información general del modulo. Los campos señalados con <strong>(*)</strong> son obligatorios.</small>
-				</p>
+      <p-card>
+        <p class="m-0 mb-4 text-muted">
+          Información general del modulo. Los campos señalados con <strong>(*)</strong> son obligatorios.
+        </p>
 
-				<p-fieldset legend="Datos Generales">
-					<div class="p-fluid grid">
-
+        <p-fieldset legend="Datos Generales">
+          <div class="p-fluid grid">
             <div class="col-12 md:col-6">
-              <label for="idModulo"> Modulo (*)</label>
+              <label for="idModulo"> Módulo (*)</label>
               <p-select id="idModulo" name="idModulo" class="w-full" formControlName="idModulo"
                 placeholder="Seleccione..." [options]="optionsModulo" optionValue="idModulo" optionLabel="nombre"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idModulo',formTblUsuarioModulo)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('idModulo', formTblUsuarioModulo)" tooltipPosition="top">>
+                [pTooltip]="_utilsService.getFieldErrorRequired('idModulo', formTblUsuarioModulo)"
+                tooltipPosition="top">>
               </p-select>
             </div>
 
@@ -37,12 +37,13 @@
               <p-select id="imagenModulo" name="imagenModulo" class="w-full" formControlName="imagenModulo"
                 placeholder="Seleccione" [options]="optionsImagenModulo" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagenModulo',formTblUsuarioModulo)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('imagenModulo', formTblUsuarioModulo)" tooltipPosition="top">
-                <ng-template let-option pTemplate="item">
+                [pTooltip]="_utilsService.getFieldErrorRequired('imagenModulo', formTblUsuarioModulo)"
+                tooltipPosition="top">
+                <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>
                   {{ option.name }}
                 </ng-template>
-                <ng-template let-selectedOption pTemplate="selectedItem">
+                <ng-template let-selectedOption #selectedItem>
                   <i class="{{ selectedOption.value }} mr-3"></i>
                   {{ selectedOption.name }}
                 </ng-template>
@@ -53,45 +54,49 @@
               <p-select id="colorModulo" name="colorModulo" class="w-full" formControlName="colorModulo"
                 placeholder="Seleccione..." [options]="optionsColorModulo" optionValue="value" optionLabel="name"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('colorModulo',formTblUsuarioModulo)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('colorModulo', formTblUsuarioModulo)" tooltipPosition="top">>
-                <ng-template let-color pTemplate="item">
+                [pTooltip]="_utilsService.getFieldErrorRequired('colorModulo', formTblUsuarioModulo)"
+                tooltipPosition="top">
+                <ng-template #item let-item>
                   <div class="color-option">
-                    <div class="color-box mr-3" [style.background-color]="color.color"></div>
-                    <span>{{ color.name }}</span>
+                    <div class="color-box mr-3" [style.background-color]="item.color"></div>
+                    <span>{{ item.name }}</span>
                   </div>
                 </ng-template>
-                <ng-template let-selectedColor pTemplate="selectedItem">
+                <ng-template #selectedItem let-item>
                   <div class="color-option">
-                    <div class="color-box mr-3" [style.background-color]="selectedColor.color"></div>
-                    <span>{{ selectedColor.name }}</span>
+                    <div class="color-box mr-3" [style.background-color]="item.color"></div>
+                    <span>{{ item.name }}</span>
                   </div>
                 </ng-template>
               </p-select>
             </div>
 
-						<div class="col-12 md:col-6">
-							<label for="ordenModulo"> Orden (*)</label>
-							<p-inputNumber id="ordenModulo" name="ordenModulo" formControlName="ordenModulo" size="small" class="w-full"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ordenModulo',formTblUsuarioModulo)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('ordenModulo', formTblUsuarioModulo)" tooltipPosition="top"
-							(keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
-						</div>
+            <div class="col-12 md:col-6">
+              <label for="ordenModulo"> Orden (*)</label>
+              <p-inputNumber id="ordenModulo" name="ordenModulo" formControlName="ordenModulo" size="small"
+                class="w-full"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ordenModulo',formTblUsuarioModulo)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('ordenModulo', formTblUsuarioModulo)"
+                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+            </div>
 
             <div class="col-12 md:col-6" *ngIf="formTblUsuarioModulo.get('idUsuarioModulo')?.value !== null">
-							<label for="estado"> Estado (*)</label>
-							<p-select id="estado" name="estado" class="w-full"
-							formControlName="estado" placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
-							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblUsuarioModulo)}"
-							[pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblUsuarioModulo)" tooltipPosition="top" />
-						</div>
+              <label for="estado"> Estado (*)</label>
+              <p-select id="estado" name="estado" class="w-full" formControlName="estado" placeholder="Seleccione"
+                [options]="optionsEstado" optionValue="name" optionLabel="value"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblUsuarioModulo)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblUsuarioModulo)"
+                tooltipPosition="top" />
+            </div>
 
-					</div>
-				</p-fieldset>
-				<div class="p-fluid grid my-2 justify-content-end">
-					<p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger" (click)="cancelTblUsuarioModulo()" />
-					<p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
-				</div>
-			</p-card>
-		</div>
-	</form>
+          </div>
+        </p-fieldset>
+        <div class="p-fluid grid my-2 justify-content-end">
+          <p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger"
+            (click)="cancelTblUsuarioModulo()" />
+          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+        </div>
+      </p-card>
+    </div>
+  </form>
 </div>

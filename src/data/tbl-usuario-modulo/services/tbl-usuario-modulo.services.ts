@@ -12,7 +12,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of  } from 'rxjs';
-import { IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
+import { IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
@@ -156,14 +156,24 @@ export class TblUsuarioModuloService  {
       });
     }
 
-    /*return this._http.post<IResultApi>(url, tblUsuarioModulo).pipe(
-      map((result) => {
-      return this._statusResponseService.succes<IGetTblUsuarioModuloByIdRsViewModel>(result);
-      }),
-      catchError((error) => {
-      return of(this._statusResponseService.error<IGetTblUsuarioModuloByIdRsViewModel>(error));
-      })
-    );
-    }*/
 
+    /**
+    * Obtiene el/los registros
+    * @param busqueda: IGetTblMenuAccionPaginadoViewModel
+    * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
+    */
+    public getPaginadoByTblUsuarioEntityIdUsuario(dataViewModel: IGetPaginateByTblUsuarioEntityIdUsuarioViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblUsuarioModuloPaginadoRsViewModel>>{
+      const url = `${apiAdminUrl}query/tbl-usuario-modulo/findPaginateByTblUsuarioEntityIdUsuario`;
+      return new Promise<IResponseStatusPaginadoViewModel<IGetTblUsuarioModuloRsViewModel>>((resolve, reject) => {
+      this._http.post<IResultApi>(url, dataViewModel)
+        .subscribe({
+          next: (result: IResultApi) => {
+            resolve(this._statusResponseService.succesPaginado<IGetTblUsuarioModuloRsViewModel>(result));
+          },
+          error: (error) => {
+            reject(this._statusResponseService.errorPaginado<IGetTblUsuarioModuloRsViewModel>(error));
+          }
+        });
+      });
+    }
 }

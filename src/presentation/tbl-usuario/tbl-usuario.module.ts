@@ -1,5 +1,5 @@
 /**
-* Modulo tbl-usuario.module.ts
+* Módulo tbl-usuario.module.ts
 *
 * @author  Carlos Anchundia
 * @date    03-12-2024

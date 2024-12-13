@@ -34,15 +34,15 @@
                 placeholder="Seleccione" [options]="optionsModulo" optionValue="idModulo" optionLabel="nombre"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idModulo',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idModulo', formTblPerfilMenuAccion)"
-                tooltipPosition="top" />
+                tooltipPosition="top"/>
             </div>
 
             <div class="col-12 md:col-6">
-              <label for="idPerfil"> Perfil (*)</label>
+              <label for="idPerfil"> Perfíl (*)</label>
               <p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblPerfilMenuAccion)"
-                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder=""/>
             </div>
 
             <div class="col-12 md:col-6">
@@ -50,7 +50,7 @@
               <p-multiselect id="idMenuAccion" [options]="cities" name="idMenuAccion" formControlName="idMenuAccion" size="small"
                 class="w-full" [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuAccion',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idMenuAccion', formTblPerfilMenuAccion)"
-                tooltipPosition="top" placeholder="Seleccione.." />
+                tooltipPosition="top" placeholder="Seleccione.."/>
             </div>
 
             <div class="col-12 md:col-6">
@@ -59,7 +59,7 @@
                 placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblPerfilMenuAccion)"
-                tooltipPosition="top" />
+                tooltipPosition="top"/>
             </div>
 
             <div class="col-12 md:col-6">
@@ -68,7 +68,7 @@
                 dateFormat="dd/mm/yy"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('fechaRegistro',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('fechaRegistro', formTblPerfilMenuAccion)"
-                tooltipPosition="top" placeholder="" />
+                tooltipPosition="top" placeholder=""/>
             </div>
 
             <div class="col-12 md:col-6">
@@ -77,15 +77,15 @@
                 size="small" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idUsuarioRegistro',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idUsuarioRegistro', formTblPerfilMenuAccion)"
-                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder=""/>
             </div>
 
           </div>
         </p-fieldset>
         <div class="p-fluid grid my-2 justify-content-end">
           <p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger"
-            (click)="cancelTblPerfilMenuAccion()" />
-          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+            (click)="cancelTblPerfilMenuAccion()"/>
+          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary"/>
         </div>
       </p-card>
     </div>

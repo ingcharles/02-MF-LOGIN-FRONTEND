@@ -1,5 +1,5 @@
 /**
-* Modulo tbl-perfil.module.ts
+* Módulo tbl-perfil.module.ts
 *
 * @author  Carlos Anchundia
 * @date    22-11-2024

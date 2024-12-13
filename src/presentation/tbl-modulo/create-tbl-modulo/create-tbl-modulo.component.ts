@@ -60,9 +60,8 @@ export class CreateTblModuloComponent implements OnInit {
 	public navigated = false;
 	public sub: any;
 	public optionsEstado = [
-	{name: 'Item 1', id: 1 },
-	{name: 'Item 2', id: 2 },
-	{name: 'Item 3', id: 3 }
+	{name: 'Activo', id: 'Activo' },
+	{name: 'Inactivo', id: 'Inactivo' }
 	];
 
 	ngOnInit(): void {
@@ -83,7 +82,6 @@ export class CreateTblModuloComponent implements OnInit {
 				this.navigated = true;
 				let idModulo: IGetTblModuloByIdViewModel = { idModulo: idParametro };
 				this._tblModuloUseCase.getByIdTblModulo(idModulo).then(result => {
-					//obs.subscribe((result) => {
 						this._loaderService.display(false);
 						if (result.ok) {
 							this.formTblModulo.reset(result.data);
