@@ -18,12 +18,13 @@ import { LoaderService } from '../../../data/base/services/loader.service';
 import { UtilsService } from '../../../data/base/services/utils.service';
 import { ValidatorsService } from '../../../data/base/services/validators.service';
 import { TblPerfilMenuAccionUseCase } from '../../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
-import { IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedCreateModule } from './../../shared/shared-create/shared-create.module';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
 import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
+import { ConcatTwoFieldsPipe } from '../../../data/base/pipes/concat-two-fields.pipe';
 
 @Component({
 	selector: 'create-tbl-perfil-menu-accion-page',
@@ -31,7 +32,7 @@ import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/
 	styleUrls: ['./create-tbl-perfil-menu-accion.component.scss'],
 	standalone: true,
 	imports: [
-		SharedCreateModule,
+		SharedCreateModule
 	],
 	providers: [
 	provideNgxMask()
@@ -65,17 +66,13 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	{name: 'Activo', value: 'Activo' },
 	{name: 'Inactivo', value: 'Inactivo' }
 	];
-  cities!: any[];
-  public optionsModulo:IGetTblModuloRsViewModel [] = [];
+  public optionsAccionMenu:IGetTblPerfilMenuAccionRsViewModel [] = [];
+  public idPerfil!: number;
 	ngOnInit(): void {
+    this.sub = this._activatedRoute.params.subscribe(params => {
+      this.idPerfil = params['idPerfil'];
+    });
 
-    this.cities = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-  ];
 		this.formTblPerfilMenuAccion = new FormGroup({
 			idPerfilMenuAccion: new FormControl(null, Validators.compose([Validators.max(999999999)])),
 			idModulo: new FormControl(null, Validators.compose([Validators.required, Validators.max(999999999)])),
@@ -86,7 +83,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 			idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 		});
 
-    this.loadDataModulos();
+    this.loadDataAccionMenu();
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
 			const idParametro = params['id'];
@@ -155,12 +152,15 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 		return this.formTblPerfilMenuAccion.value as IUpdateTblPerfilMenuAccionViewModel;
 	}
 
-  public loadDataModulos(){
+  public loadDataAccionMenu(){
     this._loaderService.display(true);
-		this._tblModuloUseCase.getAllTblModulo().then(result => {
+    let tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel = { idPerfil: this.idPerfil };
+
+		this._tblPerfilMenuAccionUseCase.getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
-          this.optionsModulo = result.data!;
+          this.optionsAccionMenu = result.data!;
+          console.log("optionsAccionMenu",this.optionsAccionMenu)
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

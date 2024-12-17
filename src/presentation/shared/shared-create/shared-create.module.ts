@@ -16,9 +16,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
 import { DatePicker } from 'primeng/datepicker';
 import { TextareaModule } from 'primeng/textarea';
+import { ConcatTwoFieldsPipe } from '../../../data/base/pipes/concat-two-fields.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [ConcatTwoFieldsPipe],
   imports: [
     CommonModule,
 		ReactiveFormsModule,
@@ -51,7 +52,8 @@ import { TextareaModule } from 'primeng/textarea';
 		FloatLabelModule,
     MultiSelectModule,
     DatePicker,
-    TextareaModule
+    TextareaModule,
+    ConcatTwoFieldsPipe
   ]
 })
 export class SharedCreateModule { }

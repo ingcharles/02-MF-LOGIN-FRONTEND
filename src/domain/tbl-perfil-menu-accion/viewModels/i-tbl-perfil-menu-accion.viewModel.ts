@@ -9,6 +9,8 @@
 */
 
 import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+import { IGetTblMenuAccionRsViewModel } from '../../tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
+import { IGetTblPerfilRsViewModel } from '../../tbl-perfil/viewModels/i-tbl-perfil.viewModel';
 
 
 /**
@@ -38,8 +40,8 @@ export interface ISaveTblPerfilMenuAccionViewModel extends IAuditoriaViewModel {
 */
 export interface IGetTblPerfilMenuAccionRsViewModel {
 	idPerfilMenuAccion?: number | null;
-	idPerfil?: number | null;
-	idMenuAccion?: number | null;
+	perfil?: IGetTblPerfilRsViewModel | null;
+	idMenuAccion?: IGetTblMenuAccionRsViewModel | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
 	idUsuarioRegistro?: number | null;
@@ -111,13 +113,25 @@ export interface IUpdateTblPerfilMenuAccionRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
 * @name IUpdateTblPerfilMenuAccionViewModel
 */
-export interface IUpdateTblPerfilMenuAccionViewModel extends IAuditoriaViewModel {
+export interface IUpdateTblPerfilMenuAccionViewModel  {
 	idPerfilMenuAccion?: number | null;
 	idPerfil?: number | null;
 	idMenuAccion?: number | null;
+	estado?: string | null;
+	fechaRegistro?: Date | null;
+	idUsuarioRegistro?: number | null;
+}
+
+/**
+* Interface que contiene el datos de entrada que viene del servicio
+* @name IGetTblPerfilMenuAccionByIdPerfilRsViewModel
+*/
+export interface IGetTblPerfilMenuAccionByIdPerfilRsViewModel {
+	idPerfilMenuAccion?: number | null;
+	idPerfil?: IGetTblPerfilRsViewModel | null;
+	idMenuAccion?: IGetTblMenuAccionRsViewModel | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
 	idUsuarioRegistro?: number | null;

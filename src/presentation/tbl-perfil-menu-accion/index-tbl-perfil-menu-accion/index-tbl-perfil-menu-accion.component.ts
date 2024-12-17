@@ -61,8 +61,8 @@ export class IndexTblPerfilMenuAccionComponent implements OnInit {
 
 		//this.loading = true;
 		const currentTblPerfilMenuAccion: IGetTblPerfilMenuAccionPaginadoViewModel = {page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
-		this._tblPerfilMenuAccionUseCase.getPaginadoTblPerfilMenuAccion(currentTblPerfilMenuAccion).then(result => {
-			this._loaderService.display(true);
+    this._loaderService.display(true);
+    this._tblPerfilMenuAccionUseCase.getPaginadoTblPerfilMenuAccion(currentTblPerfilMenuAccion).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
 					this.tblPerfilMenuAccionRecords = result.data!;

@@ -11,7 +11,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { TblPerfilMenuAccionService } from '../../../data/tbl-perfil-menu-accion/services/tbl-perfil-menu-accion.services';
-import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
 
@@ -69,5 +69,14 @@ export class TblPerfilMenuAccionUseCase {
 	public async updateTblPerfilMenuAccion(tblPerfilMenuAccion: IUpdateTblPerfilMenuAccionViewModel): Promise<IResponseStatusViewModel<IUpdateTblPerfilMenuAccionRsViewModel>> {
 	return await this._tblPerfilMenuAccionService.updateTblPerfilMenuAccion(tblPerfilMenuAccion);
 	}
+
+  	/**
+	* Obtiene el registro por id
+	* @param tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdViewModel
+	* @return Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdRsViewModel>>
+	*/
+	public async getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>> {
+    return await this._tblPerfilMenuAccionService.getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion);
+    }
 
 }

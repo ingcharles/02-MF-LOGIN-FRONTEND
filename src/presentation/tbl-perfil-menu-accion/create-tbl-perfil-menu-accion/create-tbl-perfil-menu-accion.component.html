@@ -27,30 +27,17 @@
         <p-fieldset legend="Datos Generales">
 
           <div class="grid">
-
-            <div class="col-12 md:col-6">
-              <label for="idModulo"> Módulo (*)</label>
-              <p-select id="idModulo" name="name" class="w-full" size="small" formControlName="idModulo"
-                placeholder="Seleccione" [options]="optionsModulo" optionValue="idModulo" optionLabel="nombre"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idModulo',formTblPerfilMenuAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('idModulo', formTblPerfilMenuAccion)"
-                tooltipPosition="top"/>
-            </div>
-
-            <div class="col-12 md:col-6">
-              <label for="idPerfil"> Perfíl (*)</label>
-              <p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblPerfilMenuAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblPerfilMenuAccion)"
-                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder=""/>
-            </div>
-
             <div class="col-12 md:col-6">
               <label for="idMenuAccion"> IdMenuAccion (*)</label>
-              <p-multiselect id="idMenuAccion" [options]="cities" name="idMenuAccion" formControlName="idMenuAccion" size="small"
+              <p-multiselect id="idMenuAccion" [options]="optionsAccionMenu" name="idMenuAccion" formControlName="idMenuAccion" size="small"
+              optionValue="menuAccion.idMenuAccion"
                 class="w-full" [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idMenuAccion',formTblPerfilMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idMenuAccion', formTblPerfilMenuAccion)"
-                tooltipPosition="top" placeholder="Seleccione.."/>
+                tooltipPosition="top" placeholder="Seleccione..">
+                <ng-template let-item pTemplate="item">
+                  {{ item.menuAccion.menu.nombre | concatTwoFields: item.menuAccion.accion.nombre }}
+                </ng-template>
+              </p-multiselect>
             </div>
 
             <div class="col-12 md:col-6">

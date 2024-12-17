@@ -12,7 +12,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of  } from 'rxjs';
-import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
@@ -135,5 +135,27 @@ export class TblPerfilMenuAccionService  {
 		});
 		});
 	}
+
+
+	/**
+	* Obtiene el registro actual
+	* @param id_perfil_menu_accion: IGetTblPerfilMenuAccionByIdViewModel
+	* @return Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdRsViewModel>>
+	*/
+	public getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>>{
+    const url = `${apiAdminUrl}query/tbl-perfil-menu-accion/findByTblPerfilEntityIdPerfil`;
+    return new Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>>((resolve, reject) => {
+    this._http.post<IResultApi>(url, tblPerfilMenuAccion)
+      .subscribe({
+        next: (result: IResultApi) => {
+          resolve(this._statusResponseService.succes<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>(result));
+        },
+        error: (error) => {
+          reject(this._statusResponseService.error<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>(error));
+        }
+      });
+    });
+    }
+
 
 }
