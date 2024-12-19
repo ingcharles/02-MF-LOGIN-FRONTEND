@@ -1,0 +1,53 @@
+<!--
+* Vista create-tbl-usuario-modulo-perfil.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    create-tbl-usuario-modulo-perfil.component.html
+* @package presentation
+* @subpackage tbl-usuario-modulo-perfil
+-->
+
+<div class="pt-3 container-fluid">
+  <form autocomplete="off" [formGroup]="formTblUsuarioModuloPerfil" (ngSubmit)="saveTblUsuarioModuloPerfil()">
+    <div class="card card-custom">
+      <div class="card-header card-header-custom">
+        <h5>Formulario para el registro de perfil para: {{title}}</h5>
+      </div>
+
+      <p-card>
+        <p class="m-0 mb-4 text-muted">
+          Información general del TblUsuarioModuloPerfil. Los campos señalados con <strong>(*)</strong> son
+          obligatorios.
+        </p>
+
+        <p-fieldset legend="Datos Generales">
+          <div class="grid">
+
+            <div class="col-12 md:col-6">
+              <label for="idPerfil"> Perfil (*)</label>
+              <p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblUsuarioModuloPerfil)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblUsuarioModuloPerfil)"
+                tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
+            </div>
+
+            <div class="col-12 md:col-6">
+              <label for="estado"> Estado (*)</label>
+              <p-select id="estado" name="estado" class="w-full" size="small" formControlName="estado"
+                placeholder="Seleccione..." [options]="optionsEstado" optionValue="name" optionLabel="value"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('estado',formTblUsuarioModuloPerfil)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('estado', formTblUsuarioModuloPerfil)"
+                tooltipPosition="top" />
+            </div>
+          </div>
+        </p-fieldset>
+        <div class="grid my-2 justify-content-end">
+          <p-button label="Cancelar" type="button" icon="pi pi-times" class="mr-2" size="small" severity="danger"
+            (click)="cancelTblUsuarioModuloPerfil()" />
+          <p-button label="Guardar" type="submit" icon="pi pi-save" class="mr-2" size="small" severity="primary" />
+        </div>
+      </p-card>
+    </div>
+  </form>
+</div>

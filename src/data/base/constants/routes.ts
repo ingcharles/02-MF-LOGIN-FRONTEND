@@ -21,6 +21,11 @@ export const ROUTES_CORE = {
       CREATE: (idUsuario: String | number) => `usuario-modulo/${idUsuario}/create`,
       EDIT: (idUsuario: String | number, id: String | number) => `usuario-modulo/${idUsuario}/edit/${id}`
     },
+    TBLUSUARIOMODULOPERFIL: {
+      INDEX: (idUsuarioModulo: String | number) => `usuario-modulo-perfil/${idUsuarioModulo}`,
+      CREATE: (idUsuarioModulo: String | number) => `usuario-modulo-perfil/${idUsuarioModulo}/create`,
+      EDIT: (idUsuarioModulo: String | number, id: String | number) => `usuario-modulo-perfil/${idUsuarioModulo}/edit/${id}`
+    },
     TBLMENU: {
       INDEX: 'menu',
       CREATE: 'menu/create',

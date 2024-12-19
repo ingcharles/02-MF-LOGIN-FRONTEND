@@ -145,7 +145,7 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
       this._loaderService.display(true);
       this._loaderService.display(false);
       if (result.ok) {
-        this.title = '' + result.data!.nombreCompleto
+        this.title = result.data!.nombreCompleto;
       } else {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }
