@@ -191,13 +191,9 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 				this._loaderService.display(false);
 				if (result.ok) {
           this.tblUsuarioRecords = result.data!;
-          //console.log("resultado",result)
-          //this.title ='Listado acciones para el menú ' + this.tblUsuarioRecords?.nombreCompleto
-					//this.tblMenuAccionRecords = result.data!;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
-				//this.loading = false;
 			});
   }
 

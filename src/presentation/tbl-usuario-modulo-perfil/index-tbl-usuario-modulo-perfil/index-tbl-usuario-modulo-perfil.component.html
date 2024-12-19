@@ -1,0 +1,68 @@
+<!--
+* Vista index-tbl-usuario-modulo-perfil.component.html
+*
+* @author  Carlos Anchundia
+* @date    03-12-2024
+* @name    index-tbl-usuario-modulo-perfil.component.html
+* @package presentation
+* @subpackage tbl-usuario-modulo-perfil
+-->
+
+<div class="container-fluid">
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary" [raised]="true"
+        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.CREATE(idUsuarioModulo)]" />
+    </div>
+  </p-toolbar>
+
+  <p-table #dt [value]="tblUsuarioModuloPerfilRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size"
+    [totalRecords]="tblUsuarioModuloPerfilRecords?.totalElements!" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+    (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
+    [globalFilterFields]="['id_usuario_modulo_perfil','id_usuario_modulo','id_perfil','estado','ip_crea_registro','fecha_registro','id_usuario_registro',]">
+
+    <ng-template #caption>
+      <div class="flex">
+        <div class="flex align-items-center justify-content-center" style="flex: 1;">
+          <h6 class="m-0"><span>Listado de perfiles para: </span><span class="text-muted">{{title}}</span></h6>
+        </div>
+        <div class="flex align-items-center justify-content-end" style="gap: 10px;">
+          <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
+          <p-iconfield>
+            <p-inputicon styleClass="pi pi-search" />
+            <input pInputText type="text" (input)="inputSearch($event)" placeholder="Buscar..." />
+          </p-iconfield>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="idPerfil" style="min-width:7rem">IdPerfil<p-sortIcon field="idPerfil" /></th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro" />
+        </th>
+        <th style="min-width:13rem">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
+        <td>{{ item.idPerfil }}</td>
+        <td>{{ item.estado }}</td>
+        <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd') : '' }}</td>
+        <td>
+          <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.CREATE]"/> -->
+          <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.EDIT(idUsuarioModulo ,item.idUsuarioModuloPerfil)]" />
+          <!-- <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" /> -->
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="flex align-items-center justify-content-between text-muted">
+        En total hay {{ tblUsuarioModuloPerfilRecords?.content?.length || 0 }} Perfil{{ tblUsuarioModuloPerfilRecords?.content?.length === 1 ? '' : 'es' }}
+      </div>
+    </ng-template>
+  </p-table>
+</div>
