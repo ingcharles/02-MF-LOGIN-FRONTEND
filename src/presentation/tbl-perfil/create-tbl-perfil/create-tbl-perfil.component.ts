@@ -55,7 +55,7 @@ export class CreateTblPerfilComponent implements OnInit {
 
 	@Output() closeTblPerfil = new EventEmitter();
 	public routeCore = ROUTES_CORE;
-	public title = 'Formulario perfil';
+	public title = 'Formulario perfíl';
 	public formTblPerfil!: FormGroup;
 	public navigated = false;
 	public sub: any;

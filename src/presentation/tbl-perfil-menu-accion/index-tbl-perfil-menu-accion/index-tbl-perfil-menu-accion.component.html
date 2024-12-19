@@ -11,6 +11,8 @@
 <div class="container-fluid">
   <p-toolbar>
     <div class="p-toolbar-group-left">
+      <p-button label="Regresar" icon="pi pi-chevron-left" class="mr-2" severity="contrast" [raised]="true"
+      (click)="cancelTblPerfilMenuAccion()"/>
       <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary"
         [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]"/>
     </div>
@@ -26,7 +28,7 @@
     <ng-template #caption>
       <div class="flex">
         <div class="flex align-items-center justify-content-center" style="flex: 1;">
-          <h2 class="m-0">{{title}}</h2>
+          <h6 class="m-0"><span>Acciones para el perfíl: </span><span class="text-muted">{{title}}</span></h6>
         </div>
         <div class="flex align-items-center justify-content-end" style="gap: 10px;">
           <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
@@ -39,25 +41,21 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="nombrePerfil" style="min-width:7rem">Perfíl<p-sortIcon field="nombrePerfil"/></th>
         <th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu"/></th>
         <th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion"/></th>
-        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
-        <th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro"/>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro"/>
         </th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td>{{ item.perfil.nombre }}</td>
-        <td>{{ item.menu.nombre }}</td>
-        <td>{{ item.accion.nombre }}</td>
-        <td>{{ item.estado }}</td>
+        <td>{{ item.menuAccion.menu.nombre }}</td>
+        <td>{{ item.menuAccion.accion.nombre }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
+        <td>{{ item.estado }}</td>
         <td>
-          <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.CREATE(idPerfil)]"/>
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.EDIT(idPerfil,item.idMenuAccion)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"
@@ -67,8 +65,8 @@
     </ng-template>
     <ng-template #summary>
       <div class="flex align-items-center justify-content-between">
-        En total hay {{ tblPerfilMenuAccionRecords?.content ? tblPerfilMenuAccionRecords?.content?.length : 0 }}
-        tblPerfilMenuAccion
+        En total hay {{ tblPerfilMenuAccionRecords?.content?.length || 0 }} {{
+        tblPerfilMenuAccionRecords?.content?.length === 1 ? 'Acción' : 'Acciones' }}
       </div>
     </ng-template>
   </p-table>

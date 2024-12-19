@@ -102,6 +102,7 @@ export interface IGetTblPerfilMenuAccionByIdRsViewModel {
 export interface IGetTblPerfilMenuAccionByIdViewModel {
 	idPerfilMenuAccion?: number | null;
   idPerfil?: number | null;
+  idMenu?: number | null;
 }
 
 /**

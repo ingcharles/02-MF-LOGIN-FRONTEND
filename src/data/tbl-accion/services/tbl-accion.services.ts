@@ -19,6 +19,7 @@ import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-resp
 import { IResponseStatusPaginadoViewModel } from '../../../domain/base/viewModels/i-response-status-paginado.viewModel';
 import { IResultApi } from '../../base/interfaces/i-result-api';
 import { IGetTblMenuAccionByIdRsViewModel, IGetTblMenuAccionByIdViewModel } from '../../../domain/tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionByIdViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 
 const apiAdminUrl: string = environment.apiAdminUrl;
 
@@ -156,4 +157,24 @@ export class TblAccionService  {
       });
     });
   }
+
+     /**
+  * Obtiene el/los registros
+  * @param busqueda: IGetTblMenuAccionPaginadoViewModel
+  * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
+  */
+     public getAllTblAccionNotInIdMenuAndIdPerfil(dataViewModel: IGetTblPerfilMenuAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>{
+      const url = `${apiAdminUrl}query/tbl-accion/findAllTblAccionNotInIdMenuAndIdPerfil`;
+      return new Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>>((resolve, reject) => {
+      this._http.post<IResultApi>(url, dataViewModel)
+        .subscribe({
+          next: (result: IResultApi) => {
+            resolve(this._statusResponseService.succes<IGetTblAccionRsViewModel>(result));
+          },
+          error: (error) => {
+            reject(this._statusResponseService.error<IGetTblAccionRsViewModel>(error));
+          }
+        });
+      });
+    }
 }

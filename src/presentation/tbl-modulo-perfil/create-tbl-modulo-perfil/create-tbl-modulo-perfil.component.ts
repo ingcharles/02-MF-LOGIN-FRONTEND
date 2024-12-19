@@ -57,7 +57,7 @@ export class CreateTblModuloPerfilComponent implements OnInit {
   public optionsPerfil:IGetTblPerfilRsViewModel [] = [];
 	@Output() closeTblModuloPerfil = new EventEmitter();
 	public routeCore = ROUTES_CORE;
-	public title = 'Formulario para asignar perfil al módulo: ';
+	public title = 'Formulario para asignar perfíl al módulo: ';
 	public formTblModuloPerfil!: FormGroup;
 	public navigated = false;
   public idModulo!: number;

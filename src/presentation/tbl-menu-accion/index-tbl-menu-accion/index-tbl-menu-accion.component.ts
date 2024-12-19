@@ -123,7 +123,7 @@ export class IndexTblMenuAccionComponent implements OnInit {
 			this._loaderService.display(true);
 				this._loaderService.display(false);
 				if (result.ok) {
-          this.title ='Listado acciones para el menú ' + result.data!.nombre
+          this.title = result.data!.nombre
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

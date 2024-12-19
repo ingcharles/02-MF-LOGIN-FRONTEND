@@ -12,9 +12,9 @@
   <p-toolbar>
     <div class="p-toolbar-group-left">
       <p-button label="Regresar" type="button" icon="pi pi-chevron-left" class="mr-2" severity="secondary"
-        (click)="cancelTblMenuAccion()"/>
+        (click)="cancelTblMenuAccion()" />
       <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary"
-        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]"/>
+        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]" />
     </div>
   </p-toolbar>
 
@@ -28,7 +28,7 @@
     <ng-template #caption>
       <div class="flex">
         <div class="flex align-items-center justify-content-center" style="flex: 1;">
-          <h2 class="m-0">{{title}}</h2>
+          <h6 class="m-0">Acciones asignadas al menú: <span class="text-muted">{{title}}</span></h6>
         </div>
         <div class="flex align-items-center justify-content-end" style="gap: 10px;">
           <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
@@ -41,9 +41,9 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu"/></th>
-        <th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion"/></th>
-        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
+        <th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu" /></th>
+        <th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion" /></th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
     </ng-template>
@@ -53,17 +53,18 @@
         <td>{{ item.accion.nombre }}</td>
         <td>{{ item.estado }}</td>
         <td>
-          <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]"/>
+          <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]"/> -->
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.EDIT(idMenu,item.idMenuAccion)]"/>
-          <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger"/>
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.EDIT(idMenu,item.idMenuAccion)]" />
+          <!-- <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger"/> -->
         </td>
       </tr>
     </ng-template>
     <ng-template #summary>
       <div class="flex align-items-center justify-content-between">
-        En total hay {{ tblMenuAccionRecords?.content ? tblMenuAccionRecords?.content?.length : 0 }} Acción
+        En total hay {{ tblMenuAccionRecords?.content?.length || 0 }} {{ tblMenuAccionRecords?.content?.length === 1 ?
+        'Acción' : 'Acciones' }}
       </div>
     </ng-template>
   </p-table>

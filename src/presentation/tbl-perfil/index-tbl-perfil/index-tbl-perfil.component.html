@@ -37,10 +37,12 @@
 		<ng-template #header>
 			<tr>
         <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre"/></th>
-				<th pSortableColumn="nemonico" style="min-width:10rem">Nemonico<p-sortIcon field="nemonico"/></th>
-				<th pSortableColumn="descripcion" style="min-width:10rem">Descripcion<p-sortIcon field="descripcion"/></th>
+				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
+				<th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion"/></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro" />
+        </th>
 				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
-				<th style="min-width:13rem">Acciones</th>
+        <th style="min-width:13rem">Acciones</th>
 			</tr>
 		</ng-template>
 		<ng-template #body let-item>
@@ -48,18 +50,20 @@
         <td>{{ item.nombre }}</td>
 				<td>{{ item.nemonico }}</td>
 				<td>{{ item.descripcion }}</td>
+        <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
 				<td>{{ item.estado }}</td>
-				<td>
-					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.CREATE]"/>
+        <td>
+					<!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.CREATE]"/> -->
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.EDIT(item.idPerfil)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir menú acción" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]"/>
 				</td>
 			</tr>
 		</ng-template>
 		<ng-template #summary>
-			<div class="flex align-items-center justify-content-between">
-				En total hay {{ tblPerfilRecords?.content ? tblPerfilRecords?.content?.length : 0 }} tblPerfil
-			</div>
+      <div class="flex align-items-center justify-content-between text-muted">
+        En total hay {{ tblPerfilRecords?.content?.length || 0 }} Perfil{{
+        tblPerfilRecords?.content?.length === 1 ? '' : 'es' }}
+      </div>
 		</ng-template>
 	</p-table>
 </div>
