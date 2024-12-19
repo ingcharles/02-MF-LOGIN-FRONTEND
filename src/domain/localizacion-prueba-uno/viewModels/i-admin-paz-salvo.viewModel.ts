@@ -8,7 +8,7 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+
 
 
 /**
@@ -21,10 +21,10 @@ export interface ISaveAdminPazSalvoRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name ISaveAdminPazSalvoViewModel
 */
-export interface ISaveAdminPazSalvoViewModel extends IAuditoriaViewModel {
+export interface ISaveAdminPazSalvoViewModel {
 	campoFechaUnicio?: Date | null;
 	campoFechaFin?: Date | null;
 	campoDescripcion?: string | null;
@@ -101,10 +101,10 @@ export interface IUpdateAdminPazSalvoRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name IUpdateAdminPazSalvoViewModel
 */
-export interface IUpdateAdminPazSalvoViewModel extends IAuditoriaViewModel {
+export interface IUpdateAdminPazSalvoViewModel {
 	campoSerial?: number | null;
 	campoFechaUnicio?: Date | null;
 	campoFechaFin?: Date | null;

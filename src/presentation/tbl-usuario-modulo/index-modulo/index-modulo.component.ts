@@ -29,7 +29,6 @@ export class IndexModuloComponent implements OnInit {
       this.loadModule();
     }
     clickSistema(idSistema: number) {
-      console.log("idSistema",idSistema)
       this.outputSistemaSeleccionado.emit(idSistema);
       this.sendUsuarioModulo(idSistema)
     }
@@ -41,9 +40,7 @@ export class IndexModuloComponent implements OnInit {
         this._loaderService.display(true);
         //obs.subscribe((result: any) => {
           this._loaderService.display(false);
-          console.log("result1:",result)
           if (result.ok) {
-            console.log("result",result)
             this.usuarioModulos = result.data;
 
             //this.tblUsuarioModuloRecords = result.data?.content!;

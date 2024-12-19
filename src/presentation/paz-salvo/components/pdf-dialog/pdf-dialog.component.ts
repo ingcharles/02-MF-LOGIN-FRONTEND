@@ -31,20 +31,8 @@ export class PdfDialogComponent implements AfterViewInit {
     const pdf = new jsPDF({
       orientation: 'landscape'
     });
-    console.log("areas", areas);
-    console.log("firmasGuardadasPorAre", firmasGuardadasPorArea);
 
 
-    // for (const area in firmasGuardadasPorArea) {
-    //   const areaIndex = areas.findIndex(a => a.nombre === area);
-    //   const areaData = areas[areaIndex];
-    //   console.log("area", area);
-    //    pdf.text(`Área: ${areaData.nombre}`, areaData.posicionX, area.posicionY);
-    //   firmasGuardadasPorArea[area].forEach((registro:any , index:any )=> {
-    //     pdf.text(`Nombre: ${registro.nombre}`, registro.posicionX, registro.posicionY);
-    //    // console.log(`Persona: ${registro.nombre}`, 20, y);
-    //   });
-    // }
 
     areas.forEach((area, index) => {
       // if (index!=1){
@@ -52,19 +40,14 @@ export class PdfDialogComponent implements AfterViewInit {
       // }
       const firmas = firmasGuardadasPorArea[area.nombre];
       // area.firmas = firmas  as IFirmaItemAdminPazSalvoViewModel[];
-      // console.log("firmas", firmas);
-      // console.log("index", index);
 
       if(firmas) {
       //   let posicionYAux=0
       //   if(areas[index-1]){
       //     posicionYAux = (areas[index-1].firmas.length*20) +30
-      //     console.log("areas[index-1]", areas[index-1])
-      //     console.log("posicion", posicionYAux)
       //   }
       //   else{
       //   posicionYAux = area.posicionY;
-      //   console.log("posicion1", posicionYAux)
       // }
 
       pdf.text(`Área: ${area.nombre}`, area.posicionX, area.posicionY);

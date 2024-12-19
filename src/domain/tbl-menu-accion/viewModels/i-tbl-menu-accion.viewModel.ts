@@ -8,7 +8,7 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+
 import { IGetTblAccionByIdRsViewModel, IGetTblAccionRsViewModel } from '../../tbl-accion/viewModels/i-tbl-accion.viewModel';
 import { IGetTblMenuByIdRsViewModel, IGetTblMenuRsViewModel } from '../../tbl-menu/viewModels/i-tbl-menu.viewModel';
 
@@ -23,10 +23,10 @@ export interface ISaveTblMenuAccionRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name ISaveTblMenuAccionViewModel
 */
-export interface ISaveTblMenuAccionViewModel extends IAuditoriaViewModel {
+export interface ISaveTblMenuAccionViewModel {
 	idMenu?: number | null;
 	idAccion?: number | null;
 	estado?: string | null;
@@ -123,10 +123,10 @@ export interface IUpdateTblMenuAccionRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name IUpdateTblMenuAccionViewModel
 */
-export interface IUpdateTblMenuAccionViewModel extends IAuditoriaViewModel {
+export interface IUpdateTblMenuAccionViewModel {
 	idMenuAccion?: number | null;
 	idMenu?: number | null;
 	idAccion?: number | null;

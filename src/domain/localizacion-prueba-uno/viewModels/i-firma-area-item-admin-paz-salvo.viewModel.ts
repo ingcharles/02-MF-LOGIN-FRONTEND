@@ -8,7 +8,7 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+
 import { IFirmaItemAdminPazSalvoViewModel } from './i-firma-item-admin-paz-salvo.viewModel';
 
 

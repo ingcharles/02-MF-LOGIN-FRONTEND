@@ -122,7 +122,6 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 	}
 
 	public saveTblUsuarioModulo(): void {
-      console.log("this.formTblUsuarioModulo",this.formTblUsuarioModulo.value);
 		if (this.formTblUsuarioModulo.invalid) {
 			this.formTblUsuarioModulo.markAllAsTouched();
 			this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);
@@ -184,14 +183,12 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
   }
 
   public loadDataUsuario(idUsuario:number){
-    console.log("Loading dataloadDataUsuario",idUsuario)
     const currentTblUsuario: IGetTblUsuarioByIdViewModel = {idUsuario}
     this._loaderService.display(true);
 		this._tblUsuarioUseCase.getByIdTblUsuario(currentTblUsuario).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
           this.tblUsuarioRecords = result.data!;
-          //console.log("resultado",result)
           //this.title ='Listado acciones para el menú ' + this.tblUsuarioRecords?.nombreCompleto
 					//this.tblMenuAccionRecords = result.data!;
 				} else {

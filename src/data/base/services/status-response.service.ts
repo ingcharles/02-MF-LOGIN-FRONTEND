@@ -17,7 +17,6 @@ export class StatusResponseService {
         responseStatus = { message: error.Message, statusCode: StatusCode, ok }
       }
     } else {
-      console.log(status)
       if (status == 401) {
         responseStatus = { message: error.message, statusCode: status, ok }
       } else if (status == 403) {
@@ -26,7 +25,6 @@ export class StatusResponseService {
         responseStatus = { message: messages.serviceNotFound, statusCode: status, ok }
       }
     }
-    console.log("responseStatus", responseStatus)
     return responseStatus;
   }
 
@@ -51,7 +49,6 @@ export class StatusResponseService {
         responseStatus = { message: error.Message, statusCode: StatusCode, ok }
       }
     } else {
-      console.log(status)
       if (status == 401) {
         responseStatus = { message: error.message, statusCode: status, ok }
       } else if (status == 403) {
@@ -60,7 +57,6 @@ export class StatusResponseService {
         responseStatus = { message: messages.serviceNotFound, statusCode: status, ok }
       }
     }
-    console.log("responseStatus", responseStatus)
     return responseStatus;
   }
 

@@ -25,10 +25,10 @@
 
             <div class="col-12 md:col-6">
               <label for="nombre"> Nombre (*)</label>
-              <textarea pTextarea id="nombre" name="nombre" formControlName="nombre" class="w-full"
+              <input pTextarea id="nombre" name="nombre" formControlName="nombre" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('nombre',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('nombre', formTblAccion)" tooltipPosition="top"
-                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""></textarea>
+                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""/>
             </div>
 
             <div class="col-12 md:col-6">
@@ -44,10 +44,10 @@
 
             <div class="col-12 md:col-6">
               <label for="pagina"> Pagina (*)</label>
-              <textarea pTextarea id="pagina" name="pagina" formControlName="pagina" class="w-full"
+              <input pTextarea id="pagina" name="pagina" formControlName="pagina" class="w-full"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('pagina',formTblAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('pagina', formTblAccion)" tooltipPosition="top"
-                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""></textarea>
+                (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder=""/>
             </div>
             <div class="col-12 md:col-6">
               <label for="estado"> Imagen (*)</label>

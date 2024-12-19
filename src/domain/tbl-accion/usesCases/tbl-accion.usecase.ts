@@ -14,6 +14,7 @@ import { TblAccionService } from '../../../data/tbl-accion/services/tbl-accion.s
 import { IGetTblAccionByIdRsViewModel, IGetTblAccionByIdViewModel, IGetTblAccionRsViewModel, IGetTblAccionViewModel, IGetTblAccionPaginadoRsViewModel, IGetTblAccionPaginadoViewModel, ISaveTblAccionRsViewModel, ISaveTblAccionViewModel, IUpdateTblAccionRsViewModel, IUpdateTblAccionViewModel  } from '../viewModels/i-tbl-accion.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
+import { IGetTblMenuAccionByIdRsViewModel, IGetTblMenuAccionByIdViewModel } from '../../tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
 
 
 @Injectable({
@@ -70,4 +71,12 @@ export class TblAccionUseCase {
 	return await this._tblAccionService.updateTblAccion(tblAccion);
 	}
 
+  /**
+    * Obtiene el/los registros
+    * @param tblMenuAccion: IGetTblMenuAccionPaginadoViewModel
+    * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
+    */
+    public async getAllTblAccionNotInIdMenu(tblMenuAccion: IGetTblMenuAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblAccionRsViewModel>> {
+      return await this._tblAccionService.getAllTblAccionNotInIdMenu(tblMenuAccion);
+    }
 }

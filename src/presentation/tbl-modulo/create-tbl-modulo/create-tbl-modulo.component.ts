@@ -108,8 +108,6 @@ export class CreateTblModuloComponent implements OnInit {
 		}
 
 		const currentTblModulo: any = this.currentTblModulo;
-    console.log("currentTblModulo",currentTblModulo)
-		//currentTblModulo.idModulo = currentTblModulo.idModulo.id;
 
 		if (currentTblModulo.idModulo) {
 			this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {

@@ -8,7 +8,7 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+
 
 
 /**
@@ -21,10 +21,10 @@ export interface ISaveTblModuloPerfilRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name ISaveTblModuloPerfilViewModel
 */
-export interface ISaveTblModuloPerfilViewModel extends IAuditoriaViewModel {
+export interface ISaveTblModuloPerfilViewModel {
 	idModulo?: number | null;
 	idPerfil?: number | null;
 	estado?: string | null;
@@ -115,10 +115,10 @@ export interface IUpdateTblModuloPerfilRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name IUpdateTblModuloPerfilViewModel
 */
-export interface IUpdateTblModuloPerfilViewModel extends IAuditoriaViewModel {
+export interface IUpdateTblModuloPerfilViewModel {
 	idModuloPerfil?: number | null;
 	idModulo?: number | null;
 	idPerfil?: number | null;

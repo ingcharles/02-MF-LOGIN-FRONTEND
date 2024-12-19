@@ -83,10 +83,11 @@ export class CreateTblMenuAccionComponent implements OnInit {
 		});
 
     this.loadDataMenu(this.idMenu);
-    this.loadDataAcciones();
+
 
 		this.sub = this._activatedRoute.params.subscribe(params => {
 			const idParametro = params['id'];
+      this.loadDataAcciones(this.idMenu,idParametro);
 			if (idParametro != undefined) {
 				let idMenuAccion: IGetTblMenuAccionByIdViewModel = { idMenuAccion: idParametro };
 				this._loaderService.display(true);
@@ -122,7 +123,7 @@ export class CreateTblMenuAccionComponent implements OnInit {
 					this._loaderService.display(false);
 					if (result.ok) {
 						this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENUACCION.INDEX);
+						this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENUACCION.INDEX(this.idMenu));
 					} else {
 						this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 					}
@@ -162,7 +163,6 @@ export class CreateTblMenuAccionComponent implements OnInit {
 				this._loaderService.display(false);
 				if (result.ok) {
           this.tblMenuRecords = result.data!;
-          console.log("resultado",result)
           this.title ='Listado acciones para el menú ' + this.tblMenuRecords?.nombre
 					//this.tblMenuAccionRecords = result.data!;
 				} else {
@@ -171,13 +171,13 @@ export class CreateTblMenuAccionComponent implements OnInit {
 				//this.loading = false;
 			});
   }
-  public loadDataAcciones(){
+  public loadDataAcciones(idMenu:number, idMenuAccion:number){
     this._loaderService.display(true);
-		this._tblAccionUseCase.getAllTblAccion().then(result => {
+    const currentTblMenuAccion: IGetTblMenuAccionByIdViewModel = {idMenu,idMenuAccion}
+		this._tblAccionUseCase.getAllTblAccionNotInIdMenu(currentTblMenuAccion).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
           this.optionsAccion = result.data!;
-          console.log("resultado optionsAccion",result)
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

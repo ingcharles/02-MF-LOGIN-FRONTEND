@@ -61,7 +61,7 @@
 				<td>{{ item.orden }}</td>
 				<td>{{ item.estado }}</td>
 				<td>
-					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENU.CREATE]"/>
+					<!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENU.CREATE]"/> -->
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENU.EDIT(item.idMenu)]"/>
 					<p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.INDEX(item.idMenu)]"/>
 				</td>

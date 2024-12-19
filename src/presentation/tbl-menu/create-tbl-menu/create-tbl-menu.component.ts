@@ -143,9 +143,6 @@ export class CreateTblMenuComponent implements OnInit {
 		}
 
 		this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmSave, () => {
-			//currentTblMenu['estado']= this.formTblMenu.get('estado')?.value?.id;
-      //console.log("formTblMenu",this.formTblMenu.get('estado')?.value?.id)
-      //console.log("currentTblMenu",currentTblMenu)
       this._tblMenuUseCase.saveTblMenu(currentTblMenu as ISaveTblMenuViewModel).then(obs => {
 				this._loaderService.display(true);
 				obs.subscribe((result) => {
@@ -180,7 +177,6 @@ export class CreateTblMenuComponent implements OnInit {
 				if (result.ok) {
 
 					this.optionsMenuPadre = result.data;
-          console.log("result11:",this.optionsMenuPadre);
 					//this.totalElements = result.data?.totalElements;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);

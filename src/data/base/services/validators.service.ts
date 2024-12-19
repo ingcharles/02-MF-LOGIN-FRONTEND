@@ -233,7 +233,6 @@ export class ValidatorsService {
   *  @param {any} event recibe el evento del componente
   */
   public validarAlfanumericos(event: any) {
-    //console.log(event);
     let key = event.keyCode;
     if (key === 60 || key === 62) {
       event.returnValue = false;
@@ -256,7 +255,6 @@ export class ValidatorsService {
 
   }
   onToolbarPreparing(event: any): void {
-    console.log("onEditorPreparing", event.toolbarOptions);
     event.toolbarOptions.items.forEach((item: any) => {
       if (item.name === "exportButton") {
         // item.options = {

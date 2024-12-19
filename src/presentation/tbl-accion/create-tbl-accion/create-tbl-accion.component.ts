@@ -106,7 +106,6 @@ export class CreateTblAccionComponent implements OnInit {
 			});
       this.optionsIcon = this._fontAwesomeService.loadIcons();
       this.optionsColor = this._colorService.loadColors();
-      console.log(this.optionsIcon);
 	}
 
 	public saveTblAccion(): void {

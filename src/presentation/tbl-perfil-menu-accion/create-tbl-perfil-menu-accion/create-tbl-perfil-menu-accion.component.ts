@@ -25,6 +25,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
 import { IGetTblModuloRsViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 import { ConcatTwoFieldsPipe } from '../../../data/base/pipes/concat-two-fields.pipe';
+import { TblMenuAccionUseCase } from '../../../domain/tbl-menu-accion/usesCases/tbl-menu-accion.usecase';
 
 @Component({
 	selector: 'create-tbl-perfil-menu-accion-page',
@@ -54,7 +55,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
 	_alertsService: AlertsService = inject(AlertsService);
 	_validatorsService: ValidatorsService = inject(ValidatorsService);
 	_tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase = inject(TblPerfilMenuAccionUseCase);
-  _tblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
+  _tblMenuAccionUseCase: TblMenuAccionUseCase = inject(TblMenuAccionUseCase);
 
 	@Output() closeTblPerfilMenuAccion = new EventEmitter();
 	public routeCore = ROUTES_CORE;
@@ -156,11 +157,10 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
     this._loaderService.display(true);
     let tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel = { idPerfil: this.idPerfil };
 
-		this._tblPerfilMenuAccionUseCase.getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion).then(result => {
+		this._tblMenuAccionUseCase.getAllTblMenuAccionNotInIdPerfil(tblPerfilMenuAccion).then(result => {
 				this._loaderService.display(false);
 				if (result.ok) {
           this.optionsAccionMenu = result.data!;
-          console.log("optionsAccionMenu",this.optionsAccionMenu)
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}

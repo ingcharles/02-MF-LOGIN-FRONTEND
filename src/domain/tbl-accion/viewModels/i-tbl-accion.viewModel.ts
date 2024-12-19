@@ -8,7 +8,7 @@
 * @subpackage Domain
 */
 
-import { IAuditoriaViewModel } from '../../base/viewModels/i-auditoriaView.Model';
+
 
 
 /**
@@ -21,10 +21,10 @@ export interface ISaveTblAccionRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name ISaveTblAccionViewModel
 */
-export interface ISaveTblAccionViewModel extends IAuditoriaViewModel {
+export interface ISaveTblAccionViewModel {
 	nombre?: string | null;
 	nemonico?: string | null;
 	pagina?: string | null;
@@ -131,10 +131,10 @@ export interface IUpdateTblAccionRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
-* Extiende IAuditoriaViewModel
+
 * @name IUpdateTblAccionViewModel
 */
-export interface IUpdateTblAccionViewModel extends IAuditoriaViewModel {
+export interface IUpdateTblAccionViewModel  {
 	idAccion?: number | null;
 	nombre?: string | null;
 	nemonico?: string | null;

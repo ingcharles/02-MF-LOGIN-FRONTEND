@@ -142,7 +142,7 @@ export class TblPerfilMenuAccionService  {
 	* @param id_perfil_menu_accion: IGetTblPerfilMenuAccionByIdViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdRsViewModel>>
 	*/
-	public getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>>{
+	public getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>>{
     const url = `${apiAdminUrl}query/tbl-perfil-menu-accion/findByTblPerfilEntityIdPerfil`;
     return new Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>>((resolve, reject) => {
     this._http.post<IResultApi>(url, tblPerfilMenuAccion)

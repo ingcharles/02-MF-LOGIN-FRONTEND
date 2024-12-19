@@ -75,7 +75,6 @@ export class CreateAdminPazSalvoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("c","CreateAdminPazSalvoComponent");
     this.areas.forEach(area => {
       this.firmasGuardadasPorArea[area.nombre] = [];
     });
@@ -88,7 +87,6 @@ export class CreateAdminPazSalvoComponent implements OnInit {
   addFirma() {
     if (this.formAdminPazSalvo.valid) {
       const selectedArea = this.formAdminPazSalvo.value;
-      //console.log("selectedArea",selectedArea)
       //if (this.firmasGuardadasPorArea[selectedArea].length < this.getAreaMaxRegistros(selectedArea)) {
       // const firmaGroup = this.fb.group({
       //   area: [selectedArea, Validators.required],
@@ -158,7 +156,6 @@ export class CreateAdminPazSalvoComponent implements OnInit {
   //   if (this.formAdminPazSalvo.valid) {
   //     const area = this.formAdminPazSalvo.get('area')?.value;
   //     const areaIndex = this.areas.findIndex(a => a.nombre === area);
-  //     console.log("areaIndex",areaIndex);
   //     const areaData = this.areas[areaIndex];
 
   //     if (areaData) {
@@ -183,24 +180,17 @@ export class CreateAdminPazSalvoComponent implements OnInit {
   //       );
 
   //       // Actualizar área actual para la última posición Y utilizada
-  //       console.log("firmasAgrupadas",firmasAgrupadas)
   //       let y = 10; // Posición Y inicial
   //       for (const area in firmasAgrupadas) {
-  //         console.log(area, 10, y);
 
   //         const areaIndex1 = this.areas.findIndex(a => a.nombre === area);
-  //     console.log("areaIndex",areaIndex1);
   //     this.areas[areaIndex1].posicionY = y;
   //         y += 10;
   //         firmasAgrupadas[area].forEach((registro:any , index:any )=> {
-  //           console.log(`Persona: ${registro.nombre}`, 20, y);
   //           registro.posicionY = y;
   //           y += 10;
   //         });
   //       }
-  //       console.log("this.areas[areaIndex]",this.areas[areaIndex])
-  //       console.log("this.areas",this.areas)
-  //       console.log("firmasAgrupadas1",firmasAgrupadas)
   //       // Guardar las firmas agrupadas por área
   //       this.firmasGuardadasPorArea = firmasAgrupadas;
   //     }
@@ -324,7 +314,6 @@ export class CreateAdminPazSalvoComponent implements OnInit {
     //     const firmasAgrupadas: { [key: string]: IFirmaAreaItemAdminPazSalvoViewModel[] } = this.firmas.reduce(
     //       (acc: { [key: string]: IFirmaItemAdminPazSalvoViewModel[] }, firma: IFirmaItemAdminPazSalvoViewModel) => {
 
-    //         console.log("acc[firma.area] ", acc[firma.area]);
     //         if (!firma.posicionY)
     //           if (!acc[firma.area] && firma.area === areaData.nombre) {
     //             firma.posicionY = posicionY;
@@ -335,12 +324,9 @@ export class CreateAdminPazSalvoComponent implements OnInit {
     //         //let posicionYAux = 0;
     //         if (this.areas[areaIndex - 1]) {
     //           posicionY = (this.areas[areaIndex - 1].firmas.length * 20) + 30
-    //           console.log("areas[index-1]", this.areas[areaIndex - 1])
-    //           console.log("posicion", posicionY)
     //         }
     //         else {
     //           //posicionYAux = areaData.posicionY;
-    //           console.log("posicion1", posicionY)
     //         }
     //         areaData.posicionY = posicionY;
 
@@ -369,19 +355,15 @@ export class CreateAdminPazSalvoComponent implements OnInit {
     //     //   // }
     //     //   const firmas = this.firmasGuardadasPorArea[area.nombre];
     //     //   //area.firmas = firmas  as IFirmaItemAdminPazSalvoViewModel[];
-    //     //   console.log("firmas", firmas);
-    //     //   console.log("index", index);
+
 
     //     //   if(firmas) {
     //     //     let posicionYAux=0
     //     //     if(this.areas[index-1]){
     //     //       posicionYAux = (this.areas[index-1].firmas.length*20) +30
-    //     //       console.log("areas[index-1]", this.areas[index-1])
-    //     //       console.log("posicion", posicionYAux)
     //     //     }
     //     //     else{
     //     //     posicionYAux = area.posicionY;
-    //     //     console.log("posicion1", posicionYAux)
     //     //   }
     //     //   area.posicionY = posicionYAux;
     //     // }

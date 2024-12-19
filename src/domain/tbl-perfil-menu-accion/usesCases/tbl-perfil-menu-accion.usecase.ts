@@ -75,7 +75,7 @@ export class TblPerfilMenuAccionUseCase {
 	* @param tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdRsViewModel>>
 	*/
-	public async getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdRsViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>> {
+	public async getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion: IGetTblPerfilMenuAccionByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>> {
     return await this._tblPerfilMenuAccionService.getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion);
     }
 
