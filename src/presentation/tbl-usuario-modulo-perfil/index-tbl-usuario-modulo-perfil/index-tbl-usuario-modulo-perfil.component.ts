@@ -7,6 +7,7 @@
 * @package presentation
 * @subpackage tbl-usuario-modulo-perfil
 */
+import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { messages } from '../../../data/base/constants/messages';
@@ -40,6 +41,7 @@ export class IndexTblUsuarioModuloPerfilComponent implements OnInit {
   _tblUsuarioModuloPerfilUseCase: TblUsuarioModuloPerfilUseCase = inject(TblUsuarioModuloPerfilUseCase);
   _tblUsuarioModuloUseCase: TblUsuarioModuloUseCase = inject(TblUsuarioModuloUseCase);
   _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  _location: Location = inject(Location);
 
   public routeCore = ROUTES_CORE;
   public page: number = 0;
@@ -59,13 +61,14 @@ export class IndexTblUsuarioModuloPerfilComponent implements OnInit {
       this.idUsuarioModulo = params['idUsuarioModulo'];
     });
     this.loadDataUsuarioModulo(this.idUsuarioModulo);
+
   }
 
   public loadData(): void {
     this.loading = true;
     const currentTblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilPaginadoViewModel = { page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
+    this._loaderService.display(true);
     this._tblUsuarioModuloPerfilUseCase.getPaginadoTblUsuarioModuloPerfil(currentTblUsuarioModuloPerfil).then(result => {
-      this._loaderService.display(true);
       this._loaderService.display(false);
       if (result.ok) {
         this.tblUsuarioModuloPerfilRecords = result.data!;
@@ -87,11 +90,11 @@ export class IndexTblUsuarioModuloPerfilComponent implements OnInit {
     this.loadData();
   }
 
-  public getStatus(status: boolean): any {
+  public getStatus(status: string): any {
     switch (status) {
-      case true:
+      case 'Activo':
         return 'primary';
-      case false:
+      case 'Inactivo':
         return 'danger';
       default:
         return 'warning';
@@ -122,6 +125,10 @@ export class IndexTblUsuarioModuloPerfilComponent implements OnInit {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }
     });
+  }
+
+  public cancelTblUsuarioModuloPerfil(): void {
+    this._location.back();
   }
 
 }

@@ -57,9 +57,9 @@
         <td>{{ item.estado }}</td>
         <td>
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.EDIT(idPerfil,item.idMenuAccion)]"/>
-          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.INDEX(item.idMenu)]"/>
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.EDIT(idPerfil,item.idPerfilMenuAccion)]"/>
+          <!-- <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.INDEX(item.idMenu)]"/> -->
         </td>
       </tr>
     </ng-template>

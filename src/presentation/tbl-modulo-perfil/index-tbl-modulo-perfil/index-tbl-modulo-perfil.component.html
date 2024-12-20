@@ -28,7 +28,7 @@
     <ng-template #caption>
       <div class="flex">
         <div class="flex align-items-center justify-content-center" style="flex: 1;">
-          <h2 class="m-0">{{title}}</h2>
+          <h6 class="m-0"><span>Perfiles para el módulo: </span><span class="text-muted">{{title}}</span></h6>
         </div>
         <div class="flex align-items-center justify-content-end" style="gap: 10px;">
           <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
@@ -54,8 +54,8 @@
         <td>{{ item.estado }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
         <td>
-          <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.CREATE(item.idModulo)]"/>
+          <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.CREATE(item.idModulo)]"/> -->
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.EDIT(item.idModulo,item.idModuloPerfil)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"

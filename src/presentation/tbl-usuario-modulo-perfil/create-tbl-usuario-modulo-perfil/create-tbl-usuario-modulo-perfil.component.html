@@ -17,8 +17,7 @@
 
       <p-card>
         <p class="m-0 mb-4 text-muted">
-          Información general del TblUsuarioModuloPerfil. Los campos señalados con <strong>(*)</strong> son
-          obligatorios.
+          Información general del perfíl. Los campos señalados con <strong>(*)</strong> son obligatorios.
         </p>
 
         <p-fieldset legend="Datos Generales">
@@ -26,7 +25,8 @@
 
             <div class="col-12 md:col-6">
               <label for="idPerfil"> Perfil (*)</label>
-              <p-inputNumber id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
+              <p-select id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
+                [options]="optionsPerfil" optionValue="idPerfil" optionLabel="nombre"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblUsuarioModuloPerfil)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idPerfil', formTblUsuarioModuloPerfil)"
                 tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />

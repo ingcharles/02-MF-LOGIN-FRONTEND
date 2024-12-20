@@ -38,11 +38,13 @@
 			<tr>
         <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre"/></th>
 				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
-				<th pSortableColumn="numeroVersion" style="min-width:10rem">Número de versión<p-sortIcon field="numeroVersion"/></th>
+				<th pSortableColumn="numeroVersion" style="min-width:7rem">Versión<p-sortIcon field="numeroVersion"/></th>
 				<th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta"/></th>
 				<th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion"/></th>
-				<th pSortableColumn="estado" style="min-width:5rem">Estado<p-sortIcon field="estado"/></th>
-				<th style="min-width:13rem">Acciones</th>
+        <th pSortableColumn="fechaRegistro" style="min-width:10rem">Fecha de registro<p-sortIcon field="fechaRegistro"/>
+        </th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
+				<th style="min-width:12rem">Acciones</th>
 			</tr>
 		</ng-template>
 		<ng-template #body let-item>
@@ -52,9 +54,10 @@
 				<td>{{ item.numeroVersion }}</td>
 				<td>{{ item.ruta }}</td>
 				<td>{{ item.descripcion }}</td>
+        <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
 				<td>{{ item.estado }}</td>
 				<td>
-					<p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.CREATE]"/>
+					<!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.CREATE]"/> -->
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.EDIT(item.idModulo)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.INDEX(item.idModulo)]"/>
 				</td>

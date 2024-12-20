@@ -18,6 +18,7 @@ import { StatusResponseService } from '../../base/services/status-response.servi
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../../domain/base/viewModels/i-response-status-paginado.viewModel';
 import { IResultApi } from '../../base/interfaces/i-result-api';
+import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../../domain/tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
 
 const apiAdminUrl: string = environment.apiAdminUrl;
 
@@ -136,4 +137,23 @@ export class TblPerfilService  {
 		});
 	}
 
+    /**
+    * Obtiene el/los registros
+    * @param busqueda: IGetTblMenuAccionPaginadoViewModel
+    * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
+    */
+       public getAllTblPerfilNotInIdUsuarioAndIdModulo(dataViewModel: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>{
+        const url = `${apiAdminUrl}query/tbl-perfil/findAllTblPerfilNotInIdUsuarioAndIdModulo`;
+        return new Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>((resolve, reject) => {
+        this._http.post<IResultApi>(url, dataViewModel)
+          .subscribe({
+            next: (result: IResultApi) => {
+              resolve(this._statusResponseService.succes<IGetTblPerfilRsViewModel>(result));
+            },
+            error: (error) => {
+              reject(this._statusResponseService.error<IGetTblPerfilRsViewModel>(error));
+            }
+          });
+        });
+      }
 }

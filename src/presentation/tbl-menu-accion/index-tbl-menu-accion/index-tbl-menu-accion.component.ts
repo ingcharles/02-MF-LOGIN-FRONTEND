@@ -68,7 +68,6 @@ export class IndexTblMenuAccionComponent implements OnInit {
 
 
 
-		//this.loading = true;
 		const currentTblMenuAccion: IGetPaginateByTblMenuEntityIdMenuViewModel = {pagination:{page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection},idMenu:this.idMenu }
 		this._tblMenuAccionUseCase.getPaginateByTblMenuEntityIdMenu(currentTblMenuAccion).then(result => {
 			this._loaderService.display(true);
@@ -78,7 +77,6 @@ export class IndexTblMenuAccionComponent implements OnInit {
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
-				//this.loading = false;
 			});
 	}
 
@@ -131,7 +129,6 @@ export class IndexTblMenuAccionComponent implements OnInit {
   }
 
   public cancelTblMenuAccion(): void{
-		//this.closeTblMenuAccion.emit(true);
 		this._location.back();
 	}
 }

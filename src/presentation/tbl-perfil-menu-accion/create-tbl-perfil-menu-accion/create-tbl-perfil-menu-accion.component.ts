@@ -101,9 +101,13 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
         this._tblPerfilMenuAccionUseCase.getByIdTblPerfilMenuAccion(idPerfilMenuAccion).then(result => {
           this._loaderService.display(false);
           if (result.ok) {
-            this.formTblPerfilMenuAccion.reset(result.data);
 
-          } else {
+            this.formTblPerfilMenuAccion.reset(result.data);
+            this.loadDataAcciones(result.data!.perfil.idPerfil,result.data!.menuAccion.menu.idMenu,this.idPerfilMenuAccion)
+            this.formTblPerfilMenuAccion.get('idPerfil')?.setValue(result.data!.perfil.idPerfil);
+            this.formTblPerfilMenuAccion.get('idMenu')?.setValue(result.data!.menuAccion.menu.idMenu);
+            this.formTblPerfilMenuAccion.get('idAccion')?.setValue([result.data!.menuAccion.accion.idAccion]);
+           } else {
             this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
           };
         });
@@ -128,7 +132,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
           this._loaderService.display(false);
           if (result.ok) {
             this._alertsService.alertMessage(messages.successTitle, messages.successUpdate, messages.isSuccess);
-            this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX);
+            this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(this.idPerfil));
           } else {
             this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
           }
@@ -143,7 +147,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
         this._loaderService.display(false);
         if (result.ok) {
           this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
-          this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX);
+          this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(this.idPerfil));
         } else {
           this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
         }

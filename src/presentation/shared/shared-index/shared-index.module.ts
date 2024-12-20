@@ -9,15 +9,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { IconFieldModule } from 'primeng/iconfield';
 import { PanelModule } from 'primeng/panel';
 import { RouterModule } from '@angular/router';
-
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule
+    CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule,
+    BadgeModule
   ],
   exports:[
-    CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule
+    CommonModule, RouterModule, PanelModule, TableModule, TagModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule, ToolbarModule,
+    BadgeModule
   ]
 })
 export class SharedIndexModule { }

@@ -44,11 +44,13 @@
         <th pSortableColumn="nombreModulo" style="min-width:7rem">Módulo<p-sortIcon field="idModulo" /></th>
         <th pSortableColumn="imagenModulo" style="min-width:7rem">Imagen <p-sortIcon field="imagenModulo" /></th>
         <th pSortableColumn="colorModulo" style="min-width:7rem">Color<p-sortIcon field="colorModulo" /></th>
-        <th pSortableColumn="numeroVisitaModulo" style="min-width:7rem">Número de visita<p-sortIcon
-            field="numeroVisitaModulo" /></th>
-        <th pSortableColumn="numeroNotificaciones" style="min-width:7rem">Número de notificaciones<p-sortIcon
+        <th pSortableColumn="numeroVisitaModulo" style="min-width:7rem">Visitas<p-sortIcon field="numeroVisitaModulo" />
+        </th>
+        <th pSortableColumn="numeroNotificaciones" style="min-width:7rem">Notificaciones<p-sortIcon
             field="numeroNotificaciones" /></th>
         <th pSortableColumn="ordenModulo" style="min-width:7rem">Orden<p-sortIcon field="ordenModulo" /></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro" />
+        </th>
         <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
@@ -71,12 +73,16 @@
         <td>{{ item.numeroVisitaModulo }}</td>
         <td>{{ item.numeroNotificaciones }}</td>
         <td>{{ item.ordenModulo }}</td>
+        <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
         <td>{{ item.estado }}</td>
         <td>
           <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.CREATE(idUsuario)]"/> -->
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.EDIT(idUsuario,item.idUsuarioModulo)]" />
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.INDEX(item.idUsuarioModulo)]" />
+
         </td>
       </tr>
     </ng-template>

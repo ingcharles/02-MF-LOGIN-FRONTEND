@@ -43,6 +43,8 @@
       <tr>
         <th pSortableColumn="nombreMenu" style="min-width:7rem">Menú<p-sortIcon field="nombreMenu" /></th>
         <th pSortableColumn="nombreAccion" style="min-width:7rem">Acción<p-sortIcon field="nombreAccion" /></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro"/>
+        </th>
         <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
@@ -51,6 +53,7 @@
       <tr>
         <td>{{ item.menu.nombre }}</td>
         <td>{{ item.accion.nombre }}</td>
+        <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
         <td>{{ item.estado }}</td>
         <td>
           <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"

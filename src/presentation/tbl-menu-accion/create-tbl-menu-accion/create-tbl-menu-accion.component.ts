@@ -139,7 +139,8 @@ export class CreateTblMenuAccionComponent implements OnInit {
 				if (result.ok) {
 					this._alertsService.alertMessage(messages.successTitle, messages.successSave, messages.isSuccess);
 					this.formTblMenuAccion.get('idMenuAccion')!.patchValue(result.data?.idMenuAccion);
-					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENUACCION.INDEX);
+          console.log("a",this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENUACCION.INDEX(this.idMenu))
+					this._router.navigateByUrl(this.routeCore.ADMIN.BASE + this.routeCore.ADMIN.TBLMENUACCION.INDEX(this.idMenu));
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
@@ -164,11 +165,9 @@ export class CreateTblMenuAccionComponent implements OnInit {
 				if (result.ok) {
           this.tblMenuRecords = result.data!;
           this.title ='Listado acciones para el menú ' + this.tblMenuRecords?.nombre
-					//this.tblMenuAccionRecords = result.data!;
 				} else {
 					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
 				}
-				//this.loading = false;
 			});
   }
   public loadDataAcciones(idMenu:number, idMenuAccion:number){
