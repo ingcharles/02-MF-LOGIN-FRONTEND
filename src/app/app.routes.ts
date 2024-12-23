@@ -7,7 +7,6 @@ import { MF_ADMIN_TBLMENUACCION_ROUTES } from '../presentation/tbl-menu-accion/t
 import { MF_ADMIN_TBLPERFILMENUACCION_ROUTES } from '../presentation/tbl-perfil-menu-accion/tbl-perfil-menu-accion.routing';
 import { MF_ADMIN_TBLUSUARIO_ROUTES } from '../presentation/tbl-usuario/tbl-usuario.routing';
 import { MF_ADMIN_TBLUSUARIOMODULO_ROUTES } from '../presentation/tbl-usuario-modulo/tbl-usuario-modulo.routing';
-import { MF_ADMIN_TBLMODULOPERFIL_ROUTES } from '../presentation/tbl-modulo-perfil/tbl-modulo-perfil.routing';
 import { MF_ADMIN_TBLUSUARIOMODULOPERFIL_ROUTES } from '../presentation/tbl-usuario-modulo-perfil/tbl-usuario-modulo-perfil.routing';
 
 export const MODULE_ROUTES: Routes = [
@@ -21,7 +20,6 @@ export const MODULE_ROUTES: Routes = [
   ...MF_ADMIN_TBLPERFILMENUACCION_ROUTES,
   ...MF_ADMIN_TBLUSUARIO_ROUTES,
   ...MF_ADMIN_TBLUSUARIOMODULO_ROUTES,
-  ...MF_ADMIN_TBLMODULOPERFIL_ROUTES,
   ...MF_ADMIN_TBLUSUARIOMODULOPERFIL_ROUTES
 //   {
 //     path: '',

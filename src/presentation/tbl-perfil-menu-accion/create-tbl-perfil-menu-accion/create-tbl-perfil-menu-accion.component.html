@@ -43,7 +43,7 @@
               </p-multiselect>
             </div>
 
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-6" *ngIf="formTblPerfilMenuAccion.get('idPerfilMenuAccion')?.value !== null">
               <label for="estado"> Estado (*)</label>
               <p-select id="estado" name="estado" class="w-full" formControlName="estado" size="small"
                 placeholder="Seleccione" [options]="optionsEstado" optionValue="name" optionLabel="value"

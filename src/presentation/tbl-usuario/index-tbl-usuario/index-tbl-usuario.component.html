@@ -55,7 +55,7 @@
 				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
 				<td>
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.EDIT(item.idUsuario)]"/>
-          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir modulo" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(item.idUsuario)]"/>
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir módulo" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(item.idUsuario)]"/>
 				</td>
 			</tr>
 		</ng-template>

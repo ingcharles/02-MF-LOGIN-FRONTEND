@@ -58,6 +58,14 @@ export interface IGetTblUsuarioModuloViewModel {
 	busqueda?: string | null;
   idUsuario?: number | null;
 }
+/**
+* Interface que contiene los datos de salida que van al servicio
+* @name IGetPaginateByTblMenuEntityIdMenuViewModel
+*/
+export interface IGetPaginateByTblMenuEntityIdMenuViewModel {
+  pagination: IGetTblUsuarioModuloPaginadoViewModel;
+  idUsuario: number;
+}
 
 /**
 * Interface que contiene el datos de entrada que viene del servicio

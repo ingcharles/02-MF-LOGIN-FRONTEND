@@ -98,8 +98,7 @@ export interface IGetTblUsuarioModuloPerfilByIdRsViewModel {
 */
 export interface IGetTblUsuarioModuloPerfilByIdViewModel {
 	idUsuarioModuloPerfil?: number | null;
-  idUsuario?: number | null;
-  idModulo?: number | null;
+  idUsuarioModulo?: number | null;
 }
 
 /**

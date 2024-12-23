@@ -75,8 +75,8 @@ export class TblPerfilUseCase {
   * @param tblMenuAccion: IGetTblMenuAccionPaginadoViewModel
   * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
   */
-  public async getAllTblPerfilNotInIdUsuarioAndIdModulo(tblPerfilMenuAccion: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>> {
-    return await this._tblPerfilService.getAllTblPerfilNotInIdUsuarioAndIdModulo(tblPerfilMenuAccion);
+  public async getAllTblPerfilNotInIdUsuarioModulo(tblPerfilMenuAccion: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>> {
+    return await this._tblPerfilService.getAllTblPerfilNotInIdUsuarioModulo(tblPerfilMenuAccion);
   }
 
 }

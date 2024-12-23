@@ -12,7 +12,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of  } from 'rxjs';
-import { IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
+import { IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel, IGetPaginateByTblMenuEntityIdMenuViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
@@ -141,8 +141,8 @@ export class TblUsuarioModuloService  {
 	* @param id_usuario_modulo: IGetTblUsuarioModuloByIdViewModel
 	* @return Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
 	*/
-	public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>{
-    const url = `${apiAdminUrl}query/tbl-usuario-modulo/findByTblUsuarioEntityIdUsuario`;
+	public async getPaginateByTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetPaginateByTblMenuEntityIdMenuViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>{
+    const url = `${apiAdminUrl}query/tbl-usuario-modulo/findPaginateByTblUsuarioEntityIdUsuario`;
     return new Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>((resolve, reject) => {
       this._http.post<IResultApi>(url, tblUsuarioModulo)
       .subscribe({

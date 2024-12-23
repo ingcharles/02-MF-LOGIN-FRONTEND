@@ -24,7 +24,7 @@
           <div class="grid">
 
             <div class="col-12 md:col-6">
-              <label for="idPerfil"> Perfil (*)</label>
+              <label for="idPerfil"> Perfíl (*)</label>
               <p-select id="idPerfil" name="idPerfil" formControlName="idPerfil" size="small" class="w-full"
                 [options]="optionsPerfil" optionValue="idPerfil" optionLabel="nombre"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idPerfil',formTblUsuarioModuloPerfil)}"
@@ -32,7 +32,7 @@
                 tooltipPosition="top" (keypress)="this._validatorsService.validarSoloNumeros($event)" placeholder="" />
             </div>
 
-            <div class="col-12 md:col-6">
+            <div class="col-12 md:col-6" *ngIf="formTblUsuarioModuloPerfil.get('idUsuarioModuloPerfil')?.value !== null">
               <label for="estado"> Estado (*)</label>
               <p-select id="estado" name="estado" class="w-full" size="small" formControlName="estado"
                 placeholder="Seleccione..." [options]="optionsEstado" optionValue="name" optionLabel="value"

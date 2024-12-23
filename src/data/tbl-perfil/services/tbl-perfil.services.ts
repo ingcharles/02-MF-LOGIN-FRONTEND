@@ -142,8 +142,8 @@ export class TblPerfilService  {
     * @param busqueda: IGetTblMenuAccionPaginadoViewModel
     * @return Promise<IResponseStatusPaginadoViewModel<IGetTblMenuAccionPaginadoRsViewModel>>
     */
-       public getAllTblPerfilNotInIdUsuarioAndIdModulo(dataViewModel: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>{
-        const url = `${apiAdminUrl}query/tbl-perfil/findAllTblPerfilNotInIdUsuarioAndIdModulo`;
+       public getAllTblPerfilNotInIdUsuarioModulo(dataViewModel: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>{
+        const url = `${apiAdminUrl}query/tbl-perfil/findAllTblPerfilNotInIdUsuarioModulo`;
         return new Promise<IResponseStatusViewModel<IGetTblPerfilRsViewModel>>((resolve, reject) => {
         this._http.post<IResultApi>(url, dataViewModel)
           .subscribe({

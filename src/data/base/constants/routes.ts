@@ -18,6 +18,7 @@ export const ROUTES_CORE = {
     },
     TBLUSUARIOMODULO: {
       INDEX: (idUsuario: String | number) => `usuario-modulo/${idUsuario}`,
+      INDEXMODULO: (idUsuario: String | number) => `usuario-modulo/modulo/${idUsuario}`,
       CREATE: (idUsuario: String | number) => `usuario-modulo/${idUsuario}/create`,
       EDIT: (idUsuario: String | number, id: String | number) => `usuario-modulo/${idUsuario}/edit/${id}`
     },

@@ -120,7 +120,7 @@ export class IndexTblUsuarioModuloPerfilComponent implements OnInit {
       this._loaderService.display(true);
       this._loaderService.display(false);
       if (result.ok) {
-        this.title = result.data!.usuario.nombreCompleto + ' en el modulo: ' + result.data!.modulo.nombre
+        this.title = result.data!.usuario.nombreCompleto + ' en el módulo: ' + result.data!.modulo.nombre
       } else {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }

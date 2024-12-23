@@ -32,10 +32,7 @@ export const MF_ADMIN_TBLMODULO_ROUTES: Routes = [
     path: ROUTES_CORE.ADMIN.TBLMODULO.EDIT(':id'),
     component: CreateTblModuloComponent // Editar módulo (puede reutilizar el mismo componente)
   },
-  /*{
-    path: '**',  // Redirige a una página no encontrada si la ruta no coincide
-    redirectTo: 'modulo' // Ruta comodín para redirigir a 'modulo'
-  }*/
+
 ];
 
 @NgModule({

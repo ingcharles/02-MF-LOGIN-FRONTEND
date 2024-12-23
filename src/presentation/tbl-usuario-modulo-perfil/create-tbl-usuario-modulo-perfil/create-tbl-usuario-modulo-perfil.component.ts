@@ -67,45 +67,46 @@ export class CreateTblUsuarioModuloPerfilComponent implements OnInit {
     { name: 'Inactivo', value: 'Inactivo' }
   ];
   public idUsuarioModulo!: number;
+  public idUsuarioModuloPerfil!: number;
   public optionsPerfil: IGetTblPerfilRsViewModel[] = [];
 
   ngOnInit(): void {
+    console.log("ngOnInit")
     this.sub = this._activatedRoute.params.subscribe(params => {
+      console.log("params",params)
       this.idUsuarioModulo = params['idUsuarioModulo'];
     });
     this.loadDataUsuarioModulo(this.idUsuarioModulo)
     this.formTblUsuarioModuloPerfil = new FormGroup({
       idUsuarioModuloPerfil: new FormControl(null, Validators.compose([Validators.max(999999999)])),
-      idUsuarioModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+      idUsuarioModulo: new FormControl(this.idUsuarioModulo, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
       idPerfil: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-      estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-      ipCreaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
-      fechaRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(8)])),
-      idUsuarioRegistro: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+      estado: new FormControl(null, Validators.compose([Validators.maxLength(64)])),
     });
 
     this.sub = this._activatedRoute.params.subscribe(params => {
-      const idParametro = params['id'];
-      if (idParametro != undefined) {
-        let idUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModuloPerfil: idParametro };
+      this.idUsuarioModuloPerfil = params['id'];
+      if (this.idUsuarioModuloPerfil != undefined) {
+        let idUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModuloPerfil: this.idUsuarioModuloPerfil };
         this._loaderService.display(true);
         this._tblUsuarioModuloPerfilUseCase.getByIdTblUsuarioModuloPerfil(idUsuarioModuloPerfil).then(result => {
           this._loaderService.display(false);
           if (result.ok) {
             console.log("aaa", result)
             this.formTblUsuarioModuloPerfil.reset(result.data);
-            this.loadDataPerfiles(result.data?.usuarioModulo.usuario?.idUsuario, result.data?.usuarioModulo.modulo.idModulo, result.data?.idUsuarioModuloPerfil)
-            this.formTblUsuarioModuloPerfil.get('idPerfil')?.setValue(result.data!.perfil.idPerfil);
+             this.formTblUsuarioModuloPerfil.get('idPerfil')?.setValue(result.data!.perfil.idPerfil);
+             this.formTblUsuarioModuloPerfil.get('idUsuarioModulo')?.setValue(result.data!.usuarioModulo.idUsuarioModulo);
           } else {
             this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
           };
         });
       };
+      this.loadDataPerfiles(this.formTblUsuarioModuloPerfil.get('idUsuarioModulo')?.value, this.idUsuarioModuloPerfil)
     });
   }
 
   public saveTblUsuarioModuloPerfil(): void {
-
+    console.log("currentTblUsuarioModuloPerfil",this.formTblUsuarioModuloPerfil)
     if (this.formTblUsuarioModuloPerfil.invalid) {
       this.formTblUsuarioModuloPerfil.markAllAsTouched();
       this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);
@@ -113,7 +114,6 @@ export class CreateTblUsuarioModuloPerfilComponent implements OnInit {
     }
 
     const currentTblUsuarioModuloPerfil: any = this.currentTblUsuarioModuloPerfil;
-
     if (currentTblUsuarioModuloPerfil.idUsuarioModuloPerfil) {
       this._alertsService.alertConfirm(messages.confirmationTitle, messages.confirmUpdate, () => {
         this._loaderService.display(true);
@@ -155,11 +155,12 @@ export class CreateTblUsuarioModuloPerfilComponent implements OnInit {
   }
 
   public loadDataUsuarioModulo(idUsuarioModulo: number) {
+    this._loaderService.display(true);
     const currentTblUsuario: IGetTblUsuarioModuloByIdViewModel = { idUsuarioModulo }
     this._tblUsuarioModuloUseCase.getByIdTblUsuarioModulo(currentTblUsuario).then(result => {
-      this._loaderService.display(true);
       this._loaderService.display(false);
       if (result.ok) {
+        console.log("result.data",result.data)
         this.title = result.data!.usuario.nombreCompleto + ' en el modulo: ' + result.data!.modulo.nombre
       } else {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
@@ -167,10 +168,10 @@ export class CreateTblUsuarioModuloPerfilComponent implements OnInit {
     });
   }
 
-  public loadDataPerfiles(idUsuario: number, idModulo: number, idUsuarioModuloPerfil: number) {
+  public loadDataPerfiles(idUsuarioModulo: number, idUsuarioModuloPerfil: number) {
     this._loaderService.display(true);
-    const currentTblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuario, idModulo, idUsuarioModuloPerfil }
-    this._tblPerfilUseCase.getAllTblPerfilNotInIdUsuarioAndIdModulo(currentTblUsuarioModuloPerfil).then(result => {
+    const currentTblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModulo, idUsuarioModuloPerfil }
+    this._tblPerfilUseCase.getAllTblPerfilNotInIdUsuarioModulo(currentTblUsuarioModuloPerfil).then(result => {
       this._loaderService.display(false);
       if (result.ok) {
         this.optionsPerfil = result.data!;

@@ -12,7 +12,7 @@
   <p-toolbar>
     <div class="p-toolbar-group-left">
       <p-button label="Regresar" type="button" icon="pi pi-chevron-left" class="mr-2" severity="contrast"
-      [raised]="true" (click)="cancelTblUsuarioModuloPerfil()" />
+        [raised]="true" (click)="cancelTblUsuarioModuloPerfil()" />
       <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary" [raised]="true"
         [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.CREATE(idUsuarioModulo)]" />
     </div>
@@ -41,23 +41,21 @@
     </ng-template>
     <ng-template #header>
       <tr>
-        <th pSortableColumn="idPerfil" style="min-width:7rem">Perfil<p-sortIcon field="idPerfil" /></th>
-        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
-        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de Registro<p-sortIcon field="fechaRegistro" />
+        <th pSortableColumn="idPerfil" style="min-width:7rem">Perfíl<p-sortIcon field="idPerfil" /></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro" />
         </th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
         <th style="min-width:13rem">Acciones</th>
       </tr>
     </ng-template>
     <ng-template #body let-item>
       <tr>
-        <td>{{ item.idPerfil }}</td>
-        <td><p-badge [value]="item.estado" [severity]="getStatus(item.estado)" /></td>
+        <td>{{ item.perfil.nombre }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
+        <td><p-badge [value]="item.estado" [severity]="getStatus(item.estado)" /></td>
         <td>
-          <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.CREATE]"/> -->
           <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULOPERFIL.EDIT(idUsuarioModulo ,item.idUsuarioModuloPerfil)]" />
-          <!-- <p-button icon="pi pi-trash" class="mr-2" size="small" title="Eliminar" severity="danger" /> -->
         </td>
       </tr>
     </ng-template>

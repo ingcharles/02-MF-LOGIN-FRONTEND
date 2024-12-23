@@ -11,7 +11,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/services/tbl-usuario-modulo.services';
-import { IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloPaginadoViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel } from '../viewModels/i-tbl-usuario-modulo.viewModel';
+import { IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloPaginadoViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel, IGetPaginateByTblMenuEntityIdMenuViewModel } from '../viewModels/i-tbl-usuario-modulo.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
 
@@ -74,8 +74,8 @@ export class TblUsuarioModuloUseCase {
   * @param tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel
   * @return Promise<Observable<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>>
   */
-  public async getTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetTblUsuarioModuloViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>> {
-    return await this._tblUsuarioModuloService.getTblUsuarioEntityIdUsuario(tblUsuarioModulo);
+  public async getPaginateByTblUsuarioEntityIdUsuario(tblUsuarioModulo: IGetPaginateByTblMenuEntityIdMenuViewModel): Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>> {
+    return await this._tblUsuarioModuloService.getPaginateByTblUsuarioEntityIdUsuario(tblUsuarioModulo);
   }
 
   /**
