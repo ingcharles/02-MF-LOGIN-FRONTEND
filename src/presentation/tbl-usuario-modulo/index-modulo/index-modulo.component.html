@@ -1,32 +1,36 @@
 <div class="card">
   <div class="card-body">
-      <div class="row mt-3">
-        @for (usuarioModulo of usuarioModulos; track usuarioModulo.modulo.idModulo) {
-        <div class="col-md-3 col-sm-6 aplicacion"  ondragstart="drag(event)"
-          draggable="true" id="{{usuarioModulo.modulo.idModulo}}" data-color="sistema" (click)="clickSistema(usuarioModulo.idUsuarioModulo)">
-          <div class="widget-head-color-box {{usuarioModulo.colorModulo}} text-center">
-            <div class="titulo-aplicacion">
-              <h6>{{usuarioModulo.modulo.nombre}}</h6>
-            </div>
-            <div class="icon">
-              <i class="{{usuarioModulo.imagenModulo}}"></i>
-            </div>
-            <div class="ttw-notification-menu align-self-center">
-              <div id="" class="notification-menu-item first-item aplicacion-{{usuarioModulo.modulo.idModulo}}">
-                <a>Notificaciones <i class="fa fa-envelope-o"></i></a>
-              </div>
-            </div>
+    <div class="row mt-3">
+      @for (usuarioModulo of usuarioModulos; track usuarioModulo.modulo.idModulo) {
+      <div class="col-md-3 col-sm-6 aplicacion" ondragstart="drag(event)" draggable="true"
+        id="{{ usuarioModulo.modulo.idModulo }}" data-color="sistema"
+        (click)="clickSistema(usuarioModulo.idUsuarioModulo)">
+        <div class="widget-head-color-box {{ usuarioModulo.colorModulo }} text-center">
+          <div class="titulo-aplicacion">
+            <h6>{{ usuarioModulo.modulo.nombre }}</h6>
           </div>
-          <div class="widget-text-box {{usuarioModulo.colorModulo}}-borde">
-            <p>
-              <b>{{usuarioModulo.modulo.descripcion}}</b> <a href="#" class="{{usuarioModulo.colorModulo}}-color"> Más info <i
-                  class="fas fa-arrow-circle-right"></i></a>
-            </p>
+          <div class="icon">
+            <i class="{{ usuarioModulo.imagenModulo }}"></i>
+          </div>
+          <div class="ttw-notification-menu align-self-center">
+            <div id="" class="notification-menu-item first-item aplicacion-{{ usuarioModulo.modulo.idModulo }}">
+              <a>Notificaciones <i class="fa fa-envelope-o"></i></a>
+            </div>
           </div>
         </div>
-      } @empty {
-        <h5>No tiene Sistemas asignados</h5>
-      }
+        <div class="widget-text-box {{ usuarioModulo.colorModulo }}-borde">
+          <p>
+            <b>{{ usuarioModulo.modulo.descripcion }}</b>
+            <button type="button" class="{{usuarioModulo.colorModulo}}-color link-button ps-1" (click)="openDialogInfo(usuarioModulo.modulo.descripcion)"> Más info <i
+                class="fas fa-arrow-circle-right"></i>
+            </button>
+          </p>
+        </div>
       </div>
+      } @empty {
+      <h5>No tiene Sistemas asignados</h5>
+      }
     </div>
+  </div>
 </div>
+<app-shared-dialog-info [isVisible]="isVisibleDialog" [title]="'Información módulo'"  [data]="dataDialog" (dialogClose)="onDialogClose()"></app-shared-dialog-info>

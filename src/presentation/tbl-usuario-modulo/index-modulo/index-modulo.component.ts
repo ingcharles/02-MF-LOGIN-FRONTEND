@@ -3,22 +3,28 @@ import { LoaderService } from '../../../data/base/services/loader.service';
 import { IGetPaginateByTblMenuEntityIdMenuViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { TblUsuarioModuloUseCase } from '../../../domain/tbl-usuario-modulo/usesCases/tbl-usuario-modulo.usecase';
 import { IUsuarioModulo } from '../../../domain/tbl-usuario-modulo/viewModels/i-usuario-modulo';
+import { SharedDialogInfoComponent } from "../../shared/shared-dialog-info/shared-dialog-info.component";
+import { share } from 'rxjs';
+import { MfEventService } from '../../../data/base/services/mf-event-service';
 
 @Component({
   selector: 'app-index-modulos',
   standalone: true,
-  imports: [],
+  imports: [SharedDialogInfoComponent, SharedDialogInfoComponent],
   templateUrl: './index-modulo.component.html',
   styleUrls: ['./index-modulo.component.scss']
 })
 export class IndexModuloComponent implements OnInit {
   _loaderService: LoaderService = inject(LoaderService);
   _tblUsuarioModuloUseCase: TblUsuarioModuloUseCase = inject(TblUsuarioModuloUseCase);
+ //
   public page: number = 0;
   public size: number = 10;
   public search: string = '';
   public sortBy: string = 'idUsuarioModulo';
   public sortDirection: string = 'ASC';
+  public isVisibleDialog: boolean = false;
+  public dataDialog: string = '';
   @Output() outputSistemaSeleccionado = new EventEmitter<number>();
 
   usuarioModulos: IUsuarioModulo[] = [];
@@ -31,6 +37,7 @@ export class IndexModuloComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadModule();
+    //console.log("_mfEventService",this._mfEventService)
   }
   clickSistema(idSistema: number) {
     this.outputSistemaSeleccionado.emit(idSistema);
@@ -53,5 +60,13 @@ export class IndexModuloComponent implements OnInit {
 
     const event = new CustomEvent('mfIdUsuarioModulo', { detail: data });
     window.dispatchEvent(event);
+  }
+
+  openDialogInfo(info:string){
+    this.isVisibleDialog = true;
+    this.dataDialog = info;
+  }
+  onDialogClose(): void {
+    this.isVisibleDialog = false;
   }
 }

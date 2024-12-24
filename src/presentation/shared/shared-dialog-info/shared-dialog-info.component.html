@@ -1,5 +1,7 @@
-<!-- <p-dialog [(visible)]="isVisible" [modal]="true" [closable]="true" (onHide)="closeDialog()">
-  <h3>Datos Recibidos</h3>
+<p-dialog header="{{ title }}" [(visible)]="isVisible" [style]="{ width: '20rem' }"
+  [breakpoints]="{ '1199px': '50vw', '575px': '75vw' }" [modal]="true" [closable]="true" (onHide)="closeDialog()">
   <p>{{ data }}</p>
-  <button type="button" pButton label="Cerrar" (click)="closeDialog()"></button>
-</p-dialog> -->
+  <div class="flex align-items-center justify-content-end pt-2">
+    <button type="button" pButton label="Cerrar" (click)="closeDialog()"></button>
+  </div>
+</p-dialog>

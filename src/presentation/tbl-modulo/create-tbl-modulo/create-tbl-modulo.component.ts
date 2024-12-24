@@ -72,7 +72,8 @@ export class CreateTblModuloComponent implements OnInit {
 			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
 			numeroVersion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(16)])),
 			ruta: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(1024)])),
-			descripcion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(1024)])),
+			descripcion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(128)])),
+      descripcionLarga: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(3072)])),
 		});
 
 		this.sub = this._activatedRoute.params.subscribe(params => {

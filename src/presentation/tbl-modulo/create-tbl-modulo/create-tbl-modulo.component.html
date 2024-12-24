@@ -64,6 +64,13 @@
 							[pTooltip]="_utilsService.getFieldErrorRequired('descripcion', formTblModulo)" tooltipPosition="top"
 							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
 						</div>
+						<div class="col-12 md:col-6">
+							<label for="descripcionLarga"> Descripción larga(*)</label>
+							<textarea pTextarea id="descripcionLarga" name="descripcionLarga" formControlName="descripcionLarga" class="w-full"
+							[ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('descripcionLarga',formTblModulo)}"
+							[pTooltip]="_utilsService.getFieldErrorRequired('descripcionLarga', formTblModulo)" tooltipPosition="top"
+							(keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" ></textarea>
+						</div>
 
 					</div>
 				</p-fieldset>

@@ -34,7 +34,7 @@ module.exports = {
         './PazSalvoModule' : './src/presentation/paz-salvo/paz-salvo.module.ts',
         './TblUsuarioModuloModule' : './src/presentation/tbl-usuario-modulo/tbl-usuario-modulo.module.ts',
         './AdminModule' : './src/presentation/admin.module.ts',
-
+        './MfEventService': './src/data/base/services/mf-event-service.ts'
       },
       //library: { type: "global" },
 
