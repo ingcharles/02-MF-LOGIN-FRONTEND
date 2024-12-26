@@ -54,6 +54,8 @@ export interface IGetTblMenuAccionRsViewModel {
 */
 export interface IGetTblMenuAccionViewModel {
 	busqueda?: string | null;
+  idMenu?: number | null;
+
 }
 
 /**

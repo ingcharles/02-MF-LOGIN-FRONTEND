@@ -9,29 +9,33 @@
 */
 
 import { NgModule } from '@angular/core';
-import { TblModuloRouting } from './tbl-modulo/tbl-modulo.routing';
-import { TblUsuarioModuloRouting } from './tbl-usuario-modulo/tbl-usuario-modulo.routing';
-import { TblMenuRouting } from './tbl-menu/tbl-menu.routing';
-import { TblAccionRouting } from './tbl-accion/tbl-accion.routing';
-import { TblPerfilRouting } from './tbl-perfil/tbl-perfil.routing';
-import { TblMenuAccionRouting } from './tbl-menu-accion/tbl-menu-accion.routing';
-import { TblPerfilMenuAccionRouting } from './tbl-perfil-menu-accion/tbl-perfil-menu-accion.routing';
-import { TblUsuarioModuloPerfilRouting } from './tbl-usuario-modulo-perfil/tbl-usuario-modulo-perfil.routing';
+import { TblUsuarioModuloModule } from './tbl-usuario-modulo/tbl-usuario-modulo.module';
+import { TblModuloModule } from './tbl-modulo/tbl-modulo.module';
+import { TblMenuModule } from './tbl-menu/tbl-menu.module';
+import { TblAccionModule } from './tbl-accion/tbl-accion.module';
+import { TblPerfilModule } from './tbl-perfil/tbl-perfil.module';
+import { TblMenuAccionModule } from './tbl-menu-accion/tbl-menu-accion.module';
+import { TblPerfilMenuAccionModule } from './tbl-perfil-menu-accion/tbl-perfil-menu-accion.module';
+import { TblUsuarioModuloPerfilModule } from './tbl-usuario-modulo-perfil/tbl-usuario-modulo-perfil.module';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
-	TblModuloRouting,
-  TblMenuRouting,
-  TblUsuarioModuloRouting,
-  TblAccionRouting,
-  TblPerfilRouting,
-  TblMenuAccionRouting,
-  TblPerfilMenuAccionRouting,
-  TblUsuarioModuloPerfilRouting
-	],
+	TblModuloModule,
+  TblMenuModule,
+  TblUsuarioModuloModule,
+  TblAccionModule,
+  TblPerfilModule,
+  TblMenuAccionModule,
+  TblPerfilMenuAccionModule,
+  TblUsuarioModuloPerfilModule,
 
+	],
+  providers: [
+    //provideHttpClient(withInterceptorsFromDi())  // Esto reemplaza a HttpClientModule
+  ],
 })
 
 export class AdminModule { }

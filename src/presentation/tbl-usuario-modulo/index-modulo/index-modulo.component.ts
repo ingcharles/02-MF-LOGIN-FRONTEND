@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { IGetPaginateByTblMenuEntityIdMenuViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloViewModel } from '../../../domain/tbl-usuario-modulo/viewModels/i-tbl-usuario-modulo.viewModel';
 import { TblUsuarioModuloUseCase } from '../../../domain/tbl-usuario-modulo/usesCases/tbl-usuario-modulo.usecase';
@@ -6,6 +6,8 @@ import { IUsuarioModulo } from '../../../domain/tbl-usuario-modulo/viewModels/i-
 import { SharedDialogInfoComponent } from "../../shared/shared-dialog-info/shared-dialog-info.component";
 import { share } from 'rxjs';
 import { MfEventService } from '../../../data/base/services/mf-event-service';
+import { TblPerfilMenuAccionUseCase } from '../../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
+import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../../domain/tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
 
 @Component({
   selector: 'app-index-modulos',
@@ -17,6 +19,7 @@ import { MfEventService } from '../../../data/base/services/mf-event-service';
 export class IndexModuloComponent implements OnInit {
   _loaderService: LoaderService = inject(LoaderService);
   _tblUsuarioModuloUseCase: TblUsuarioModuloUseCase = inject(TblUsuarioModuloUseCase);
+  _tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase = inject(TblPerfilMenuAccionUseCase);
  //
   public page: number = 0;
   public size: number = 10;
@@ -57,9 +60,18 @@ export class IndexModuloComponent implements OnInit {
   }
 
   sendUsuarioModulo(data: any) {
+    console.log("sale mfIdUsuarioModulo:",data)
+    // const event = new CustomEvent('mfIdUsuarioModulo', { detail: data });
+    // window.dispatchEvent(event);
+    const tblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModulo: data }
 
-    const event = new CustomEvent('mfIdUsuarioModulo', { detail: data });
-    window.dispatchEvent(event);
+    this._tblPerfilMenuAccionUseCase.getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil).then(result => {
+      if (result.ok) {
+        const event = new CustomEvent('mfIdUsuarioModulo', { detail: result });
+        window.dispatchEvent(event);
+      }
+    });
+
   }
 
   openDialogInfo(info:string){

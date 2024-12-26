@@ -9,22 +9,29 @@
 -->
 
 <div class="container-fluid">
-	<p-toolbar >
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      @for (item of tblAccionRecords; track $index) {
+      <p-button [severity]="item.accion?.color" label="{{item.accion?.nombre}}" icon="{{item.accion?.imagen}}"
+        class="mr-2"
+        [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX(idMenu) + item.accion?.pagina]" />
 
-			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
-			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.CREATE]"/>
-		</p-toolbar>
+      }
+    </div>
+  </p-toolbar>
 
-	<p-table #dt [value]="tblPerfilRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="tblPerfilRecords?.totalElements!"
-		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
-		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
-		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_perfil','nemonico','nombre','descripcion','estado','fecha_registro','id_usuario_registro',]">
+  <p-table #dt [value]="tblPerfilRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size"
+    [totalRecords]="tblPerfilRecords?.totalElements!" [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+    (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
+    [globalFilterFields]="['id_perfil','nemonico','nombre','descripcion','estado','fecha_registro','id_usuario_registro',]">
 
-		<ng-template #caption>
-			<div class="flex">
-				<div class="flex align-items-center justify-content-center" style="flex: 1;">
+    <ng-template #caption>
+      <div class="flex">
+        <div class="flex align-items-center justify-content-center" style="flex: 1;">
           <h6 class="m-0">{{title}}</h6>
-				</div>
+        </div>
         <div class="flex align-items-center justify-content-end" style="gap: 10px;">
           <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
           <p-iconfield>
@@ -32,38 +39,39 @@
             <input pInputText type="text" (input)="inputSearch($event)" placeholder="Buscar..." />
           </p-iconfield>
         </div>
-			</div>
-		</ng-template>
-		<ng-template #header>
-			<tr>
-        <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre"/></th>
-				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
-				<th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion"/></th>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre" /></th>
+        <th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico" /></th>
+        <th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion" /></th>
         <th pSortableColumn="fechaRegistro" style="min-width:7rem">Fecha de registro<p-sortIcon field="fechaRegistro" />
         </th>
-				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
         <th style="min-width:13rem">Acciones</th>
-			</tr>
-		</ng-template>
-		<ng-template #body let-item>
-			<tr>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
         <td>{{ item.nombre }}</td>
-				<td>{{ item.nemonico }}</td>
-				<td>{{ item.descripcion }}</td>
+        <td>{{ item.nemonico }}</td>
+        <td>{{ item.descripcion }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
-				<td>{{ item.estado }}</td>
+        <td>{{ item.estado }}</td>
         <td>
-					<!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.CREATE]"/> -->
-					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.EDIT(item.idPerfil)]"/>
-          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir menú acción" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]"/>
-				</td>
-			</tr>
-		</ng-template>
-		<ng-template #summary>
+          <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX(idMenu) + routeCore.ADMIN.TBLPERFIL.EDIT(item.idPerfil)]" />
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir menú acción" severity="primary"
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]" />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
       <div class="flex align-items-center justify-content-between text-muted">
         En total hay {{ tblPerfilRecords?.content?.length || 0 }} Perfil{{
         tblPerfilRecords?.content?.length === 1 ? '' : 'es' }}
       </div>
-		</ng-template>
-	</p-table>
+    </ng-template>
+  </p-table>
 </div>

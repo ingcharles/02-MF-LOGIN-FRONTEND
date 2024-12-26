@@ -87,7 +87,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
       idMenu: new FormControl(null, Validators.compose([Validators.required, Validators.max(999999999)])),
       idPerfil: new FormControl(this.idPerfil, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
       idAccion: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
-      estado: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
+      estado: new FormControl(null, Validators.compose([Validators.maxLength(64)])),
     });
 
     // this.loadDataAccionMenu();
@@ -116,7 +116,7 @@ export class CreateTblPerfilMenuAccionComponent implements OnInit {
   }
 
   public saveTblPerfilMenuAccion(): void {
-
+    console.log("currentTblPerfilMenuAccion",this.formTblPerfilMenuAccion)
     if (this.formTblPerfilMenuAccion.invalid) {
       this.formTblPerfilMenuAccion.markAllAsTouched();
       this._alertsService.alertMessage(messages.informativeTitle, messages.camposVacios, messages.isInfo);

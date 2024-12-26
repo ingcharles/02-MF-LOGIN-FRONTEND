@@ -10,8 +10,6 @@
 
 import { NgModule } from '@angular/core';
 import { TblUsuarioModuloRouting } from './tbl-usuario-modulo.routing';
-import { MfEventService } from '../../data/base/services/mf-event-service';
-import { TblPerfilMenuAccionUseCase } from '../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
 
 @NgModule({
 	declarations: [

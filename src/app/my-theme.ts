@@ -1,7 +1,7 @@
 import { definePreset } from '@primeng/themes';
 import Lara from '@primeng/themes/lara';
 
-export const MyPreset = definePreset(Lara, {
+export const MyTheme = definePreset(Lara, {
   semantic: {
     primary: {
         50: '{blue.50}',

@@ -5,8 +5,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MODULE_ROUTES } from './app.routes';
 import { providePrimeNG } from 'primeng/config';
-import Lara from '@primeng/themes/lara';
-import { MyPreset } from './my-preset';
+import { MyTheme } from './my-theme';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     //provideAnimationsAsync(),
         providePrimeNG({
             theme: {
-                preset: MyPreset,
+                preset: MyTheme,
                 options: {
                   prefix: 'p',
                   darkModeSelector: 'system',

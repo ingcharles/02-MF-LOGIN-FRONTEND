@@ -12,12 +12,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of  } from 'rxjs';
-import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../../domain/base/viewModels/i-response-status-paginado.viewModel';
 import { IResultApi } from '../../base/interfaces/i-result-api';
+import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../../domain/tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
 
 const apiAdminUrl: string = environment.apiAdminUrl;
 
@@ -152,6 +153,27 @@ export class TblPerfilMenuAccionService  {
         },
         error: (error) => {
           reject(this._statusResponseService.error<IGetTblPerfilMenuAccionByIdPerfilRsViewModel>(error));
+        }
+      });
+    });
+    }
+
+
+	/**
+	* Obtiene el registro actual
+	* @param id_perfil_menu_accion: IGetTblPerfilMenuAccionByIdViewModel
+	* @return Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdRsViewModel>>
+	*/
+	public getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel>>{
+    const url = `${apiAdminUrl}query/tbl-perfil-menu-accion/findTblMenuByIdUsuarioModulo`;
+    return new Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel>>((resolve, reject) => {
+    this._http.post<IResultApi>(url, tblUsuarioModuloPerfil)
+      .subscribe({
+        next: (result: IResultApi) => {
+          resolve(this._statusResponseService.succes<IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel>(result));
+        },
+        error: (error) => {
+          reject(this._statusResponseService.error<IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel>(error));
         }
       });
     });

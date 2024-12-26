@@ -14,21 +14,21 @@ import { TblUsuarioModuloService } from '../../../data/tbl-usuario-modulo/servic
 import { IGetTblUsuarioModuloByIdRsViewModel, IGetTblUsuarioModuloByIdViewModel, IGetTblUsuarioModuloRsViewModel, IGetTblUsuarioModuloViewModel, IGetTblUsuarioModuloPaginadoRsViewModel, IGetTblUsuarioModuloPaginadoViewModel, ISaveTblUsuarioModuloRsViewModel, ISaveTblUsuarioModuloViewModel, IUpdateTblUsuarioModuloRsViewModel, IUpdateTblUsuarioModuloViewModel, IGetPaginateByTblUsuarioEntityIdUsuarioViewModel, IGetPaginateByTblMenuEntityIdMenuViewModel } from '../viewModels/i-tbl-usuario-modulo.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
+import { Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class TblUsuarioModuloUseCase {
-
+private events = new Subject<any>();
   /**
   * Constructor
   * Se pueden llamar los servicios que van ser utilizados en los casos de uso
    */
-  constructor() {
+  constructor(private _tblUsuarioModuloService: TblUsuarioModuloService ) {
   }
-  _tblUsuarioModuloService: TblUsuarioModuloService = inject(TblUsuarioModuloService)
-
+  //_tblUsuarioModuloService: TblUsuarioModuloService = inject(TblUsuarioModuloService)
   /**
   * Guarda el registro actual
   * @param tblUsuarioModulo: ISaveTblUsuarioModuloViewModel

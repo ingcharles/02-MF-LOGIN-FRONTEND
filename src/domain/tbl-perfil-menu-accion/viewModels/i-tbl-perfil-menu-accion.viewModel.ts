@@ -10,7 +10,8 @@
 
 
 import { IGetTblMenuAccionRsViewModel } from '../../tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
-import { IGetTblPerfilRsViewModel } from '../../tbl-perfil/viewModels/i-tbl-perfil.viewModel';
+import { IGetTblMenuByIdRsViewModel } from '../../tbl-menu/viewModels/i-tbl-menu.viewModel';
+import { IGetTblPerfilByIdRsViewModel, IGetTblPerfilRsViewModel } from '../../tbl-perfil/viewModels/i-tbl-perfil.viewModel';
 
 
 /**
@@ -137,4 +138,20 @@ export interface IGetTblPerfilMenuAccionByIdPerfilRsViewModel {
 	estado?: string | null;
 	fechaRegistro?: Date | null;
 	idUsuarioRegistro?: number | null;
+}
+
+
+/**
+* Interface que contiene el datos de entrada que viene del servicio
+* @name IUsuarioModuloPerfilMenu
+*/
+export interface IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel {
+  idUsuarioModuloPerfil: number;
+  idUsuarioModulo: number;
+  idPerfil: number;
+  perfil: IGetTblPerfilByIdRsViewModel;
+  menu: IGetTblMenuByIdRsViewModel[];
+  estado: string;
+  fechaRegistro: string;
+  idUsuarioRegistro: number | null;
 }

@@ -11,9 +11,10 @@
 import { Injectable, inject } from '@angular/core';
 
 import { TblPerfilMenuAccionService } from '../../../data/tbl-perfil-menu-accion/services/tbl-perfil-menu-accion.services';
-import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
+import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
 
 
 @Injectable({
@@ -79,4 +80,12 @@ export class TblPerfilMenuAccionUseCase {
     return await this._tblPerfilMenuAccionService.getByTblPerfilEntityIdPerfil(tblPerfilMenuAccion);
     }
 
+    	/**
+	* Obtiene el registro por id
+	* @param tblUsuarioModulo: IGetTblUsuarioModuloByIdViewModel
+	* @return Promise<IResponseStatusViewModel<IGetTblUsuarioModuloByIdRsViewModel>>
+	*/
+	public async getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel): Promise<IResponseStatusViewModel<IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel>> {
+    return await this._tblPerfilMenuAccionService.getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil);
+    }
 }

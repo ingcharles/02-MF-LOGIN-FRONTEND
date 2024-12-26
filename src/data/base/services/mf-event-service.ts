@@ -7,9 +7,9 @@ import { TblPerfilMenuAccionUseCase } from "../../../domain/tbl-perfil-menu-acci
 })
 export class MfEventService {
   private events = new Subject<any>();
-  constructor(private _tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase) {
-      console.log('TblPerfilMenuAccionUseCase inyectado:', this._tblPerfilMenuAccionUseCase)
-  }
+  // constructor(private _tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase) {
+  //     console.log('TblPerfilMenuAccionUseCase inyectado:', this._tblPerfilMenuAccionUseCase)
+  // }
 
   emit(eventName: string, payload: any): void {
     console.log("emit mf:",eventName,payload)
@@ -20,32 +20,32 @@ export class MfEventService {
     console.log("on mf:", eventName);
 
     return new Observable((observer) => {
-      console.log("_tblPerfilMenuAccionUseCase",this._tblPerfilMenuAccionUseCase)
+    //   console.log("_tblPerfilMenuAccionUseCase",this._tblPerfilMenuAccionUseCase)
 
-      // Primero se llama al servicio
-      this._tblPerfilMenuAccionUseCase
-        .getAllTblPerfilMenuAccion()
-        .then((result) => {
-          if (result.ok) {
-            console.log("Datos del servicio:", result.data);
-            // Emitir el evento con los datos del servicio
-            this.events.asObservable().subscribe({
-              next: (event) => {
-                if (event.eventName === eventName) {
-                  observer.next({
-                    payload: event.payload,
-                    serviceData: result.data,
-                  });
-                }
-              },
-              error: (err) => observer.error(err),
-            });
-          } else {
-            observer.error(new Error(result.message));
-          }
-        })
-        .catch((err) => observer.error(err));
-    });
+    //   // Primero se llama al servicio
+    //   this._tblPerfilMenuAccionUseCase
+    //     .getAllTblPerfilMenuAccion()
+    //     .then((result) => {
+    //       if (result.ok) {
+    //         console.log("Datos del servicio:", result.data);
+    //         // Emitir el evento con los datos del servicio
+    //         this.events.asObservable().subscribe({
+    //           next: (event) => {
+    //             if (event.eventName === eventName) {
+    //               observer.next({
+    //                 payload: event.payload,
+    //                 serviceData: result.data,
+    //               });
+    //             }
+    //           },
+    //           error: (err) => observer.error(err),
+    //         });
+    //       } else {
+    //         observer.error(new Error(result.message));
+    //       }
+    //     })
+    //     .catch((err) => observer.error(err));
+     });
   }
 
   /*on(eventName: string): Observable<any> {

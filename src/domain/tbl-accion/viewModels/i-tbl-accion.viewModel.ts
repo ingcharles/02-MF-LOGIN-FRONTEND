@@ -47,7 +47,7 @@ export interface IGetTblAccionRsViewModel {
 	nemonico?: string | null;
 	pagina?: string | null;
 	imagen?: string | null;
-	color?: string | null;
+	color?: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
 	descripcion?: string | null;
 	orden?: number | null;
 	estado?: string | null;

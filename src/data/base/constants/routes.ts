@@ -43,9 +43,9 @@ export const ROUTES_CORE = {
       EDIT: (idMenu: String | number, id: String | number) => `menu-accion/${idMenu}/edit/${id}`
     },
     TBLPERFIL: {
-      INDEX: 'perfil',
-      CREATE: 'perfil/create',
-      EDIT: (id: String | number) => `perfil/edit/${id}`
+      INDEX: (idMenu: String | number)=> `perfil/${idMenu}`,
+      CREATE: '/create',
+      EDIT: (id: String | number) => `edit/${id}`
     },
     TBLPERFILMENUACCION: {
       INDEX: (idPerfil: String | number) => `perfil-menu-accion/${idPerfil}`,
