@@ -9,22 +9,26 @@
 -->
 
 <div class="container-fluid">
-	<p-toolbar >
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      @for (item of tblAccionButtomIndexHeaderRecords; track $index) {
+      <p-button [severity]="item.accion?.color" label="{{item.accion?.nombre}}" icon="{{item.accion?.imagen}}"
+        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.INDEX + item.accion?.pagina]" />
+      }
+    </div>
+  </p-toolbar>
 
-			<p-button severity="primary" label="Nuevo" icon="pi pi-plus" class="mr-2"
-			[routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.CREATE]"/>
-		</p-toolbar>
+  <p-table #dt [value]="tblModuloRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
+    [showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+    currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
+    (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
+    [globalFilterFields]="['id_modulo','nemonico','nombre','numero_version','ruta','descripcion','estado','fecha_registro','id_usuario_registro',]">
 
-	<p-table #dt [value]="tblModuloRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
-		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
-		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
-		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_modulo','nemonico','nombre','numero_version','ruta','descripcion','estado','fecha_registro','id_usuario_registro',]">
-
-		<ng-template #caption>
-			<div class="flex">
-				<div class="flex align-items-center justify-content-center" style="flex: 1;">
-					<h2 class="m-0">{{title}}</h2>
-				</div>
+    <ng-template #caption>
+      <div class="flex">
+        <div class="flex align-items-center justify-content-center" style="flex: 1;">
+          <h6 class="m-0">{{title}}</h6>
+        </div>
         <div class="flex align-items-center justify-content-end" style="gap: 10px;">
           <p-button [outlined]="true" icon="pi pi-filter-slash" label="Limpiar" (click)="clearSearch()" />
           <p-iconfield>
@@ -32,41 +36,47 @@
             <input pInputText type="text" (input)="inputSearch($event)" placeholder="Buscar..." />
           </p-iconfield>
         </div>
-			</div>
-		</ng-template>
-		<ng-template #header>
-			<tr>
-        <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre"/></th>
-				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
-				<th pSortableColumn="numeroVersion" style="min-width:7rem">Versión<p-sortIcon field="numeroVersion"/></th>
-				<th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta"/></th>
-				<th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion"/></th>
-        <th pSortableColumn="fechaRegistro" style="min-width:10rem">Fecha de registro<p-sortIcon field="fechaRegistro"/>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre" /></th>
+        <th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico" /></th>
+        <th pSortableColumn="numeroVersion" style="min-width:7rem">Versión<p-sortIcon field="numeroVersion" /></th>
+        <th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta" /></th>
+        <th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion" /></th>
+        <th pSortableColumn="fechaRegistro" style="min-width:10rem">Fecha de registro<p-sortIcon
+            field="fechaRegistro" />
         </th>
-        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
-				<th style="min-width:12rem">Acciones</th>
-			</tr>
-		</ng-template>
-		<ng-template #body let-item>
-			<tr>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado" /></th>
+        <th style="min-width:12rem">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-item>
+      <tr>
         <td>{{ item.nombre }}</td>
-				<td>{{ item.nemonico }}</td>
-				<td>{{ item.numeroVersion }}</td>
-				<td>{{ item.ruta }}</td>
-				<td>{{ item.descripcion }}</td>
+        <td>{{ item.nemonico }}</td>
+        <td>{{ item.numeroVersion }}</td>
+        <td>{{ item.ruta }}</td>
+        <td>{{ item.descripcion }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
-				<td>{{ item.estado }}</td>
-				<td>
-					<!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.CREATE]"/> -->
-					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.EDIT(item.idModulo)]"/>
-          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.INDEX(item.idModulo)]"/>
-				</td>
-			</tr>
-		</ng-template>
-		<ng-template #summary>
-			<div class="flex align-items-center justify-content-between">
-				En total hay {{ tblModuloRecords ? tblModuloRecords.length : 0 }} módulos
-			</div>
-		</ng-template>
-	</p-table>
+        <td>{{ item.estado }}</td>
+        <td>
+          @for (itemAccion of tblAccionButtomIndexBodyRecords; track $index) {
+          <p-button [severity]="itemAccion.accion?.color" title="{{itemAccion.accion?.nombre}}"
+            icon="{{itemAccion.accion?.imagen}}" class="mr-2" size="small"
+            [routerLink]="[routeCore.ADMIN.BASE + itemAccion.accion?.pagina + item.idModulo]" />
+          }
+          <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.CREATE]"/> -->
+          <!-- <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.EDIT(item.idModulo)]"/>
+          <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir accion" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULOPERFIL.INDEX(item.idModulo)]"/> -->
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="flex align-items-center justify-content-between">
+        En total hay {{ tblModuloRecords ? tblModuloRecords.length : 0 }} módulos
+      </div>
+    </ng-template>
+  </p-table>
 </div>

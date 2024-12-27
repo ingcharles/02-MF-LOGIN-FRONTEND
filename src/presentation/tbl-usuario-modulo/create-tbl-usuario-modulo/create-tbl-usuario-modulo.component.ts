@@ -85,7 +85,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
     });
 
     this.optionsImagenModulo = this._fontAwesomeService.loadIcons();
-    this.optionsColorModulo = this._colorService.loadColors();
+    this.optionsColorModulo = this._colorService.loadColorsModule();
     this.loadDataUsuario(this.idUsuario);
     this.loadDataModulos();
 

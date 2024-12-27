@@ -22,7 +22,14 @@
         </p>
         <p-fieldset legend="Datos Generales">
           <div class="p-fluid grid">
-
+            <div class="col-12 md:col-6">
+              <label for="tipo"> Tipo (*)</label>
+              <p-select id="tipo" name="tipo" class="w-full" formControlName="tipo"
+                placeholder="Seleccione..." [options]="optionsTypeAccion" optionValue="value" optionLabel="name"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('tipo',formTblAccion)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('tipo', formTblAccion)" tooltipPosition="top">>
+              </p-select>
+            </div>
             <div class="col-12 md:col-6">
               <label for="nombre"> Nombre (*)</label>
               <input pTextarea id="nombre" name="nombre" formControlName="nombre" class="w-full"

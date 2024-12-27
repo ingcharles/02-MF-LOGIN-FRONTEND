@@ -72,6 +72,14 @@ export interface IGetTblPerfilMenuAccionPaginadoRsViewModel {
 
 /**
 * Interface que contiene los datos de salida que van al servicio
+* @name IGetPaginateByTblMenuEntityIdMenuViewModel
+*/
+export interface IGetPaginateByTblAccionEntityIdMenuViewModel {
+  pagination: IGetTblPerfilMenuAccionPaginadoViewModel;
+  idPerfil: number;
+}
+/**
+* Interface que contiene los datos de salida que van al servicio
 * @name IGetTblPerfilMenuAccionPaginadoViewModel
 */
 export interface IGetTblPerfilMenuAccionPaginadoViewModel {

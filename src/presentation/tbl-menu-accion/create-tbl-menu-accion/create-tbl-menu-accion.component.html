@@ -26,9 +26,15 @@
             <div class="col-12 md:col-6">
               <label for="idAccion"> Acción (*)</label>
               <p-select id="idAccion" name="idAccion" class="w-full" formControlName="idAccion"
-                placeholder="Seleccione..." [options]="optionsAccion" optionValue="idAccion" optionLabel="nombre"
+                placeholder="Seleccione..." [options]="optionsAccion" optionValue="idAccion"
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top">>
+                [pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top">
+                <ng-template let-item #item>
+                  {{ item.nombre | concatTwoFields:item.pagina }}
+                </ng-template>
+                <ng-template let-item #selectedItem>
+                  {{ item.nombre | concatTwoFields:item.pagina }}
+                </ng-template>
               </p-select>
             </div>
 

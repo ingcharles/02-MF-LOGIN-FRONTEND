@@ -4,11 +4,11 @@ import { IGetPaginateByTblMenuEntityIdMenuViewModel, IGetTblUsuarioModuloByIdVie
 import { TblUsuarioModuloUseCase } from '../../../domain/tbl-usuario-modulo/usesCases/tbl-usuario-modulo.usecase';
 import { IUsuarioModulo } from '../../../domain/tbl-usuario-modulo/viewModels/i-usuario-modulo';
 import { SharedDialogInfoComponent } from "../../shared/shared-dialog-info/shared-dialog-info.component";
-import { share } from 'rxjs';
-import { MfEventService } from '../../../data/base/services/mf-event-service';
 import { TblPerfilMenuAccionUseCase } from '../../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
 import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../../domain/tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
-
+import { LocalStorageService } from '../../../data/base/services/local-storage.service';
+import { messages } from '../../../data/base/constants/messages';
+import { AlertsService } from '../../../data/base/services/alerts.service';
 @Component({
   selector: 'app-index-modulos',
   standalone: true,
@@ -20,7 +20,9 @@ export class IndexModuloComponent implements OnInit {
   _loaderService: LoaderService = inject(LoaderService);
   _tblUsuarioModuloUseCase: TblUsuarioModuloUseCase = inject(TblUsuarioModuloUseCase);
   _tblPerfilMenuAccionUseCase: TblPerfilMenuAccionUseCase = inject(TblPerfilMenuAccionUseCase);
- //
+  _localStorageService: LocalStorageService = inject(LocalStorageService);
+   _alertsService: AlertsService = inject(AlertsService);
+
   public page: number = 0;
   public size: number = 10;
   public search: string = '';
@@ -28,23 +30,19 @@ export class IndexModuloComponent implements OnInit {
   public sortDirection: string = 'ASC';
   public isVisibleDialog: boolean = false;
   public dataDialog: string = '';
-  @Output() outputSistemaSeleccionado = new EventEmitter<number>();
 
   usuarioModulos: IUsuarioModulo[] = [];
-  // [
-  //   { idSistema: 1, rutaSistema: 'sistema-uno', nombreSistema: 'Sistema Uno', iconoSistema: 'fa fa-user', colorSistema: 'rojo100', descripcionSistema: 'Descripcion SIstema' },
-  //   { idSistema: 2, rutaSistema: 'sistema-dos', nombreSistema: 'Sistema Dos', iconoSistema: 'fa fa-dark', colorSistema: 'verde100', descripcionSistema: 'Descripcion SIstema' },
-  //   { idSistema: 3, rutaSistema: 'sistema-uno', nombreSistema: 'Sistema Tres', iconoSistema: 'fa fa-file', colorSistema: 'azul100', descripcionSistema: 'Descripcion SIstema' },
-  //   { idSistema: 4, rutaSistema: 'sistema-uno', nombreSistema: 'Sistema Cuatro', iconoSistema: 'fa fa-user', colorSistema: 'amarillo100', descripcionSistema: 'Descripcion SIstema' },
-  //   { idSistema: 5, rutaSistema: 'sistema-uno', nombreSistema: 'Sistema Cinco', iconoSistema: 'fa fa-user', colorSistema: 'anaranjado100', descripcionSistema: 'Descripcion SIstema' }]
 
   ngOnInit(): void {
     this.loadModule();
-    //console.log("_mfEventService",this._mfEventService)
   }
-  clickSistema(idSistema: number) {
-    this.outputSistemaSeleccionado.emit(idSistema);
-    this.sendUsuarioModulo(idSistema)
+  onClickSistema(idUsuarioModulo: number) {
+    const tblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModulo: idUsuarioModulo }
+    this._tblPerfilMenuAccionUseCase.getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil).then(result => {
+      if (result.ok) {
+        this._localStorageService.setItem<any>('dataPerfilMenu', result.data);
+      }
+    });
   }
 
   public loadModule(): void {
@@ -53,28 +51,15 @@ export class IndexModuloComponent implements OnInit {
     this._tblUsuarioModuloUseCase.getPaginateByTblUsuarioEntityIdUsuario(tblUsuarioModulo).then(result => {
       this._loaderService.display(false);
       if (result.ok) {
-        console.log("result", result)
         this.usuarioModulos = result.data.content;
+      }else{
+        this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }
     });
   }
 
-  sendUsuarioModulo(data: any) {
-    console.log("sale mfIdUsuarioModulo:",data)
-    // const event = new CustomEvent('mfIdUsuarioModulo', { detail: data });
-    // window.dispatchEvent(event);
-    const tblUsuarioModuloPerfil: IGetTblUsuarioModuloPerfilByIdViewModel = { idUsuarioModulo: data }
 
-    this._tblPerfilMenuAccionUseCase.getTblMenuByIdUsuarioModulo(tblUsuarioModuloPerfil).then(result => {
-      if (result.ok) {
-        const event = new CustomEvent('mfIdUsuarioModulo', { detail: result });
-        window.dispatchEvent(event);
-      }
-    });
-
-  }
-
-  openDialogInfo(info:string){
+  openDialogInfo(info: string) {
     this.isVisibleDialog = true;
     this.dataDialog = info;
   }

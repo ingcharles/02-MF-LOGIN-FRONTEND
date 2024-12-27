@@ -11,7 +11,7 @@
 <div class="container-fluid">
   <p-toolbar>
     <div class="p-toolbar-group-left">
-      <p-button label="Regresar" type="button" icon="pi pi-chevron-left" class="mr-2" severity="secondary"
+      <p-button label="Regresar" type="button" icon="pi pi-chevron-left" class="mr-2" severity="contrast"
         (click)="cancelTblMenuAccion()" />
       <p-button label="Nuevo" icon="pi pi-plus" class="mr-2" severity="primary"
         [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]" />
@@ -54,7 +54,7 @@
         <td>{{ item.menu.nombre }}</td>
         <td>{{ item.accion.nombre }}</td>
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
-        <td>{{ item.estado }}</td>
+        <td><p-badge [value]="item.estado" [severity]="getStatus(item.estado)" /></td>
         <td>
           <!-- <p-button icon="pi pi-plus" class="mr-2" size="small" title="Añadir" severity="primary"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMENUACCION.CREATE(idMenu)]"/> -->

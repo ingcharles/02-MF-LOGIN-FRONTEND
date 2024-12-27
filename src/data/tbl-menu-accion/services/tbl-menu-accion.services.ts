@@ -168,7 +168,6 @@ export class TblMenuAccionService {
       this._http.post<IResultApi>(url, dataViewModel)
         .subscribe({
           next: (result: IResultApi) => {
-            console.log("result: " + JSON.stringify(result));
             resolve(this._statusResponseService.succes<IGetTblMenuAccionRsViewModel>(result));
           },
           error: (error) => {

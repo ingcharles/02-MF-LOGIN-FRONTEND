@@ -50,6 +50,7 @@ export interface IGetTblAccionRsViewModel {
 	color?: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
 	descripcion?: string | null;
 	orden?: number | null;
+  tipo?: string | null;
 	estado?: string | null;
 	fechaRegistro?: Date | null;
 	idUsuarioRegistro?: number | null;

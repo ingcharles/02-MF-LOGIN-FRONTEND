@@ -1,5 +1,5 @@
 {
-  "colors" :
+  "colorsModule" :
   [
     { "name": "Rojo claro", "value": "rojo100", "color": "#ed5565" },
     { "name": "Verde claro", "value": "verde100", "color": "#20983b" },
@@ -7,5 +7,14 @@
     { "name": "Amarillo oscuro", "value": "amarillo100", "color": "#facd01" },
     { "name": "Naranja claro", "value": "anaranjado100", "color": "#f0ad4e" },
     { "name": "Turquesa claro", "value": "turquesa100", "color": "#18a78a" }
+  ],
+  "colorsAccion" :
+  [
+    { "name": "Rojo claro", "value": "rojo100", "color": "#ed5565" },
+    { "name": "Verde claro", "value": "success", "color": "#20983b" },
+    { "name": "Azul claro", "value": "primary", "color": "#1c84c6" },
+    { "name": "Amarillo oscuro", "value": "warn", "color": "#facd01" },
+    { "name": "Naranja claro", "value": "danger", "color": "#f0ad4e" },
+    { "name": "Negro", "value": "contrast", "color": "#18a78a" }
   ]
 }

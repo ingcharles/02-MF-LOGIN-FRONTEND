@@ -40,8 +40,8 @@
 				<th pSortableColumn="identificacion" style="min-width:10rem">Identificacion<p-sortIcon field="identificacion"/></th>
 				<th pSortableColumn="nombreCompleto" style="min-width:10rem">Nombres<p-sortIcon field="nombreCompleto"/></th>
 				<th pSortableColumn="contrasenia" style="min-width:10rem">Contraseña<p-sortIcon field="contrasenia"/></th>
-				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
 				<th pSortableColumn="fechaRegistro" style="min-width:7rem">FechaRegistro<p-sortIcon field="fechaRegistro"/></th>
+        <th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
 				<th style="min-width:13rem">Acciones</th>
 			</tr>
 		</ng-template>
@@ -51,8 +51,8 @@
 				<td>{{ item.identificacion }}</td>
 				<td>{{ item.nombreCompleto }}</td>
 				<td>{{ item.contrasenia }}</td>
-				<td>{{ item.estado }}</td>
 				<td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
+        <td>{{ item.estado }}</td>
 				<td>
 					<p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIO.EDIT(item.idUsuario)]"/>
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir módulo" severity="primary"  [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLUSUARIOMODULO.INDEX(item.idUsuario)]"/>

@@ -46,6 +46,8 @@ export const messages = {
   successSave: 'registro guardado exitosamente',
   error: 'error al obtener los datos',
   successUpdate: 'registro actualizado exitosamente',
+  buttomIndexHeader: 'buttomIndexHeader',
+  buttomIndexBody: 'buttomIndexBody'
 
 
 }

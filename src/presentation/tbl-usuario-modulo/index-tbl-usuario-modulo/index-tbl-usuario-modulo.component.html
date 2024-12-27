@@ -20,7 +20,7 @@
 
   <p-table #dt [value]="tblUsuarioModuloRecords?.content!" dataKey="id" [rowHover]="true" [rows]="size"
     [totalRecords]="tblUsuarioModuloRecords?.totalElements!" [showCurrentPageReport]="true"
-    [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
+    [rowsPerPageOptions]="pageSizeOptions"  [paginator]="true"
     currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
     (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
     [globalFilterFields]="['id_usuario_modulo','id_usuario','id_modulo','color_modulo','imagen_modulo','numero_visita_modulo','numero_notificaciones','estado',]">

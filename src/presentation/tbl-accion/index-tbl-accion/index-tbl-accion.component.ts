@@ -58,7 +58,7 @@ export class IndexTblAccionComponent implements OnInit {
 
 	public ngOnInit(): void {
     this.optionsIcon = this._fontAwesomeService.loadIcons();
-    this.optionsColor = this._colorService.loadColors();
+    this.optionsColor = this._colorService.loadColorsAccion();
 	}
 
 	public loadData(): void {

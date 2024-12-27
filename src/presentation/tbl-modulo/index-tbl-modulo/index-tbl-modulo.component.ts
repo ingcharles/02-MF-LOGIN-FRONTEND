@@ -19,86 +19,109 @@ import { LoaderService } from '../../../data/base/services/loader.service';
 import { TblModuloUseCase } from '../../../domain/tbl-modulo/usesCases/tbl-modulo.usecase';
 import { IGetTblModuloPaginadoViewModel } from '../../../domain/tbl-modulo/viewModels/i-tbl-modulo.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
+import { IGetTblMenuAccionRsViewModel, IGetTblMenuAccionViewModel } from '../../../domain/tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
+import { TblMenuAccionUseCase } from '../../../domain/tbl-menu-accion/usesCases/tbl-menu-accion.usecase';
+import { LocalStorageService } from '../../../data/base/services/local-storage.service';
 
 
 @Component({
-	selector: 'index-tbl-modulo-page',
-	templateUrl: './index-tbl-modulo.component.html',
-	styleUrls: ['./index-tbl-modulo.component.scss'],
-	standalone: true,
-	imports: [SharedIndexModule]
+  selector: 'index-tbl-modulo-page',
+  templateUrl: './index-tbl-modulo.component.html',
+  styleUrls: ['./index-tbl-modulo.component.scss'],
+  standalone: true,
+  imports: [SharedIndexModule]
 })
 
 export class IndexTblModuloComponent implements OnInit {
 
-	constructor(){ }
+  constructor() { }
 
-	_fb: FormBuilder = inject(FormBuilder);
-	_loaderService: LoaderService = inject(LoaderService);
-	_alertsService: AlertsService = inject(AlertsService);
-	_TblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
+  _fb: FormBuilder = inject(FormBuilder);
+  _loaderService: LoaderService = inject(LoaderService);
+  _alertsService: AlertsService = inject(AlertsService);
+  _TblModuloUseCase: TblModuloUseCase = inject(TblModuloUseCase);
   public routeCore = ROUTES_CORE;
-	public page: number = 0;
-	public size: number = 10;
-	public totalElements: number = 0;
-	public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
-	public title:string = 'Listado de módulos';
-	public tblModuloRecords: any[] = [];
-	public search: string = '';
-	public sortBy: string = 'nombre';
-	public sortDirection: string = 'ASC';
-	public loading: boolean = false;
+  public page: number = 0;
+  public size: number = 10;
+  public totalElements: number = 0;
+  public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  public title: string = 'Listado de módulos';
+  public tblModuloRecords: any[] = [];
+  public search: string = '';
+  public sortBy: string = 'nombre';
+  public sortDirection: string = 'ASC';
+  public loading: boolean = false;
+  private _localStorageService: LocalStorageService = inject(LocalStorageService);
+  private _tblMenuAccionUseCase: TblMenuAccionUseCase = inject(TblMenuAccionUseCase);
+  public tblAccionButtomIndexHeaderRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  public tblAccionButtomIndexBodyRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  public ngOnInit(): void {
+    this.loadAcciones(this._localStorageService.getItem<number>('idPerfil')!,this._localStorageService.getItem<number>('idMenu')!)
 
-	public ngOnInit(): void {
+  }
 
-	}
+  public loadData(): void {
+    const currentTblModulo: IGetTblModuloPaginadoViewModel = { page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
+    this._TblModuloUseCase.getPaginadoTblModulo(currentTblModulo).then(result => {
+      this._loaderService.display(true);
+      this._loaderService.display(false);
+      if (result.ok) {
+        this.tblModuloRecords = result.data?.content!;
+      } else {
+        this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+      }
+    });
+  }
 
-	public loadData(): void {
-		const currentTblModulo: IGetTblModuloPaginadoViewModel = {page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
-		this._TblModuloUseCase.getPaginadoTblModulo(currentTblModulo).then(result => {
-			this._loaderService.display(true);
-				this._loaderService.display(false);
-				if (result.ok) {
-					this.tblModuloRecords = result.data?.content!;
-				} else {
-					this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
-				}
-		});
-	}
+  public inputSearch(event: any): void {
+    this.search = event.target.value;
+    this.loadData();
+  }
 
-	public inputSearch(event: any): void {
-		this.search = event.target.value;
-		this.loadData();
-	}
+  public changePage(event: any): void {
+    this.size = event.target.value;
+    this.page = 0;
+    this.loadData();
+  }
 
-	public changePage(event: any): void {
-		this.size = event.target.value;
-		this.page = 0;
-		this.loadData();
-	}
+  public getStatus(status: boolean): any {
+    switch (status) {
+      case true:
+        return 'primary';
+      case false:
+        return 'danger';
+      default:
+        return 'warning';
+    }
+  }
 
-	public getStatus(status: boolean): any {
-		switch (status) {
-			case true:
-				return 'primary';
-			case false:
-				return 'danger';
-			default:
-				return 'warning';
-		}
-	}
+  public clearSearch(): void {
+    this.search = '';
+    this.loadData();
+  }
 
-	public clearSearch(): void {
-		this.search = '';
-		this.loadData();
-	}
+  public lazyLoadData(event: any) {
+    this.page = event.first / event.rows;
+    this.size = event.rows
+    this.sortBy = event.sortField || 'nombre';
+    this.sortDirection = event.sortOrder === 1 ? 'ASC' : 'DESC';
+    this.loadData();
+  }
 
-	public lazyLoadData(event: any) {
-		this.page = event.first / event.rows;
-		this.size = event.rows
-		this.sortBy = event.sortField || 'nombre';
-		this.sortDirection = event.sortOrder === 1 ? 'ASC' : 'DESC';
-		this.loadData();
-	}
+  public  loadAcciones(idPerfil:number, idMenu:number): void{
+    this.loading = true;
+    const currentTblMenuAccion: IGetTblMenuAccionViewModel = {idPerfil, idMenu }
+    this._loaderService.display(true);
+    this._tblMenuAccionUseCase.getByTblMenuEntityIdMenuAndEstado(currentTblMenuAccion).then(result => {
+      this._loaderService.display(false);
+      if (result.ok) {
+        this.tblAccionButtomIndexHeaderRecords = result.data!.filter((record:any) => record.accion.tipo === messages.buttomIndexHeader);
+        this.tblAccionButtomIndexBodyRecords = result.data!!.filter((record:any) => record.accion.tipo === messages.buttomIndexBody);;
+      } else {
+        this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+      }
+      this.loading = false;
+    });
+  }
 
 }

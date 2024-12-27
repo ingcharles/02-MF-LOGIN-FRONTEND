@@ -8,8 +8,8 @@ export const ROUTES_CORE = {
     },
     TBLMODULO: {
       INDEX: 'modulo',
-      CREATE: 'modulo/create',
-      EDIT: (id: String | number) => `modulo/edit/${id}`
+      CREATE: '/create',
+      EDIT: (id: String | number) => `/edit/${id}`
     },
     TBLMODULOPERFIL: {
       INDEX: (idModulo: String | number) => `modulo-perfil/${idModulo}`,
@@ -43,9 +43,9 @@ export const ROUTES_CORE = {
       EDIT: (idMenu: String | number, id: String | number) => `menu-accion/${idMenu}/edit/${id}`
     },
     TBLPERFIL: {
-      INDEX: (idMenu: String | number)=> `perfil/${idMenu}`,
+      INDEX: 'perfil',
       CREATE: '/create',
-      EDIT: (id: String | number) => `edit/${id}`
+      EDIT: (id: String | number) => `/edit/${id}`
     },
     TBLPERFILMENUACCION: {
       INDEX: (idPerfil: String | number) => `perfil-menu-accion/${idPerfil}`,

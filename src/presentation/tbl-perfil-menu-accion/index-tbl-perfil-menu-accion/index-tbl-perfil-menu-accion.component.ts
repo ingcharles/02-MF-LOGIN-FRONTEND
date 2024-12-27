@@ -14,7 +14,7 @@ import { messages } from '../../../data/base/constants/messages';
 import { AlertsService } from '../../../data/base/services/alerts.service';
 import { LoaderService } from '../../../data/base/services/loader.service';
 import { TblPerfilMenuAccionUseCase } from '../../../domain/tbl-perfil-menu-accion/usesCases/tbl-perfil-menu-accion.usecase';
-import { IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetPaginateByTblAccionEntityIdMenuViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { ROUTES_CORE } from '../../../data/base/constants/routes';
 import { SharedIndexModule } from './../../shared/shared-index/shared-index.module';
 import { IPaginado } from '../../../data/base/interfaces/i-paginado';
@@ -65,7 +65,7 @@ export class IndexTblPerfilMenuAccionComponent implements OnInit {
 
   public loadData(): void {
 
-    const currentTblPerfilMenuAccion: IGetTblPerfilMenuAccionPaginadoViewModel = { page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
+    const currentTblPerfilMenuAccion: IGetPaginateByTblAccionEntityIdMenuViewModel = {pagination:{ page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }, idPerfil: this.idPerfil};
     this._loaderService.display(true);
     this._tblPerfilMenuAccionUseCase.getPaginadoTblPerfilMenuAccion(currentTblPerfilMenuAccion).then(result => {
       this._loaderService.display(false);

@@ -11,7 +11,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { TblPerfilMenuAccionService } from '../../../data/tbl-perfil-menu-accion/services/tbl-perfil-menu-accion.services';
-import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel, IGetPaginateByTblAccionEntityIdMenuViewModel  } from '../viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
 import { IGetTblUsuarioModuloPerfilByIdViewModel } from '../../tbl-usuario-modulo-perfil/viewModels/i-tbl-usuario-modulo-perfil.viewModel';
@@ -51,7 +51,7 @@ export class TblPerfilMenuAccionUseCase {
 	* @param tblPerfilMenuAccion: IGetTblPerfilMenuAccionPaginadoViewModel
 	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>>
 	*/
-	public async getPaginadoTblPerfilMenuAccion(tblPerfilMenuAccion: IGetTblPerfilMenuAccionPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>> {
+	public async getPaginadoTblPerfilMenuAccion(tblPerfilMenuAccion: IGetPaginateByTblAccionEntityIdMenuViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>> {
 	return await this._tblPerfilMenuAccionService.getPaginadoTblPerfilMenuAccion(tblPerfilMenuAccion);
 	}
 	/**

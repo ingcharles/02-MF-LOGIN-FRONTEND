@@ -70,7 +70,7 @@ export class CreateTblAccionComponent implements OnInit {
 	{name: 'Activo', value: 'Activo' },
 	{name: 'Inactivo', value: 'Inactivo' },
 	];
-
+public optionsTypeAccion = [{name: 'Botón Cabecera', value: messages.buttomIndexHeader},{name: 'Botón Cuerpo', value: messages.buttomIndexBody}];
 
 
 	ngOnInit(): void {
@@ -79,11 +79,12 @@ export class CreateTblAccionComponent implements OnInit {
 			idAccion: new FormControl(null, Validators.compose([Validators.max(999999999)])),
 			nombre: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
 			nemonico: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
-			pagina: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
+			pagina: new FormControl(null, Validators.compose([Validators.maxLength(256)])),
 			imagen: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			color: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(64)])),
 			descripcion: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
 			orden: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
+      tipo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(256)])),
 			estado: new FormControl(null, Validators.compose([Validators.maxLength(64)])),
 		});
 
@@ -105,7 +106,7 @@ export class CreateTblAccionComponent implements OnInit {
 				};
 			});
       this.optionsIcon = this._fontAwesomeService.loadIcons();
-      this.optionsColor = this._colorService.loadColors();
+      this.optionsColor = this._colorService.loadColorsAccion();
 	}
 
 	public saveTblAccion(): void {

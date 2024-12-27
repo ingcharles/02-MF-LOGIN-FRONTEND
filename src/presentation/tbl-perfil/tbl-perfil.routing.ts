@@ -16,19 +16,19 @@ import { ROUTES_CORE } from '../../data/base/constants/routes';
 
 export const MF_ADMIN_TBLPERFIL_ROUTES: Routes = [
 	{
-	path: ROUTES_CORE.ADMIN.BASE.slice(1)  + ROUTES_CORE.ADMIN.TBLPERFIL.INDEX(':idMenu'),
-	redirectTo: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX(':idMenu')
+	path: ROUTES_CORE.ADMIN.BASE.slice(1)  + ROUTES_CORE.ADMIN.TBLPERFIL.INDEX,
+	redirectTo: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX
 	},
 	{
-	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX(':idMenu'),
+	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX,
 	component: IndexTblPerfilComponent,
 	pathMatch: 'full'
 	},
 	{
-	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX(':idMenu') + ROUTES_CORE.ADMIN.TBLPERFIL.CREATE, component: CreateTblPerfilComponent
+	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX + ROUTES_CORE.ADMIN.TBLPERFIL.CREATE, component: CreateTblPerfilComponent
 	},
 	{
-	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX(':idMenu') + ROUTES_CORE.ADMIN.TBLPERFIL.EDIT(':id'), component: CreateTblPerfilComponent
+	path: ROUTES_CORE.ADMIN.TBLPERFIL.INDEX + ROUTES_CORE.ADMIN.TBLPERFIL.EDIT(':id'), component: CreateTblPerfilComponent
 	}
 ];
 

@@ -1,3 +1,4 @@
+import { filter } from 'rxjs';
 /**
 * Vista index-tbl-perfil.component.ts
 *
@@ -21,6 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TblMenuAccionUseCase } from '../../../domain/tbl-menu-accion/usesCases/tbl-menu-accion.usecase';
 import { IGetTblMenuAccionRsViewModel, IGetTblMenuAccionViewModel } from '../../../domain/tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';
 import { IGetTblAccionRsViewModel } from '../../../domain/tbl-accion/viewModels/i-tbl-accion.viewModel';
+import { LocalStorageService } from '../../../data/base/services/local-storage.service';
 
 @Component({
   selector: 'index-tbl-perfil-page',
@@ -41,33 +43,39 @@ export class IndexTblPerfilComponent implements OnInit {
   _tblPerfilUseCase: TblPerfilUseCase = inject(TblPerfilUseCase);
   _tblMenuAccionUseCase: TblMenuAccionUseCase = inject(TblMenuAccionUseCase);
   _activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  _localStorageService: LocalStorageService = inject(LocalStorageService);
   public routeCore = ROUTES_CORE;
   public page: number = 0;
   public size: number = 10;
   public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   public title: string = 'Listado de perfiles';
   public tblPerfilRecords: IPaginado<IGetTblPerfilPaginadoRsViewModel> | null = null;
-  public tblAccionRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  public tblAccionButtomIndexHeaderRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  public tblAccionButtomIndexBodyRecords: IGetTblMenuAccionRsViewModel[] | null = null;
   public search: string = '';
   public sortBy: string = 'idPerfil';
   public sortDirection: string = 'ASC';
   public loading: boolean = false;
   public sub: any;
-  public idMenu: any;
-  public async ngOnInit(): Promise<void> {
-    this.sub = this._activatedRoute.params.subscribe(params => {
-      this.idMenu = params['idMenu'];
-    });
-    await this.loadAcciones(this.idMenu)
-    console.log("loadAcciones",this.tblAccionRecords);
+  //public idMenu: any;
+  public ngOnInit(): void {
+    // this.sub = this._activatedRoute.params.subscribe(params => {
+    //   this.idMenu = params['idMenu'];
+    // });
+    // this.idMenu = this._localStorageService.getItem<number>('idMenu');
+    // this.idMenu = this._localStorageService.getItem<number>('idPerfil');
+    console.log("llega this.idPerfil ", this._localStorageService.getItem<number>('idPerfil')!);
+    console.log("llega this.idMenu ", this._localStorageService.getItem<number>('idMenu')!);
+    this.loadAcciones(this._localStorageService.getItem<number>('idPerfil')!,this._localStorageService.getItem<number>('idMenu')!)
+
 
   }
 
-  public async loadData(): Promise<void> {
+  public loadData(): void {
     this.loading = true;
     const currentTblPerfil: IGetTblPerfilPaginadoViewModel = { page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }
     this._loaderService.display(true);
-    await this._tblPerfilUseCase.getPaginadoTblPerfil(currentTblPerfil).then(result => {
+    this._tblPerfilUseCase.getPaginadoTblPerfil(currentTblPerfil).then(result => {
       this._loaderService.display(false);
       if (result.ok) {
         this.tblPerfilRecords = result.data!;
@@ -113,15 +121,15 @@ export class IndexTblPerfilComponent implements OnInit {
     this.loadData();
   }
 
-  public async loadAcciones(idMenu:number): Promise<void>{
+  public  loadAcciones(idPerfil:number, idMenu:number): void{
     this.loading = true;
-    const currentTblMenuAccion: IGetTblMenuAccionViewModel = { idMenu }
+    const currentTblMenuAccion: IGetTblMenuAccionViewModel = {idPerfil, idMenu }
     this._loaderService.display(true);
     this._tblMenuAccionUseCase.getByTblMenuEntityIdMenuAndEstado(currentTblMenuAccion).then(result => {
       this._loaderService.display(false);
       if (result.ok) {
-        console.log("result1:",idMenu,result.data!)
-        this.tblAccionRecords = result.data!;
+        this.tblAccionButtomIndexHeaderRecords = result.data!.filter((record:any) => record.accion.tipo === messages.buttomIndexHeader);
+        this.tblAccionButtomIndexBodyRecords = result.data!!.filter((record:any) => record.accion.tipo === messages.buttomIndexBody);;
       } else {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }

@@ -59,7 +59,6 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
   public search: string = '';
   public sortBy: string = 'idUsuarioModulo';
   public sortDirection: string = 'ASC';
-  public loading: boolean = false;
   public idUsuario!: number;
   public sub: any;
   public optionsImagenModulo: ICatalogo[] = [];
@@ -72,13 +71,11 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
     });
     this.loadDataUsuario(this.idUsuario);
     this.optionsImagenModulo = this._fontAwesomeService.loadIcons();
-    this.optionsColorModulo = this._colorService.loadColors();
+    this.optionsColorModulo = this._colorService.loadColorsModule();
 
   }
 
   public loadData(): void {
-    this.loading = true;
-
     const currentTblUsuarioModulo: IGetPaginateByTblUsuarioEntityIdUsuarioViewModel = { pagination: { page: this.page, size: this.size, search: this.search, sortBy: this.sortBy, sortDirection: this.sortDirection }, idUsuario: this.idUsuario }
     this._loaderService.display(true);
     this._tblUsuarioModuloUseCase.getPaginadoByTblUsuarioEntityIdUsuario(currentTblUsuarioModulo).then(result => {
@@ -88,7 +85,6 @@ export class IndexTblUsuarioModuloComponent implements OnInit {
       } else {
         this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
       }
-      this.loading = false;
     });
   }
 

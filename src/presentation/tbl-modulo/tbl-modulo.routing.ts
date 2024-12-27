@@ -25,11 +25,11 @@ export const MF_ADMIN_TBLMODULO_ROUTES: Routes = [
     pathMatch: 'full' // Página principal de módulo
   },
   {
-    path: ROUTES_CORE.ADMIN.TBLMODULO.CREATE,
+    path: ROUTES_CORE.ADMIN.TBLMODULO.INDEX + ROUTES_CORE.ADMIN.TBLMODULO.CREATE,
     component: CreateTblModuloComponent // Crear módulo
   },
   {
-    path: ROUTES_CORE.ADMIN.TBLMODULO.EDIT(':id'),
+    path: ROUTES_CORE.ADMIN.TBLMODULO.INDEX + ROUTES_CORE.ADMIN.TBLMODULO.EDIT(':id'),
     component: CreateTblModuloComponent // Editar módulo (puede reutilizar el mismo componente)
   },
 

@@ -12,7 +12,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, of  } from 'rxjs';
-import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
+import { IGetTblPerfilMenuAccionRsViewModel, IGetTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionPaginadoViewModel, IGetTblPerfilMenuAccionPaginadoRsViewModel, IGetTblPerfilMenuAccionByIdRsViewModel, IGetTblPerfilMenuAccionByIdViewModel, ISaveTblPerfilMenuAccionRsViewModel, ISaveTblPerfilMenuAccionViewModel, IUpdateTblPerfilMenuAccionRsViewModel, IUpdateTblPerfilMenuAccionViewModel, IGetTblPerfilMenuAccionByIdPerfilRsViewModel, IGetTblPerfilMenuAccionByIdUsuarioModuloRsViewModel, IGetPaginateByTblAccionEntityIdMenuViewModel } from '../../../domain/tbl-perfil-menu-accion/viewModels/i-tbl-perfil-menu-accion.viewModel';
 import { environment } from '../../../environments/environment';
 import { StatusResponseService } from '../../base/services/status-response.service';
 import { IResponseStatusViewModel } from '../../../domain/base/viewModels/i-response-status.viewModel';
@@ -82,7 +82,7 @@ export class TblPerfilMenuAccionService  {
 	* @param busqueda: IGetTblPerfilMenuAccionPaginadoViewModel
 	* @return Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>>
 	*/
-	public getPaginadoTblPerfilMenuAccion(dataViewModel: IGetTblPerfilMenuAccionPaginadoViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>>{
+	public getPaginadoTblPerfilMenuAccion(dataViewModel: IGetPaginateByTblAccionEntityIdMenuViewModel): Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionPaginadoRsViewModel>>{
 	const url = `${apiAdminUrl}query/tbl-perfil-menu-accion/findAllPaginateTblPerfilMenuAccion`;
 	return new Promise<IResponseStatusPaginadoViewModel<IGetTblPerfilMenuAccionRsViewModel>>((resolve, reject) => {
 	this._http.post<IResultApi>(url, dataViewModel)
