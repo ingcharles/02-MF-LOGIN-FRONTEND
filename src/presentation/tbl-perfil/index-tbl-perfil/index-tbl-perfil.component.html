@@ -11,10 +11,9 @@
 <div class="container-fluid">
   <p-toolbar>
     <div class="p-toolbar-group-left">
-      @for (item of tblAccionButtomIndexHeaderRecords; track $index) {
-      <p-button [severity]="item.accion?.color" label="{{item.accion?.nombre}}" icon="{{item.accion?.imagen}}"
-        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX + item.accion?.pagina]" />
-      }
+
+      <p-button severity="primary" label="Nuevo" icon="pi pi-plus"
+        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX + routeCore.ADMIN.TBLPERFIL.CREATE]" />
     </div>
   </p-toolbar>
 
@@ -58,15 +57,10 @@
         <td>{{ item.fechaRegistro ?(item.fechaRegistro | date: 'yyyy-MM-dd HH:mm') : '' }}</td>
         <td>{{ item.estado }}</td>
         <td>
-          @for (itemAccion of tblAccionButtomIndexBodyRecords; track $index) {
-          <p-button [severity]="itemAccion.accion?.color" title="{{itemAccion.accion?.nombre}}"
-            icon="{{itemAccion.accion?.imagen}}" class="mr-2" size="small"
-            [routerLink]="[routeCore.ADMIN.BASE + itemAccion.accion?.pagina + item.idPerfil]" />
-          }
-          <!-- <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
+          <p-button icon="pi pi-pen-to-square" class="mr-2" size="small" title="Editar" severity="success"
             [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX + routeCore.ADMIN.TBLPERFIL.EDIT(item.idPerfil)]" />
           <p-button icon="pi pi-folder-plus" class="mr-2" size="small" title="Añadir menú acción" severity="primary"
-            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]" /> -->
+            [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFILMENUACCION.INDEX(item.idPerfil)]" />
         </td>
       </tr>
     </ng-template>

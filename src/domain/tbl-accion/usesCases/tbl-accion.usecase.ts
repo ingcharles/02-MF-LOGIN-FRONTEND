@@ -11,7 +11,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { TblAccionService } from '../../../data/tbl-accion/services/tbl-accion.services';
-import { IGetTblAccionByIdRsViewModel, IGetTblAccionByIdViewModel, IGetTblAccionRsViewModel, IGetTblAccionViewModel, IGetTblAccionPaginadoRsViewModel, IGetTblAccionPaginadoViewModel, ISaveTblAccionRsViewModel, ISaveTblAccionViewModel, IUpdateTblAccionRsViewModel, IUpdateTblAccionViewModel  } from '../viewModels/i-tbl-accion.viewModel';
+import { IGetTblAccionByIdRsViewModel, IGetTblAccionByIdViewModel, IGetTblAccionRsViewModel, IGetTblAccionPaginadoRsViewModel, IGetTblAccionPaginadoViewModel, ISaveTblAccionRsViewModel, ISaveTblAccionViewModel, IUpdateTblAccionRsViewModel, IUpdateTblAccionViewModel  } from '../viewModels/i-tbl-accion.viewModel';
 import { IResponseStatusViewModel } from '../../base/viewModels/i-response-status.viewModel';
 import { IResponseStatusPaginadoViewModel } from '../../base/viewModels/i-response-status-paginado.viewModel';
 import { IGetTblMenuAccionByIdRsViewModel, IGetTblMenuAccionByIdViewModel } from '../../tbl-menu-accion/viewModels/i-tbl-menu-accion.viewModel';

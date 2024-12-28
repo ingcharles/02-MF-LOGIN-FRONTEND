@@ -25,3 +25,36 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## implementar acciones dinamicas
+
+  public tblAccionButtomIndexHeaderRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  public tblAccionButtomIndexBodyRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+ 
+    this.loadAcciones(this._localStorageService.getItem<number>('idPerfil')!,this._localStorageService.getItem<number>('idMenu')!)
+  public  loadAcciones(idPerfil:number, idMenu:number): void{
+    this.loading = true;
+    const currentTblMenuAccion: IGetTblMenuAccionViewModel = {idPerfil, idMenu }
+    this._loaderService.display(true);
+    this._tblMenuAccionUseCase.getByTblMenuEntityIdMenuAndEstado(currentTblMenuAccion).then(result => {
+      this._loaderService.display(false);
+      if (result.ok) {
+        this.tblAccionButtomIndexHeaderRecords = result.data!.filter((record:any) => record.accion.tipo === messages.buttomIndexHeader);
+        this.tblAccionButtomIndexBodyRecords = result.data!!.filter((record:any) => record.accion.tipo === messages.buttomIndexBody);;
+      } else {
+        this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+      }
+      this.loading = false;
+    });
+  }
+
+  @for (item of tblAccionButtomIndexHeaderRecords; track $index) {
+      <p-button [severity]="item.accion?.color" label="{{item.accion?.nombre}}" icon="{{item.accion?.icono}}"
+        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLPERFIL.INDEX + item.accion?.ruta]" />
+      }
+      
+  @for (itemAccion of tblAccionButtomIndexBodyRecords; track $index) {
+          <p-button [severity]="itemAccion.accion?.color" title="{{itemAccion.accion?.nombre}}"
+            icon="{{itemAccion.accion?.icono}}" class="mr-2" size="small"
+            [routerLink]="[routeCore.ADMIN.BASE + itemAccion.accion?.ruta + item.idPerfil]" />
+          }

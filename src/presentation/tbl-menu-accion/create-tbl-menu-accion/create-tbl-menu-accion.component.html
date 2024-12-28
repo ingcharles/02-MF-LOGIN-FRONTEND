@@ -30,10 +30,10 @@
                 [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('idAccion',formTblMenuAccion)}"
                 [pTooltip]="_utilsService.getFieldErrorRequired('idAccion', formTblMenuAccion)" tooltipPosition="top">
                 <ng-template let-item #item>
-                  {{ item.nombre | concatTwoFields:item.pagina }}
+                  {{ item.nombre | concatTwoFields:item.ruta }}
                 </ng-template>
                 <ng-template let-item #selectedItem>
-                  {{ item.nombre | concatTwoFields:item.pagina }}
+                  {{ item.nombre | concatTwoFields:item.ruta }}
                 </ng-template>
               </p-select>
             </div>

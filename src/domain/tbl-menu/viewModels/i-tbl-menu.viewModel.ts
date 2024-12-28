@@ -29,7 +29,7 @@ export interface ISaveTblMenuViewModel {
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;
-	imagen?: string | null;
+	icono?: string | null;
 	ruta?: string | null;
 	orden?: number | null;
 	estado?: string | null;
@@ -47,7 +47,7 @@ export interface IGetTblMenuRsViewModel {
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;
-	imagen?: string | null;
+	icono?: string | null;
 	ruta?: string | null;
 	orden?: number | null;
 	estado?: string | null;
@@ -74,7 +74,7 @@ export interface IGetTblMenuPaginadoRsViewModel {
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;
-	imagen?: string | null;
+	icono?: string | null;
 	ruta?: string | null;
 	orden?: number | null;
 	estado?: string | null;
@@ -104,7 +104,7 @@ export interface IGetTblMenuByIdRsViewModel {
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;
-	imagen?: string | null;
+	icono?: string | null;
 	ruta?: string | null;
 	orden?: number | null;
 	estado?: string | null;
@@ -140,7 +140,7 @@ export interface IUpdateTblMenuViewModel {
 	nemonico?: string | null;
 	nemonicoPadre?: string | null;
 	nombre?: string | null;
-	imagen?: string | null;
+	icono?: string | null;
 	ruta?: string | null;
 	orden?: number | null;
 	estado?: string | null;

@@ -19,7 +19,7 @@
     [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
     currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros"
     (onLazyLoad)="lazyLoadData($event)" [filterDelay]="0" [lazy]="true"
-    [globalFilterFields]="['id_accion','nombre','nemonico','pagina','imagen','color','descripcion','orden','estado','fecha_registro','id_usuario_registro',]">
+    [globalFilterFields]="['id_accion','nombre','nemonico','ruta','icono','color','descripcion','orden','estado','fecha_registro','id_usuario_registro',]">
 
     <ng-template #caption>
       <div class="flex">
@@ -39,8 +39,8 @@
       <tr>
         <th pSortableColumn="nombre" style="min-width:10rem">Nombre<p-sortIcon field="nombre"/></th>
         <th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
-        <th pSortableColumn="pagina" style="min-width:10rem">Página<p-sortIcon field="pagina"/></th>
-        <th pSortableColumn="imagen" style="min-width:10rem">Imagen<p-sortIcon field="imagen"/></th>
+        <th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta"/></th>
+        <th pSortableColumn="icono" style="min-width:10rem">Icono<p-sortIcon field="icono"/></th>
         <th pSortableColumn="color" style="min-width:10rem">Color<p-sortIcon field="color"/></th>
         <th pSortableColumn="descripcion" style="min-width:10rem">Descripción<p-sortIcon field="descripcion"/></th>
         <th pSortableColumn="orden" style="min-width:7rem">Orden<p-sortIcon field="orden"/></th>
@@ -52,10 +52,10 @@
       <tr>
         <td>{{ item.nombre }}</td>
         <td>{{ item.nemonico }}</td>
-        <td>{{ item.pagina }}</td>
+        <td>{{ item.ruta }}</td>
         <td>
-          <div *ngIf="getIconDetails(item.imagen) as iconDetails">
-            <i class="{{item.imagen}}"></i>
+          <div *ngIf="getIconDetails(item.ruta) as iconDetails">
+            <i class="{{item.ruta}}"></i>
             {{ iconDetails.name }}
           </div>
         </td>

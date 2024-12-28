@@ -49,18 +49,18 @@
             </div>
 
             <div class="col-12 md:col-6">
-              <label for="pagina"> Pagina (*)</label>
-              <input pTextarea id="pagina" name="pagina" formControlName="pagina" class="w-full"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('pagina',formTblAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('pagina', formTblAccion)" tooltipPosition="top"
+              <label for="ruta"> Ruta (*)</label>
+              <input pTextarea id="ruta" name="ruta" formControlName="ruta" class="w-full"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('ruta',formTblAccion)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('ruta', formTblAccion)" tooltipPosition="top"
                 (keypress)="this._validatorsService.validarAlfanumericos($event)" placeholder="" />
             </div>
             <div class="col-12 md:col-6">
-              <label for="estado"> Imagen (*)</label>
-              <p-select id="imagen" name="imagen" class="w-full" formControlName="imagen" placeholder="Seleccione"
+              <label for="icono"> Icono (*)</label>
+              <p-select id="icono" name="icono" class="w-full" formControlName="icono" placeholder="Seleccione"
                 [options]="optionsIcon" optionValue="value" optionLabel="name"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagen',formTblAccion)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('imagen', formTblAccion)" tooltipPosition="top">
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('icono',formTblAccion)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('icono', formTblAccion)" tooltipPosition="top">
                 <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>
                   {{ option.name }}

@@ -50,8 +50,8 @@ export class IndexTblPerfilComponent implements OnInit {
   public pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   public title: string = 'Listado de perfiles';
   public tblPerfilRecords: IPaginado<IGetTblPerfilPaginadoRsViewModel> | null = null;
-  public tblAccionButtomIndexHeaderRecords: IGetTblMenuAccionRsViewModel[] | null = null;
-  public tblAccionButtomIndexBodyRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  //public tblAccionButtomIndexHeaderRecords: IGetTblMenuAccionRsViewModel[] | null = null;
+  //public tblAccionButtomIndexBodyRecords: IGetTblMenuAccionRsViewModel[] | null = null;
   public search: string = '';
   public sortBy: string = 'idPerfil';
   public sortDirection: string = 'ASC';
@@ -66,7 +66,7 @@ export class IndexTblPerfilComponent implements OnInit {
     // this.idMenu = this._localStorageService.getItem<number>('idPerfil');
     console.log("llega this.idPerfil ", this._localStorageService.getItem<number>('idPerfil')!);
     console.log("llega this.idMenu ", this._localStorageService.getItem<number>('idMenu')!);
-    this.loadAcciones(this._localStorageService.getItem<number>('idPerfil')!,this._localStorageService.getItem<number>('idMenu')!)
+    //this.loadAcciones(this._localStorageService.getItem<number>('idPerfil')!,this._localStorageService.getItem<number>('idMenu')!)
 
 
   }
@@ -121,19 +121,19 @@ export class IndexTblPerfilComponent implements OnInit {
     this.loadData();
   }
 
-  public  loadAcciones(idPerfil:number, idMenu:number): void{
-    this.loading = true;
-    const currentTblMenuAccion: IGetTblMenuAccionViewModel = {idPerfil, idMenu }
-    this._loaderService.display(true);
-    this._tblMenuAccionUseCase.getByTblMenuEntityIdMenuAndEstado(currentTblMenuAccion).then(result => {
-      this._loaderService.display(false);
-      if (result.ok) {
-        this.tblAccionButtomIndexHeaderRecords = result.data!.filter((record:any) => record.accion.tipo === messages.buttomIndexHeader);
-        this.tblAccionButtomIndexBodyRecords = result.data!!.filter((record:any) => record.accion.tipo === messages.buttomIndexBody);;
-      } else {
-        this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
-      }
-      this.loading = false;
-    });
-  }
+  // public  loadAcciones(idPerfil:number, idMenu:number): void{
+  //   this.loading = true;
+  //   const currentTblMenuAccion: IGetTblMenuAccionViewModel = {idPerfil, idMenu }
+  //   this._loaderService.display(true);
+  //   this._tblMenuAccionUseCase.getByTblMenuEntityIdMenuAndEstado(currentTblMenuAccion).then(result => {
+  //     this._loaderService.display(false);
+  //     if (result.ok) {
+  //       this.tblAccionButtomIndexHeaderRecords = result.data!.filter((record:any) => record.accion.tipo === messages.buttomIndexHeader);
+  //       this.tblAccionButtomIndexBodyRecords = result.data!!.filter((record:any) => record.accion.tipo === messages.buttomIndexBody);;
+  //     } else {
+  //       this._alertsService.alertMessage(messages.warningTitle, result.message, messages.isWarning);
+  //     }
+  //     this.loading = false;
+  //   });
+  // }
 }

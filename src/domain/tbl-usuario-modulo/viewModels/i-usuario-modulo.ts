@@ -6,7 +6,7 @@ export interface IUsuarioModulo {
   usuario: IUsuario;
   modulo: IModulo;
   colorModulo: string;
-  imagenModulo: string;
+  iconoModulo: string;
   numeroVisitaModulo: number;
   numeroNotificaciones: number;
   estado: string;

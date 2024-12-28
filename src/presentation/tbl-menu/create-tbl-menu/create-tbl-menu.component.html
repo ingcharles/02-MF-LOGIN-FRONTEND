@@ -58,11 +58,11 @@
 						</div>
 
             <div class="col-12 md:col-6">
-              <label for="estado"> Imagen (*)</label>
-              <p-select id="imagen" name="imagen" class="w-full" formControlName="imagen"
+              <label for="estado"> Icono (*)</label>
+              <p-select id="icono" name="icono" class="w-full" formControlName="icono"
                 placeholder="Seleccione" [options]="optionsIcon" optionValue="value" optionLabel="name"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagen',formTblMenu)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('imagen', formTblMenu)" tooltipPosition="top">
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('icono',formTblMenu)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('icono', formTblMenu)" tooltipPosition="top">
                 <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>
                   {{ option.name }}

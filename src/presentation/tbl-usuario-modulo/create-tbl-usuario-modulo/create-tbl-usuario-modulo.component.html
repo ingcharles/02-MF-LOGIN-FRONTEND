@@ -34,10 +34,10 @@
 
             <div class="col-12 md:col-6">
               <label for="estado"> Imagen (*)</label>
-              <p-select id="imagenModulo" name="imagenModulo" class="w-full" formControlName="imagenModulo"
+              <p-select id="iconoModulo" name="iconoModulo" class="w-full" formControlName="iconoModulo"
                 placeholder="Seleccione" [options]="optionsImagenModulo" optionValue="value" optionLabel="name"
-                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('imagenModulo',formTblUsuarioModulo)}"
-                [pTooltip]="_utilsService.getFieldErrorRequired('imagenModulo', formTblUsuarioModulo)"
+                [ngClass]="{'ng-invalid ng-dirty': _utilsService.isFieldInvalid('iconoModulo',formTblUsuarioModulo)}"
+                [pTooltip]="_utilsService.getFieldErrorRequired('iconoModulo', formTblUsuarioModulo)"
                 tooltipPosition="top">
                 <ng-template let-option #item>
                   <i class="{{ option.value }}  mr-3"></i>

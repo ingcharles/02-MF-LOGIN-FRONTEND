@@ -42,7 +42,7 @@
     <ng-template #header>
       <tr>
         <th pSortableColumn="nombreModulo" style="min-width:7rem">Módulo<p-sortIcon field="idModulo" /></th>
-        <th pSortableColumn="imagenModulo" style="min-width:7rem">Imagen <p-sortIcon field="imagenModulo" /></th>
+        <th pSortableColumn="iconoModulo" style="min-width:7rem">Imagen <p-sortIcon field="iconoModulo" /></th>
         <th pSortableColumn="colorModulo" style="min-width:7rem">Color<p-sortIcon field="colorModulo" /></th>
         <th pSortableColumn="numeroVisitaModulo" style="min-width:7rem">Visitas<p-sortIcon field="numeroVisitaModulo" />
         </th>
@@ -59,8 +59,8 @@
       <tr>
         <td>{{ item.modulo.nombre }}</td>
         <td>
-          <div *ngIf="getIconDetails(item.imagenModulo) as iconDetails">
-            <i class="{{item.imagenModulo}}"></i>
+          <div *ngIf="getIconDetails(item.iconoModulo) as iconDetails">
+            <i class="{{item.iconoModulo}}"></i>
             {{ iconDetails.name }}
           </div>
         </td>

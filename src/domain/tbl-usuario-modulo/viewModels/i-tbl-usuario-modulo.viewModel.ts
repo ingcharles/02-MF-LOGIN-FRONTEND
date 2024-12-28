@@ -28,7 +28,7 @@ export interface ISaveTblUsuarioModuloViewModel {
 	idUsuario?: number | null;
 	idModulo?: number | null;
 	colorModulo?: string | null;
-	imagenModulo?: string | null;
+	iconoModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
 	estado?: string | null;
@@ -43,7 +43,7 @@ export interface IGetTblUsuarioModuloRsViewModel {
 	idUsuario?: number | null;
 	idModulo?: number | null;
 	colorModulo?: string | null;
-	imagenModulo?: string | null;
+	iconoModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
 	estado?: string | null;
@@ -76,7 +76,7 @@ export interface IGetTblUsuarioModuloPaginadoRsViewModel {
 	idUsuario?: number | null;
 	idModulo?: number | null;
 	colorModulo?: string | null;
-	imagenModulo?: string | null;
+	iconoModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
   ordenModulo?: number | null;
@@ -104,7 +104,7 @@ export interface IGetTblUsuarioModuloByIdRsViewModel {
 	idUsuario?: number | null;
 	idModulo?: number | null;
 	colorModulo?: string | null;
-	imagenModulo?: string | null;
+	iconoModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
 	estado?: string | null;
@@ -137,7 +137,7 @@ export interface IUpdateTblUsuarioModuloViewModel {
 	idUsuario?: number | null;
 	idModulo?: number | null;
 	colorModulo?: string | null;
-	imagenModulo?: string | null;
+	iconoModulo?: string | null;
 	numeroVisitaModulo?: number | null;
 	numeroNotificaciones?: number | null;
 	estado?: string | null;

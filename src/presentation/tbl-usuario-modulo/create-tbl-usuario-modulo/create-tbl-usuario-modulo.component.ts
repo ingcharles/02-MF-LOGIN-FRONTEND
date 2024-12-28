@@ -94,7 +94,7 @@ export class CreateTblUsuarioModuloComponent implements OnInit {
 			idUsuario: new FormControl(this.idUsuario, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			idModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			colorModulo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
-			imagenModulo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
+			iconoModulo: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(32)])),
       ordenModulo: new FormControl(null, Validators.compose([Validators.required, Validators.min(1), Validators.max(999999999)])),
 			numeroVisitaModulo: new FormControl(0, Validators.compose([Validators.required, Validators.min(0), Validators.max(999999999)])),
 			numeroNotificaciones: new FormControl(0, Validators.compose([Validators.required, Validators.min(0), Validators.max(999999999)])),

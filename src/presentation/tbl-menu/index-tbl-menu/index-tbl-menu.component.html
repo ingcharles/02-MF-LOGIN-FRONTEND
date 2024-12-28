@@ -18,7 +18,7 @@
 	<p-table #dt [value]="tblMenuRecords" dataKey="id" [rowHover]="true" [rows]="size" [totalRecords]="totalElements"
 		[showCurrentPageReport]="true" [rowsPerPageOptions]="pageSizeOptions" [loading]="loading" [paginator]="true"
 		currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} registros" (onLazyLoad)="lazyLoadData($event)"
-		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_menu','nombreMenuPadre','nemonico','nemonico_padre','nombre','imagen','ruta','orden','estado','fecha_registro','id_usuario_registro']">
+		[filterDelay]="0" [lazy]="true" [globalFilterFields]="['id_menu','nombreMenuPadre','nemonico','nemonico_padre','nombre','icono','ruta','orden','estado','fecha_registro','id_usuario_registro']">
 
 		<ng-template #caption>
 			<div class="flex">
@@ -39,7 +39,7 @@
         <th pSortableColumn="nombre" style="min-width:10rem">Menú<p-sortIcon field="nombre"/></th>
 				<th pSortableColumn="nombreMenuPadre" style="min-width:10rem">Menú Padre<p-sortIcon field="nombreMenuPadre"/></th>
 				<th pSortableColumn="nemonico" style="min-width:10rem">Nemónico<p-sortIcon field="nemonico"/></th>
-				<th pSortableColumn="imagen" style="min-width:10rem">Imagen<p-sortIcon field="imagen"/></th>
+				<th pSortableColumn="icono" style="min-width:10rem">Icono<p-sortIcon field="icono"/></th>
 				<th pSortableColumn="ruta" style="min-width:10rem">Ruta<p-sortIcon field="ruta"/></th>
 				<th pSortableColumn="orden" style="min-width:7rem">Orden<p-sortIcon field="orden"/></th>
 				<th pSortableColumn="estado" style="min-width:7rem">Estado<p-sortIcon field="estado"/></th>
@@ -52,8 +52,8 @@
 				<td>{{ item.menuPadre?.nombre }}</td>
 				<td>{{ item.nemonico }}</td>
         <td>
-          <div *ngIf="getIconDetails(item.imagen) as iconDetails">
-            <i class="{{item.imagen}}"></i>
+          <div *ngIf="getIconDetails(item.icono) as iconDetails">
+            <i class="{{item.icono}}"></i>
             {{ iconDetails.name }}
           </div>
         </td>

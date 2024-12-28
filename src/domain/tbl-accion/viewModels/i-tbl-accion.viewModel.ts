@@ -27,8 +27,8 @@ export interface ISaveTblAccionRsViewModel {
 export interface ISaveTblAccionViewModel {
 	nombre?: string | null;
 	nemonico?: string | null;
-	pagina?: string | null;
-	imagen?: string | null;
+	ruta?: string | null;
+	icono?: string | null;
 	color?: string | null;
 	descripcion?: string | null;
 	orden?: number | null;
@@ -45,8 +45,8 @@ export interface IGetTblAccionRsViewModel {
 	idAccion?: number | null;
 	nombre?: string | null;
 	nemonico?: string | null;
-	pagina?: string | null;
-	imagen?: string | null;
+	ruta?: string | null;
+	icono?: string | null;
 	color?: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null | undefined;
 	descripcion?: string | null;
 	orden?: number | null;
@@ -73,8 +73,8 @@ export interface IGetTblAccionPaginadoRsViewModel {
 	idAccion?: number | null;
 	nombre?: string | null;
 	nemonico?: string | null;
-	pagina?: string | null;
-	imagen?: string | null;
+	ruta?: string | null;
+	icono?: string | null;
 	color?: string | null;
 	descripcion?: string | null;
 	orden?: number | null;
@@ -103,8 +103,8 @@ export interface IGetTblAccionByIdRsViewModel {
 	idAccion?: number | null;
 	nombre?: string | null;
 	nemonico?: string | null;
-	pagina?: string | null;
-	imagen?: string | null;
+	ruta?: string | null;
+	icono?: string | null;
 	color?: string | null;
 	descripcion?: string | null;
 	orden?: number | null;
@@ -139,8 +139,8 @@ export interface IUpdateTblAccionViewModel  {
 	idAccion?: number | null;
 	nombre?: string | null;
 	nemonico?: string | null;
-	pagina?: string | null;
-	imagen?: string | null;
+	ruta?: string | null;
+	icono?: string | null;
 	color?: string | null;
 	descripcion?: string | null;
 	orden?: number | null;
