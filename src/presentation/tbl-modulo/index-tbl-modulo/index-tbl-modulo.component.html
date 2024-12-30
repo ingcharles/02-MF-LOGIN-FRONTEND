@@ -13,7 +13,7 @@
     <div class="p-toolbar-group-left">
       @for (item of tblAccionButtomIndexHeaderRecords; track $index) {
       <p-button [severity]="item.accion?.color" label="{{item.accion?.nombre}}" icon="{{item.accion?.icono}}"
-        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.INDEX + item.accion?.icono]" />
+        class="mr-2" [routerLink]="[routeCore.ADMIN.BASE + routeCore.ADMIN.TBLMODULO.INDEX + item.accion?.ruta]" />
       }
     </div>
   </p-toolbar>
